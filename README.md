@@ -2,6 +2,12 @@
 
 This site is built with [hexo](http://hexo.io/). Site content is written in Markdown format located in `src`. Pull requests welcome!
 
+## Persian translation group
+
+For collaboration, please join our public telegram [group](https://t.me/joinchat/C6fePg4CQPKGFxMwI-mhHQ).
+
+Also translation road map is open at [Trello](https://trello.com/b/HF19tHDi/docs).
+
 ## Developing
 
 Start a dev server at `localhost:4000`:
