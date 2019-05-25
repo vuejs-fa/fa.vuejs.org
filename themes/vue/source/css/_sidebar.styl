@@ -4,7 +4,7 @@
   position: absolute
   z-index: 10
   top: $header-height
-  left: 0
+  right: 0
   bottom: 0
   overflow-x: hidden
   overflow-y: auto
@@ -21,14 +21,12 @@
     margin-top: .5em
   .sidebar-inner
     width: 260px
-    padding: $content-padding-top + 10px 20px 60px 60px
+    padding: $content-padding-top + 40px 0px 60px 20px
   .version-select
     vertical-align: middle
     margin-left: 5px
   .menu-root
     padding-left: 0
-  .menu-sub
-    font-size: .85em
   .sidebar-link
     color: $light
     &.current
@@ -59,30 +57,6 @@
     margin-bottom: 20px
     display: none
     padding-left: 0
-  .main-sponsor
-    color: $light
-    font-size: .85em
-    .logo
-      color: $light
-      margin-top: 20px
-      text-align: center
-      font-weight: bold
-      display block
-      &:last-child
-        margin-top 10px
-        margin-bottom 20px
-    img, a
-      width: 125px
-  .become-backer
-    border: 1px solid $green
-    border-radius: 2em
-    display: inline-block
-    color: $green
-    font-size: .8em
-    width: 125px
-    padding: 4px 0
-    text-align: center
-    margin-bottom: 20px
   .nav-dropdown
     h4
       font-weight: normal
@@ -113,3 +87,7 @@
     &.open
       -webkit-transform: translate(0, 0)
       transform: translate(0, 0)
+
+@media print
+  .sidebar
+    display: none

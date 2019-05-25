@@ -6,9 +6,14 @@ order: 10
 
 ## Basic Usage
 
-You can use the `v-model` directive to create two-way data bindings on form input and textarea elements. It automatically picks the correct way to update the element based on the input type. Although a bit magical, `v-model` is essentially syntax sugar for updating data on user input events, plus special care for some edge cases.
+You can use the `v-model` directive to create two-way data bindings on form input, textarea, and select elements. It automatically picks the correct way to update the element based on the input type. Although a bit magical, `v-model` is essentially syntax sugar for updating data on user input events, plus special care for some edge cases.
 
 <p class="tip">`v-model` will ignore the initial `value`, `checked` or `selected` attributes found on any form elements. It will always treat the Vue instance data as the source of truth. You should declare the initial value on the JavaScript side, inside the `data` option of your component.</p>
+
+`v-model` internally uses different properties and emits different events for different input elements:
+- text and textarea elements use `value` property and `input` event;
+- checkboxes and radiobuttons use `checked` property and `change` event;
+- select fields use `value` as a prop and `change` as an event.
 
 <p class="tip" id="vmodel-ime-tip">For languages that require an [IME](https://en.wikipedia.org/wiki/Input_method) (Chinese, Japanese, Korean etc.), you'll notice that `v-model` doesn't get updated during IME composition. If you want to cater for these updates as well, use `input` event instead.</p>
 
@@ -295,7 +300,7 @@ For radio, checkbox and select options, the `v-model` binding values are usually
 <!-- `toggle` is either true or false -->
 <input type="checkbox" v-model="toggle">
 
-<!-- `selected` is a string "abc" when selected -->
+<!-- `selected` is a string "abc" when the first option is selected -->
 <select v-model="selected">
   <option value="abc">ABC</option>
 </select>
@@ -309,17 +314,19 @@ But sometimes we may want to bind the value to a dynamic property on the Vue ins
 <input
   type="checkbox"
   v-model="toggle"
-  v-bind:true-value="a"
-  v-bind:false-value="b"
+  true-value="yes"
+  false-value="no"
 >
 ```
 
 ``` js
 // when checked:
-vm.toggle === vm.a
+vm.toggle === 'yes'
 // when unchecked:
-vm.toggle === vm.b
+vm.toggle === 'no'
 ```
+
+<p class="tip">The `true-value` and `false-value` attributes don't affect the input's `value` attribute, because browsers don't include unchecked boxes in form submissions. To guarantee that one of two values is submitted in a form (e.g. "yes" or "no"), use radio inputs instead.</p>
 
 ### Radio
 
@@ -366,11 +373,11 @@ If you want user input to be automatically typecast as a number, you can add the
 <input v-model.number="age" type="number">
 ```
 
-This is often useful, because even with `type="number"`, the value of HTML input elements always returns a string.
+This is often useful, because even with `type="number"`, the value of HTML input elements always returns a string. If the value cannot be parsed with `parseFloat()`, then the original value is returned.
 
 ### `.trim`
 
-If you want user input to be trimmed automatically, you can add the `trim` modifier to your `v-model` managed inputs:
+If you want whitespace from user input to be trimmed automatically, you can add the `trim` modifier to your `v-model`-managed inputs:
 
 ```html
 <input v-model.trim="msg">
@@ -380,4 +387,4 @@ If you want user input to be trimmed automatically, you can add the `trim` modif
 
 > If you're not yet familiar with Vue's components, you can skip this for now.
 
-HTML's built-in input types won't always meet your needs. Fortunately, Vue components allow you to build reusable inputs with completely customized behavior. These inputs even work with `v-model`! To learn more, read about [custom inputs](components.html#Form-Input-Components-using-Custom-Events) in the Components guide.
+HTML's built-in input types won't always meet your needs. Fortunately, Vue components allow you to build reusable inputs with completely customized behavior. These inputs even work with `v-model`! To learn more, read about [custom inputs](components.html#Using-v-model-on-Components) in the Components guide.

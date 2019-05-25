@@ -48,10 +48,10 @@ new Vue({
 
 ``` css
 .fade-enter-active, .fade-leave-active {
-  transition: opacity .5s
+  transition: opacity .5s;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0
+  opacity: 0;
 }
 ```
 
@@ -193,7 +193,7 @@ Here's an example, omitting prefixed CSS rules for the sake of brevity:
 <div id="example-2">
   <button @click="show = !show">Toggle show</button>
   <transition name="bounce">
-    <p v-if="show">Look at me!</p>
+    <p v-if="show">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris facilisis enim libero, at lacinia diam fermentum id. Pellentesque habitant morbi tristique senectus et netus.</p>
   </transition>
 </div>
 ```
@@ -231,7 +231,7 @@ new Vue({
 <div id="example-2" class="demo">
   <button @click="show = !show">Toggle show</button>
   <transition name="bounce">
-    <p v-show="show">Look at me!</p>
+    <p v-show="show">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris facilisis enim libero, at lacinia diam fermentum id. Pellentesque habitant morbi tristique senectus et netus.</p>
   </transition>
 </div>
 
@@ -580,6 +580,8 @@ and custom JavaScript hooks:
   <!-- ... -->
 </transition>
 ```
+
+In the example above, either `appear` attribute or `v-on:appear` hook will cause an appear transition.
 
 ## Transitioning Between Elements
 
@@ -955,7 +957,8 @@ So far, we've managed transitions for:
 So what about for when we have a whole list of items we want to render simultaneously, for example with `v-for`? In this case, we'll use the `<transition-group>` component. Before we dive into an example though, there are a few things that are important to know about this component:
 
 - Unlike `<transition>`, it renders an actual element: a `<span>` by default. You can change the element that's rendered with the `tag` attribute.
-- Elements inside are **always required** to have a unique `key` attribute
+- [Transition modes](#Transition-Modes) are not available, because we are no longer alternating between mutually exclusive elements.
+- Elements inside are **always required** to have a unique `key` attribute.
 
 ### List Entering/Leaving Transitions
 
@@ -1478,7 +1481,7 @@ Vue.component('my-special-transition', {
 })
 ```
 
-And functional components are especially well-suited to this task:
+And [functional components](render-function.html#Functional-Components) are especially well-suited to this task:
 
 ``` js
 Vue.component('my-special-transition', {

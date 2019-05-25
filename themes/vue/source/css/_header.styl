@@ -1,11 +1,21 @@
 $header-height = 40px
 
+red-dot-before(leftPos = -8px)
+  content: ""
+  width: 0
+  height: 0
+  border 2px solid $red
+  border-radius 50%
+  position: absolute
+  top: calc(50% - 1px)
+  left: leftPos
+
 #header
   background-color: #fff
   height: $header-height
   padding: $heading-padding-vertical 60px
   position: relative
-  z-index: 2
+  z-index: 100
 
 body.docs
   #header
@@ -47,13 +57,18 @@ body.docs
           top: 50%
           margin-top: -4px
           left: 8px
+      &.new::before
+        red-dot-before(8px)
 
 .nav-link
   padding-bottom: 3px
+  white-space: nowrap
   &:hover, &.current
     border-bottom: 3px solid $green
   &.team
     margin-left: 10px
+  &.new::before
+    red-dot-before()
 
 .new-label
   position: absolute
@@ -126,3 +141,7 @@ body.docs
     left: 50%
     margin-left: -15px
     background-size: 30px
+
+@media print
+  #header
+    display: none

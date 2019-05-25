@@ -186,7 +186,7 @@ When including an `index`, the argument order for arrays used to be `(index, val
 
 ### `v-for` Argument Order for Objects <sup>changed</sup>
 
-When including a `key`, the argument order for objects used to be `(key, value)`. It is now `(value, key)` to be more consistent with common object iterators such as lodash's.
+When including a property name/key, the argument order for objects used to be `(name, value)`. It is now `(value, name)` to be more consistent with common object iterators such as lodash's.
 
 {% raw %}
 <div class="upgrade-path">
@@ -210,15 +210,15 @@ The implicitly assigned `$index` and `$key` variables have been removed in favor
 
 `track-by` has been replaced with `key`, which works like any other attribute: without the `v-bind:` or `:` prefix, it is treated as a literal string. In most cases, you'd want to use a dynamic binding which expects a full expression instead of a key. For example, in place of:
 
-``` html
+{% codeblock lang:html %}
 <div v-for="item in items" track-by="id">
-```
+{% endcodeblock %}
 
 You would now write:
 
-``` html
+{% codeblock lang:html %}
 <div v-for="item in items" v-bind:key="item.id">
-```
+{% endcodeblock %}
 
 {% raw %}
 <div class="upgrade-path">
@@ -364,7 +364,7 @@ computed: {
 Or with component methods:
 
 ``` js
-template: '<p>message: {{ getTimeMessage }}</p>',
+template: '<p>message: {{ getTimeMessage() }}</p>',
 methods: {
   getTimeMessage: function () {
     return Date.now() + this.message
@@ -400,9 +400,9 @@ For enumerated attributes, in addition to the falsy values above, the string `"f
 
 When used on a component, `v-on` now only listens to custom events `$emit`ted by that component. To listen for a native DOM event on the root element, you can use the `.native` modifier. For example:
 
-``` html
+{% codeblock lang:html %}
 <my-component v-on:click.native="doSomething"></my-component>
-```
+{% endcodeblock %}
 
 {% raw %}
 <div class="upgrade-path">
@@ -602,9 +602,9 @@ As you can see, `v-model`'s two-way binding doesn't make sense here. Setting `st
 
 Instead, you should use an array of __objects__ so that `v-model` can update the field on the object. For example:
 
-``` html
+{% codeblock lang:html %}
 <input v-for="obj in objects" v-model="obj.str">
-```
+{% endcodeblock %}
 
 {% raw %}
 <div class="upgrade-path">
@@ -644,7 +644,7 @@ Since `v-ref` is no longer a directive, but a special attribute, it can also be 
 <p v-for="item in items" v-bind:ref="'item' + item.id"></p>
 ```
 
-Previously, `v-el`/`v-ref` combined with `v-for` would produce an array of elements/components, because there was no way to give each item a unique name. You can still achieve this behavior by given each item the same `ref`:
+Previously, `v-el`/`v-ref` combined with `v-for` would produce an array of elements/components, because there was no way to give each item a unique name. You can still achieve this behavior by giving each item the same `ref`:
 
 ``` html
 <p v-for="item in items" ref="items"></p>
@@ -709,7 +709,7 @@ The `.literal` modifier has been removed, as the same can be easily achieved by 
 
 For example, you can update:
 
-``` js
+``` html
 <p v-my-directive.literal="foo bar baz"></p>
 ```
 
@@ -786,7 +786,7 @@ Vue.config.keyCodes.f1 = 112
 
 `$dispatch` and `$broadcast` have been removed in favor of more explicitly cross-component communication and more maintainable state management solutions, such as [Vuex](https://github.com/vuejs/vuex).
 
-The problem is event flows that depend on a component's tree structure can be hard to reason about and very brittle when the tree becomes large. It doesn't scale well and we don't want to set you up for pain later. `$dispatch` and `$broadcast` also do not solve communication between sibling components.
+The problem is event flows that depend on a component's tree structure can be hard to reason about and are very brittle when the tree becomes large. They don't scale well and only set you up for pain later. `$dispatch` and `$broadcast` also do not solve communication between sibling components.
 
 One of the most common uses for these methods is to communicate between a parent and its direct children. In these cases, you can actually [listen to an `$emit` from a child with `v-on`](components.html#Form-Input-Components-using-Custom-Events). This allows you to keep the convenience of events with added explicitness.
 
@@ -796,9 +796,9 @@ For example, let's say we have a todo app structured like this:
 
 ```
 Todos
-|-- NewTodoInput
-|-- Todo
-    |-- DeleteTodoButton
+├─ NewTodoInput
+└─ Todo
+   └─ DeleteTodoButton
 ```
 
 We could manage communication between components with this single event hub:
@@ -990,9 +990,9 @@ computed: {
 
 You can even order by multiple columns:
 
-``` js
+{% codeblock lang:js %}
 _.orderBy(this.users, ['name', 'last_login'], ['asc', 'desc'])
-```
+{% endcodeblock %}
 
 {% raw %}
 <div class="upgrade-path">
@@ -1070,9 +1070,9 @@ function pluralizeKnife (count) {
 
 For a very naive implementation, you could do something like this:
 
-``` js
+{% codeblock lang:js %}
 '$' + price.toFixed(2)
-```
+{% endcodeblock %}
 
 In many cases though, you'll still run into strange behavior (e.g. `0.035.toFixed(2)` rounds up to `0.04`, but `0.045` rounds down to `0.04`). To work around these issues, you can use the [`accounting`](http://openexchangerates.github.io/accounting.js/) library to more reliably format currencies.
 
@@ -1365,9 +1365,9 @@ Instead, retrieve reactive data directly.
 
 Use the native DOM API:
 
-``` js
+{% codeblock lang:js %}
 myElement.appendChild(vm.$el)
-```
+{% endcodeblock %}
 
 {% raw %}
 <div class="upgrade-path">
@@ -1380,9 +1380,9 @@ myElement.appendChild(vm.$el)
 
 Use the native DOM API:
 
-``` js
+{% codeblock lang:js %}
 myElement.parentNode.insertBefore(vm.$el, myElement)
-```
+{% endcodeblock %}
 
 {% raw %}
 <div class="upgrade-path">
@@ -1395,15 +1395,15 @@ myElement.parentNode.insertBefore(vm.$el, myElement)
 
 Use the native DOM API:
 
-``` js
+{% codeblock lang:js %}
 myElement.parentNode.insertBefore(vm.$el, myElement.nextSibling)
-```
+{% endcodeblock %}
 
 Or if `myElement` is the last child:
 
-``` js
+{% codeblock lang:js %}
 myElement.parentNode.appendChild(vm.$el)
-```
+{% endcodeblock %}
 
 {% raw %}
 <div class="upgrade-path">
@@ -1416,9 +1416,9 @@ myElement.parentNode.appendChild(vm.$el)
 
 Use the native DOM API:
 
-``` js
+{% codeblock lang:js %}
 vm.$el.remove()
-```
+{% endcodeblock %}
 
 {% raw %}
 <div class="upgrade-path">

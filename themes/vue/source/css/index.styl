@@ -1,10 +1,12 @@
 @import "_common"
 @import "_header"
 @import "_sidebar"
-@import "_sponsor"
+@import "_sponsors-index"
+@import "_modal"
+@import "_themes-example"
 
 $width = 900px
-$space = 50px
+$space = 40px
 
 body
   background-color: darken($light, 10%)
@@ -25,11 +27,12 @@ body
     .logo
       display: none
 
-#hero
+#hero,
+#news
   padding: $space 40px 30px
   background-color: #fff
   .inner
-    max-width: $width
+    max-width: $width * 1.4
     margin: 0 auto
   .left, .right
     display: inline-block
@@ -60,8 +63,8 @@ body
     letter-spacing: .1em
     min-width: 8em
     text-align: center
-    &:first-child
-      margin-right: 1em
+    &:not(:last-child)
+      margin-right: 1%
   .social-buttons
     list-style-type: none
     padding: 0
@@ -70,19 +73,49 @@ body
       vertical-align: middle
       margin-right: 15px
 
+#news
+  padding: $space 20px 70px
+  text-align: center
+  p
+    margin-top: 10px
+  a
+    color: $green
+  .newsletter-form
+    position: relative
+    max-width: 550px
+    margin: 0 auto
+    box-sizing: border-box
+  .newsletter-input
+    width: 100%
+    box-sizing: border-box
+    padding: 10px 80px 10px 20px
+    height: 50px
+    border-radius: 50px
+    border: 1px solid #ccc
+    font-size: 16px
+    &:focus
+      outline: none
+      border-color: #42b983
+  .newsletter-button.button
+    position: absolute
+    padding: 4px 20px
+    margin: 0
+    height: calc(100% - 8px)
+    right: 4px
+    top: 4px
+
 #special-sponsor
   background-color: #fff
   text-align: center
   padding-bottom: 30px
+  h3
+    margin 0
   a
     color $light
-  span, img
+  a, span, img
     display: inline-block
     vertical-align: middle
   img
-    width: 150px
-    position: relative
-    top: -3px
     margin: 15px
 
 #highlights
@@ -111,6 +144,11 @@ body
   padding: $space 0
   color: #fff
   text-align: center
+  .social-icon
+    margin 0 5px
+    svg
+      width 18px
+      height 18px
   a
     font-weight: 700
     color: #fff

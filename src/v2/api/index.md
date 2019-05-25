@@ -1,4 +1,5 @@
 ---
+title: API
 type: api
 ---
 
@@ -81,9 +82,11 @@ type: api
 
   > In 2.2.0+, this hook also captures errors in component lifecycle hooks. Also, when this hook is `undefined`, captured errors will be logged with `console.error` instead of crashing the app.
 
-  > In 2.4.0+ this hook also captures errors thrown inside Vue custom event handlers.
+  > In 2.4.0+, this hook also captures errors thrown inside Vue custom event handlers.
 
-  > [Sentry](https://sentry.io), an error tracking service, provides [official integration](https://sentry.io/for/vue/) using this option.
+  > In 2.6.0+, this hook also captures errors thrown inside `v-on` DOM listeners. In addition, if any of the covered hooks or handlers returns a Promise chain (e.g. async functions), the error from that Promise chain will also be handled.
+
+  > Error tracking services [Sentry](https://sentry.io/for/vue/) and [Bugsnag](https://docs.bugsnag.com/platforms/browsers/vue/) provide official integrations using this option.
 
 ### warnHandler
 
@@ -159,7 +162,7 @@ type: api
 
 - **Usage**:
 
-  Set this to `true` to enable component init, compile, render and patch performance tracing in the browser devtool timeline. Only works in development mode and in browsers that support the [performance.mark](https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark) API.
+  Set this to `true` to enable component init, compile, render and patch performance tracing in the browser devtool performance/timeline panel. Only works in development mode and in browsers that support the [performance.mark](https://developer.mozilla.org/en-US/docs/Web/API/Performance/mark) API.
 
 ### productionTip
 
@@ -175,7 +178,7 @@ type: api
 
 ## Global API
 
-<h3 id="Vue-extend">Vue.extend( options )</h3>
+### Vue.extend( options )
 
 - **Arguments:**
   - `{Object} options`
@@ -214,7 +217,7 @@ type: api
 
 - **See also:** [Components](../guide/components.html)
 
-<h3 id="Vue-nextTick">Vue.nextTick( [callback, context] )</h3>
+### Vue.nextTick( [callback, context] )
 
 - **Arguments:**
   - `{Function} [callback]`
@@ -231,34 +234,40 @@ type: api
   Vue.nextTick(function () {
     // DOM updated
   })
+
+  // usage as a promise (2.1.0+, see note below)
+  Vue.nextTick()
+    .then(function () {
+      // DOM updated
+    })
   ```
 
   > New in 2.1.0+: returns a Promise if no callback is provided and Promise is supported in the execution environment. Please note that Vue does not come with a Promise polyfill, so if you target browsers that don't support Promises natively (looking at you, IE), you will have to provide a polyfill yourself.
 
 - **See also:** [Async Update Queue](../guide/reactivity.html#Async-Update-Queue)
 
-<h3 id="Vue-set">Vue.set( target, key, value )</h3>
+### Vue.set( target, propertyName/index, value )
 
 - **Arguments:**
   - `{Object | Array} target`
-  - `{string | number} key`
+  - `{string | number} propertyName/index`
   - `{any} value`
 
 - **Returns:** the set value.
 
 - **Usage:**
 
-  Set a property on an object. If the object is reactive, ensure the property is created as a reactive property and trigger view updates. This is primarily used to get around the limitation that Vue cannot detect property additions.
+  Adds a property to a reactive object, ensuring the new property is also reactive, so triggers view updates. This must be used to add new properties to reactive objects, as Vue cannot detect normal property additions (e.g. `this.myObject.newProperty = 'hi'`).
 
-  **Note the object cannot be a Vue instance, or the root data object of a Vue instance.**
+  <p class="tip">The target object cannot be a Vue instance, or the root data object of a Vue instance.</p>
 
 - **See also:** [Reactivity in Depth](../guide/reactivity.html)
 
-<h3 id="Vue-delete">Vue.delete( target, key )</h3>
+### Vue.delete( target, propertyName/index )
 
 - **Arguments:**
   - `{Object | Array} target`
-  - `{string | number} key/index`
+  - `{string | number} propertyName/index`
 
   > Only in 2.2.0+: Also works with Array + index.
 
@@ -270,7 +279,7 @@ type: api
 
 - **See also:** [Reactivity in Depth](../guide/reactivity.html)
 
-<h3 id="Vue-directive">Vue.directive( id, [definition] )</h3>
+### Vue.directive( id, [definition] )
 
 - **Arguments:**
   - `{string} id`
@@ -301,7 +310,7 @@ type: api
 
 - **See also:** [Custom Directives](../guide/custom-directive.html)
 
-<h3 id="Vue-filter">Vue.filter( id, [definition] )</h3>
+### Vue.filter( id, [definition] )
 
 - **Arguments:**
   - `{string} id`
@@ -321,7 +330,9 @@ type: api
   var myFilter = Vue.filter('my-filter')
   ```
 
-<h3 id="Vue-component">Vue.component( id, [definition] )</h3>
+- **See also:** [Filters](../guide/filters.html)
+
+### Vue.component( id, [definition] )
 
 - **Arguments:**
   - `{string} id`
@@ -344,7 +355,7 @@ type: api
 
 - **See also:** [Components](../guide/components.html)
 
-<h3 id="Vue-use">Vue.use( plugin )</h3>
+### Vue.use( plugin )
 
 - **Arguments:**
   - `{Object | Function} plugin`
@@ -353,11 +364,13 @@ type: api
 
   Install a Vue.js plugin. If the plugin is an Object, it must expose an `install` method. If it is a function itself, it will be treated as the install method. The install method will be called with Vue as the argument.
 
+  This method has to be called before calling `new Vue()`
+
   When this method is called on the same plugin multiple times, the plugin will be installed only once.
 
 - **See also:** [Plugins](../guide/plugins.html)
 
-<h3 id="Vue-mixin">Vue.mixin( mixin )</h3>
+### Vue.mixin( mixin )
 
 - **Arguments:**
   - `{Object} mixin`
@@ -368,7 +381,7 @@ type: api
 
 - **See also:** [Global Mixin](../guide/mixins.html#Global-Mixin)
 
-<h3 id="Vue-compile">Vue.compile( template )</h3>
+### Vue.compile( template )
 
 - **Arguments:**
   - `{string} template`
@@ -391,7 +404,36 @@ type: api
 
 - **See also:** [Render Functions](../guide/render-function.html)
 
-<h3 id="Vue-version">Vue.version</h3>
+### Vue.observable( object )
+
+> New in 2.6.0+
+
+- **Arguments:**
+  - `{Object} object`
+
+- **Usage:**
+
+  Make an object reactive. Internally, Vue uses this on the object returned by the `data` function.
+
+  The returned object can be used directly inside [render functions](../guide/render-function.html) and [computed properties](../guide/computed.html), and will trigger appropriate updates when mutated. It can also be used as a minimal, cross-component state store for simple scenarios:
+
+  ``` js
+  const state = Vue.observable({ count: 0 })
+
+  const Demo = {
+    render(h) {
+      return h('button', {
+        on: { click: () => { state.count++ }}
+      }, `count is: ${state.count}`)
+    }
+  }
+  ```
+
+  <p class="tip">In Vue 2.x, `Vue.observable` directly mutates the object passed to it, so that it is equivalent to the object returned, as [demonstrated here](../guide/instance.html#Data-and-Methods). In Vue 3.x, a reactive proxy will be returned instead, leaving the original object non-reactive if mutated directly. Therefore, for future compatibility, we recommend always working with the object returned by `Vue.observable`, rather than the object originally passed to it.</p>
+
+- **See also:** [Reactivity in Depth](../guide/reactivity.html)
+
+### Vue.version
 
 - **Details**: Provides the installed version of Vue as a string. This is especially useful for community plugins and components, where you might use different strategies for different versions.
 
@@ -451,7 +493,11 @@ type: api
   })
   ```
 
-  <p class="tip">Note that __you should not use an arrow function with the `data` property__ (e.g. `data: () => { return { a: this.myProp }}`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.myProp` will be undefined.</p>
+  Note that if you use an arrow function with the `data` property, `this` won't be the component's instance, but you can still access the instance as the function's first argument:
+
+  ```js
+  data: vm => ({ a: vm.myProp })
+  ```
 
 - **See also:** [Reactivity in Depth](../guide/reactivity.html)
 
@@ -462,6 +508,15 @@ type: api
 - **Details:**
 
   A list/hash of attributes that are exposed to accept data from the parent component. It has an Array-based simple syntax and an alternative Object-based syntax that allows advanced configurations such as type checking, custom validation and default values.
+
+  With Object-based syntax, you can use following options:
+    - `type`: can be one of the following native constructors: `String`, `Number`, `Boolean`, `Array`, `Object`, `Date`, `Function`, `Symbol`, any custom constructor function or an array of those. Will check if a prop has a given type, and will throw a warning if it doesn't. [More information](../guide/components-props.html#Prop-Types) on prop types.
+    - `default`: `any`
+    Specifies a default value for the prop. If the prop is not passed, this value will be used instead. Object or array defaults must be returned from a factory function.
+    - `required`: `Boolean`
+    Defines if the prop is required. In a non-production environment, a console warning will be thrown if this value is truthy and the prop is not passed.
+    - `validator`: `Function`
+    Custom validator function that takes the prop value as the sole argument. In a non-production environment, a console warning will be thrown if this function returns a falsy value (i.e. the validation fails). You can read more about prop validation [here](../guide/components-props.html#Prop-Validation).
 
 - **Example:**
 
@@ -489,7 +544,7 @@ type: api
   })
   ```
 
-- **See also:** [Props](../guide/components.html#Props)
+- **See also:** [Props](../guide/components-props.html)
 
 ### propsData
 
@@ -524,7 +579,13 @@ type: api
 
   Computed properties to be mixed into the Vue instance. All getters and setters have their `this` context automatically bound to the Vue instance.
 
-  <p class="tip">Note that __you should not use an arrow function to define a computed property__ (e.g. `aDouble: () => this.a * 2`). The reason is arrow functions bind the parent context, so `this` will not be the Vue instance as you expect and `this.a` will be undefined.</p>
+  Note that if you use an arrow function with a computed property, `this` won't be the component's instance, but you can still access the instance as the function's first argument:
+
+  ```js
+  computed: {
+    aDouble: vm => vm.a * 2
+  }
+  ```
 
   Computed properties are cached, and only re-computed on reactive dependency changes. Note that if a certain dependency is out of the instance's scope (i.e. not reactive), the computed property will __not__ be updated.
 
@@ -586,7 +647,7 @@ type: api
 
 ### watch
 
-- **Type:** `{ [key: string]: string | Function | Object }`
+- **Type:** `{ [key: string]: string | Function | Object | Array}`
 
 - **Details:**
 
@@ -600,7 +661,12 @@ type: api
       a: 1,
       b: 2,
       c: 3,
-      d: 4
+      d: 4,
+      e: {
+        f: {
+          g: 5
+        }
+      }
     },
     watch: {
       a: function (val, oldVal) {
@@ -608,16 +674,26 @@ type: api
       },
       // string method name
       b: 'someMethod',
-      // deep watcher
+      // the callback will be called whenever any of the watched object properties change regardless of their nested depth
       c: {
         handler: function (val, oldVal) { /* ... */ },
         deep: true
       },
       // the callback will be called immediately after the start of the observation
       d: {
-        handler: function (val, oldVal) { /* ... */ },
+        handler: 'someMethod',
         immediate: true
-      }
+      },
+      e: [
+        'handle1',
+        function handle2 (val, oldVal) { /* ... */ },
+        {
+          handler: function handle3 (val, oldVal) { /* ... */ },
+          /* ... */
+        }
+      ],
+      // watch vm.e.f's value: {g: 5}
+      'e.f': function (val, oldVal) { /* ... */ }
     }
   })
   vm.a = 2 // => new: 2, old: 1
@@ -631,7 +707,7 @@ type: api
 
 ### el
 
-- **Type:** `string | HTMLElement`
+- **Type:** `string | Element`
 
 - **Restriction:** only respected in instance creation via `new`.
 
@@ -775,11 +851,9 @@ type: api
 
 - **Details:**
 
-  Called when the data changes, before the virtual DOM is re-rendered and patched.
+  Called when data changes, before the DOM is patched. This is a good place to access the existing DOM before an update, e.g. to remove manually added event listeners.
 
-  You can perform further state changes in this hook and they will not trigger additional re-renders.
-
-  **This hook is not called during server-side rendering.**
+  **This hook is not called during server-side rendering, because only the initial render is performed server-side.**
 
 - **See also:** [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
 
@@ -960,7 +1034,7 @@ type: api
 
   Allows declaratively extending another component (could be either a plain options object or a constructor) without having to use `Vue.extend`. This is primarily intended to make it easier to extend between single file components.
 
-  This is similar to `mixins`, the difference being that the component's own options takes higher priority than the source component being extended.
+  This is similar to `mixins`.
 
 - **Example:**
 
@@ -986,17 +1060,24 @@ type: api
 
   <p class="tip">`provide` and `inject` are primarily provided for advanced plugin / component library use cases. It is NOT recommended to use them in generic application code.</p>
 
-  This pair of options are used together to allow an ancestor component to serve as a dependency injector for its all descendants, regardless of how deep the component hierarchy is, as long as they are in the same parent chain. If you are familiar with React, this is very similar to React's context feature.
+  This pair of options are used together to allow an ancestor component to serve as a dependency injector for all its descendants, regardless of how deep the component hierarchy is, as long as they are in the same parent chain. If you are familiar with React, this is very similar to React's context feature.
 
   The `provide` option should be an object or a function that returns an object. This object contains the properties that are available for injection into its descendants. You can use ES2015 Symbols as keys in this object, but only in environments that natively support `Symbol` and `Reflect.ownKeys`.
 
-  The `inject` options should be either an Array of strings or an object where the keys stand for the local binding name, and the value being the key (string or Symbol) to search for in available injections.
+  The `inject` option should be either:
+  - an array of strings, or
+  - an object where the keys are the local binding name and the value is either:
+    - the key (string or Symbol) to search for in available injections, or
+    - an object where:
+      - the `from` property is the key (string or Symbol) to search for in available injections, and
+      - the `default` property is used as fallback value
 
   > Note: the `provide` and `inject` bindings are NOT reactive. This is intentional. However, if you pass down an observed object, properties on that object do remain reactive.
 
 - **Example:**
 
   ``` js
+  // parent component providing 'foo'
   var Provider = {
     provide: {
       foo: 'bar'
@@ -1004,6 +1085,7 @@ type: api
     // ...
   }
 
+  // child component injecting 'foo'
   var Child = {
     inject: ['foo'],
     created () {
@@ -1238,7 +1320,7 @@ type: api
 
 ### vm.$el
 
-- **Type:** `HTMLElement`
+- **Type:** `Element`
 
 - **Read only**
 
@@ -1303,7 +1385,9 @@ type: api
 
 - **Details:**
 
-  Used to programmatically access content [distributed by slots](../guide/components.html#Content-Distribution-with-Slots). Each [named slot](../guide/components.html#Named-Slots) has its own corresponding property (e.g. the contents of `slot="foo"` will be found at `vm.$slots.foo`). The `default` property contains any nodes not included in a named slot.
+  Used to programmatically access content [distributed by slots](../guide/components.html#Content-Distribution-with-Slots). Each [named slot](../guide/components.html#Named-Slots) has its own corresponding property (e.g. the contents of `v-slot:foo` will be found at `vm.$slots.foo`). The `default` property contains either nodes not included in a named slot or contents of `v-slot:default`.
+
+  **Note:** `v-slot:foo` is supported in v2.6+. For older versions, you can use the [deprecated syntax](../guide/components-slots.html#Deprecated-Syntax).
 
   Accessing `vm.$slots` is most useful when writing a component with a [render function](../guide/render-function.html).
 
@@ -1311,15 +1395,15 @@ type: api
 
   ```html
   <blog-post>
-    <h1 slot="header">
-      About Me
-    </h1>
+    <template v-slot:header>
+      <h1>About Me</h1>
+    </template>
 
     <p>Here's some page content, which will be included in vm.$slots.default, because it's not inside a named slot.</p>
 
-    <p slot="footer">
-      Copyright 2016 Evan You
-    </p>
+    <template v-slot:footer>
+      <p>Copyright 2016 Evan You</p>
+    </template>
 
     <p>If I have some content down here, it will also be included in vm.$slots.default.</p>.
   </blog-post>
@@ -1341,7 +1425,7 @@ type: api
   ```
 
 - **See also:**
-  - [`<slot>` Component](#slot-1)
+  - [`<slot>` Component](#slot)
   - [Content Distribution with Slots](../guide/components.html#Content-Distribution-with-Slots)
   - [Render Functions - Slots](../guide/render-function.html#Slots)
 
@@ -1349,7 +1433,7 @@ type: api
 
 > New in 2.1.0+
 
-- **Type:** `{ [name: string]: props => VNode | Array<VNode> }`
+- **Type:** `{ [name: string]: props => Array<VNode> | undefined }`
 
 - **Read only**
 
@@ -1359,8 +1443,14 @@ type: api
 
   Accessing `vm.$scopedSlots` is most useful when writing a component with a [render function](../guide/render-function.html).
 
+  **Note:** since 2.6.0+, there are two notable changes to this property:
+
+  1. Scoped slot functions are now guaranteed to return an array of VNodes, unless the return value is invalid, in which case the function will return `undefined`.
+
+  2. All `$slots` are now also exposed on `$scopedSlots` as functions. If you work with render functions, it is now recommended to always access slots via `$scopedSlots`, whether they currently use a scope or not. This will not only make future refactors to add a scope simpler, but also ease your eventual migration to Vue 3, where all slots will be functions.
+
 - **See also:**
-  - [`<slot>` Component](#slot-1)
+  - [`<slot>` Component](#slot)
   - [Scoped Slots](../guide/components.html#Scoped-Slots)
   - [Render Functions - Slots](../guide/render-function.html#Slots)
 
@@ -1372,7 +1462,7 @@ type: api
 
 - **Details:**
 
-  An object that holds child components that have `ref` registered.
+  An object of DOM elements and component instances, registered with [`ref` attributes](#ref).
 
 - **See also:**
   - [Child Component Refs](../guide/components.html#Child-Component-Refs)
@@ -1392,6 +1482,8 @@ type: api
 
 ### vm.$attrs
 
+> New in 2.4.0+
+
 - **Type:** `{ [key: string]: string }`
 
 - **Read only**
@@ -1402,17 +1494,19 @@ type: api
 
 ### vm.$listeners
 
+> New in 2.4.0+
+
 - **Type:** `{ [key: string]: Function | Array<Function> }`
 
 - **Read only**
 
 - **Details:**
 
-  Contains parent-scope `v-on` event listeners (without `.native` modifiers). This can be passed down to an inner component via `v-on="$listeners"` - useful when creating higher-order components.
+  Contains parent-scope `v-on` event listeners (without `.native` modifiers). This can be passed down to an inner component via `v-on="$listeners"` - useful when creating transparent wrapper components.
 
 ## Instance Methods / Data
 
-<h3 id="vm-watch">vm.$watch( expOrFn, callback, [options] )</h3>
+### vm.$watch( expOrFn, callback, [options] )
 
 - **Arguments:**
   - `{string | Function} expOrFn`
@@ -1440,6 +1534,9 @@ type: api
   // function
   vm.$watch(
     function () {
+      // everytime the expression `this.a + this.b` yields a different result,
+      // the handler will be called. It's as if we were watching a computed
+      // property without defining the computed property itself
       return this.a + this.b
     },
     function (newVal, oldVal) {
@@ -1479,11 +1576,11 @@ type: api
   // `callback` is fired immediately with current value of `a`
   ```
 
-<h3 id="vm-set">vm.$set( target, key, value )</h3>
+### vm.$set( target, propertyName/index, value )
 
 - **Arguments:**
   - `{Object | Array} target`
-  - `{string | number} key`
+  - `{string | number} propertyName/index`
   - `{any} value`
 
 - **Returns:** the set value.
@@ -1494,11 +1591,11 @@ type: api
 
 - **See also:** [Vue.set](#Vue-set)
 
-<h3 id="vm-delete">vm.$delete( target, key )</h3>
+### vm.$delete( target, propertyName/index )
 
 - **Arguments:**
   - `{Object | Array} target`
-  - `{string | number} key`
+  - `{string | number} propertyName/index`
 
 - **Usage:**
 
@@ -1508,7 +1605,7 @@ type: api
 
 ## Instance Methods / Events
 
-<h3 id="vm-on">vm.$on( event, callback )</h3>
+### vm.$on( event, callback )
 
 - **Arguments:**
   - `{string | Array<string>} event` (array only supported in 2.2.0+)
@@ -1528,7 +1625,7 @@ type: api
   // => "hi"
   ```
 
-<h3 id="vm-once">vm.$once( event, callback )</h3>
+### vm.$once( event, callback )
 
 - **Arguments:**
   - `{string} event`
@@ -1538,7 +1635,7 @@ type: api
 
   Listen for a custom event, but only once. The listener will be removed once it triggers for the first time.
 
-<h3 id="vm-off">vm.$off( [event, callback] )</h3>
+### vm.$off( [event, callback] )
 
 - **Arguments:**
   - `{string | Array<string>} event` (array only supported in 2.2.2+)
@@ -1554,17 +1651,142 @@ type: api
 
   - If both event and callback are given, remove the listener for that specific callback only.
 
-<h3 id="vm-emit">vm.$emit( event, [...args] )</h3>
+### vm.$emit( eventName, [...args] )
 
 - **Arguments:**
-  - `{string} event`
+  - `{string} eventName`
   - `[...args]`
 
   Trigger an event on the current instance. Any additional arguments will be passed into the listener's callback function.
 
+- **Examples:**
+
+  Using `$emit` with only an event name:
+
+  ```js
+  Vue.component('welcome-button', {
+    template: `
+      <button v-on:click="$emit('welcome')">
+        Click me to be welcomed
+      </button>
+    `
+  })
+  ```
+  ```html
+  <div id="emit-example-simple">
+    <welcome-button v-on:welcome="sayHi"></welcome-button>
+  </div>
+  ```
+  ```js
+  new Vue({
+    el: '#emit-example-simple',
+    methods: {
+      sayHi: function () {
+        alert('Hi!')
+      }
+    }
+  })
+  ```
+  {% raw %}
+  <div id="emit-example-simple" class="demo">
+    <welcome-button v-on:welcome="sayHi"></welcome-button>
+  </div>
+  <script>
+    Vue.component('welcome-button', {
+      template: `
+        <button v-on:click="$emit('welcome')">
+          Click me to be welcomed
+        </button>
+      `
+    })
+    new Vue({
+      el: '#emit-example-simple',
+      methods: {
+        sayHi: function () {
+          alert('Hi!')
+        }
+      }
+    })
+  </script>
+  {% endraw %}
+
+  Using `$emit` with additional arguments:
+
+  ```js
+  Vue.component('magic-eight-ball', {
+    data: function () {
+      return {
+        possibleAdvice: ['Yes', 'No', 'Maybe']
+      }
+    },
+    methods: {
+      giveAdvice: function () {
+        var randomAdviceIndex = Math.floor(Math.random() * this.possibleAdvice.length)
+        this.$emit('give-advice', this.possibleAdvice[randomAdviceIndex])
+      }
+    },
+    template: `
+      <button v-on:click="giveAdvice">
+        Click me for advice
+      </button>
+    `
+  })
+  ```
+
+  ```html
+  <div id="emit-example-argument">
+    <magic-eight-ball v-on:give-advice="showAdvice"></magic-eight-ball>
+  </div>
+  ```
+
+  ```js
+  new Vue({
+    el: '#emit-example-argument',
+    methods: {
+      showAdvice: function (advice) {
+        alert(advice)
+      }
+    }
+  })
+  ```
+
+  {% raw %}
+  <div id="emit-example-argument" class="demo">
+    <magic-eight-ball v-on:give-advice="showAdvice"></magic-eight-ball>
+  </div>
+  <script>
+    Vue.component('magic-eight-ball', {
+      data: function () {
+        return {
+          possibleAdvice: ['Yes', 'No', 'Maybe']
+        }
+      },
+      methods: {
+        giveAdvice: function () {
+          var randomAdviceIndex = Math.floor(Math.random() * this.possibleAdvice.length)
+          this.$emit('give-advice', this.possibleAdvice[randomAdviceIndex])
+        }
+      },
+      template: `
+        <button v-on:click="giveAdvice">
+          Click me for advice
+        </button>
+      `
+    })
+    new Vue({
+      el: '#emit-example-argument',
+      methods: {
+        showAdvice: function (advice) {
+          alert(advice)
+        }
+      }
+    })
+  </script>
+  {% endraw %}
+
 ## Instance Methods / Lifecycle
 
-<h3 id="vm-mount">vm.$mount( [elementOrSelector] )</h3>
+### vm.$mount( [elementOrSelector] )
 
 - **Arguments:**
   - `{Element | string} [elementOrSelector]`
@@ -1602,13 +1824,13 @@ type: api
   - [Lifecycle Diagram](../guide/instance.html#Lifecycle-Diagram)
   - [Server-Side Rendering](../guide/ssr.html)
 
-<h3 id="vm-forceUpdate">vm.$forceUpdate()</h3>
+### vm.$forceUpdate()
 
 - **Usage:**
 
   Force the Vue instance to re-render. Note it does not affect all child components, only the instance itself and child components with inserted slot content.
 
-<h3 id="vm-nextTick">vm.$nextTick( [callback] )</h3>
+### vm.$nextTick( [callback] )
 
 - **Arguments:**
   - `{Function} [callback]`
@@ -1644,7 +1866,7 @@ type: api
   - [Vue.nextTick](#Vue-nextTick)
   - [Async Update Queue](../guide/reactivity.html#Async-Update-Queue)
 
-<h3 id="vm-destroy">vm.$destroy()</h3>
+### vm.$destroy()
 
 - **Usage:**
 
@@ -1702,7 +1924,7 @@ type: api
 
 - **Usage:**
 
-  Toggle's the element's `display` CSS property based on the truthy-ness of the expression value.
+  Toggles the element's `display` CSS property based on the truthy-ness of the expression value.
 
   This directive triggers transitions when its condition changes.
 
@@ -1774,7 +1996,7 @@ type: api
 
 ### v-for
 
-- **Expects:** `Array | Object | number | string`
+- **Expects:** `Array | Object | number | string | Iterable (since 2.6)`
 
 - **Usage:**
 
@@ -1791,7 +2013,7 @@ type: api
   ``` html
   <div v-for="(item, index) in items"></div>
   <div v-for="(val, key) in object"></div>
-  <div v-for="(val, key, index) in object"></div>
+  <div v-for="(val, name, index) in object"></div>
   ```
 
   The default behavior of `v-for` will try to patch the elements in-place without moving them. To force it to reorder elements, you need to provide an ordering hint with the `key` special attribute:
@@ -1801,6 +2023,8 @@ type: api
     {{ item.text }}
   </div>
   ```
+
+  In 2.6+, `v-for` can also work on values that implement the [Iterable Protocol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterable_protocol), including native `Map` and `Set`. However, it should be noted that Vue 2.x currently does not support reactivity on `Map` and `Set` values, so cannot automatically detect changes.
 
   <p class="tip">When used together with v-if, v-for has a higher priority than v-if. See the <a href="../guide/list.html#v-for-with-v-if">list rendering guide</a> for details.</p>
 
@@ -1835,11 +2059,11 @@ type: api
 
   Attaches an event listener to the element. The event type is denoted by the argument. The expression can be a method name, an inline statement, or omitted if there are modifiers present.
 
-  Starting in 2.4.0+, `v-on` also supports binding to an object of event/listener pairs without an argument. Note when using the object syntax, it does not support any modifiers.
-
-  When used on a normal element, it listens to **native DOM events** only. When used on a custom element component, it also listens to **custom events** emitted on that child component.
+  When used on a normal element, it listens to [**native DOM events**](https://developer.mozilla.org/en-US/docs/Web/Events) only. When used on a custom element component, it listens to **custom events** emitted on that child component.
 
   When listening to native DOM events, the method receives the native event as the only argument. If using inline statement, the statement has access to the special `$event` property: `v-on:click="handle('ok', $event)"`.
+
+  Starting in 2.4.0+, `v-on` also supports binding to an object of event/listener pairs without an argument. Note when using the object syntax, it does not support any modifiers.
 
 - **Example:**
 
@@ -1847,14 +2071,17 @@ type: api
   <!-- method handler -->
   <button v-on:click="doThis"></button>
 
-  <!-- object syntax (2.4.0+) -->
-  <button v-on="{ mousedown: doThis, mouseup: doThat }"></button>
+  <!-- dynamic event (2.6.0+) -->
+  <button v-on:[event]="doThis"></button>
 
   <!-- inline statement -->
   <button v-on:click="doThat('hello', $event)"></button>
 
   <!-- shorthand -->
   <button @click="doThis"></button>
+
+  <!-- shorthand dynamic event (2.6.0+) -->
+  <button @[event]="doThis"></button>
 
   <!-- stop propagation -->
   <button @click.stop="doThis"></button>
@@ -1876,6 +2103,9 @@ type: api
 
   <!-- the click event will be triggered at most once -->
   <button v-on:click.once="doThis"></button>
+
+  <!-- object syntax (2.4.0+) -->
+  <button v-on="{ mousedown: doThis, mouseup: doThat }"></button>
   ```
 
   Listening to custom events on a child component (the handler is called when "my-event" is emitted on the child):
@@ -1923,8 +2153,14 @@ type: api
   <!-- bind an attribute -->
   <img v-bind:src="imageSrc">
 
+  <!-- dynamic attribute name (2.6.0+) -->
+  <button v-bind:[key]="value"></button>
+
   <!-- shorthand -->
   <img :src="imageSrc">
+
+  <!-- shorthand dynamic attribute name (2.6.0+) -->
+  <button :[key]="value"></button>
 
   <!-- with inline string concatenation -->
   <img :src="'/path/to/images/' + fileName">
@@ -1979,7 +2215,7 @@ type: api
 
 - **Modifiers:**
   - [`.lazy`](../guide/forms.html#lazy) - listen to `change` events instead of `input`
-  - [`.number`](../guide/forms.html#number) - cast input string to numbers
+  - [`.number`](../guide/forms.html#number) - cast valid input string to numbers
   - [`.trim`](../guide/forms.html#trim) - trim input
 
 - **Usage:**
@@ -1989,6 +2225,59 @@ type: api
 - **See also:**
   - [Form Input Bindings](../guide/forms.html)
   - [Components - Form Input Components using Custom Events](../guide/components.html#Form-Input-Components-using-Custom-Events)
+
+### v-slot
+
+- **Shorthand:** `#`
+
+- **Expects:** JavaScript expression that is valid in a function argument position (supports destructuring in [supported environments](../guide/components-slots.html#Slot-Props-Destructuring)). Optional - only needed if expecting props to be passed to the slot.
+
+- **Argument:** slot name (optional, defaults to `default`)
+
+- **Limited to:**
+  - `<template>`
+  - [components](../guide/components-slots.html#Abbreviated-Syntax-for-Lone-Default-Slots) (for a lone default slot with props)
+
+- **Usage:**
+
+  Denote named slots or slots that expect to receive props.
+
+- **Example:**
+
+  ```html
+  <!-- Named slots -->
+  <base-layout>
+    <template v-slot:header>
+      Header content
+    </template>
+
+    Default slot content
+
+    <template v-slot:footer>
+      Footer content
+    </template>
+  </base-layout>
+
+  <!-- Named slot that receives props -->
+  <infinite-scroll>
+    <template v-slot:item="slotProps">
+      <div class="item">
+        {{ slotProps.item.text }}
+      </div>
+    </template>
+  </infinite-scroll>
+
+  <!-- Default slot that receive props, with destructuring -->
+  <mouse-position v-slot="{ x, y }">
+    Mouse position: {{ x }}, {{ y }}
+  </mouse-position>
+  ```
+
+  For more details, see the links below.
+
+- **See also:**
+  - [Components - Slots](../guide/components-slots.html)
+  - [RFC-0001](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0001-new-slot-syntax.md)
 
 ### v-pre
 
@@ -2099,8 +2388,8 @@ type: api
   <!-- vm.$refs.p will be the DOM node -->
   <p ref="p">hello</p>
 
-  <!-- vm.$refs.child will be the child comp instance -->
-  <child-comp ref="child"></child-comp>
+  <!-- vm.$refs.child will be the child component instance -->
+  <child-component ref="child"></child-component>
   ```
 
   When used on elements/components with `v-for`, the registered reference will be an Array containing DOM nodes or component instances.
@@ -2109,41 +2398,9 @@ type: api
 
 - **See also:** [Child Component Refs](../guide/components.html#Child-Component-Refs)
 
-### slot
-
-- **Expects:** `string`
-
-  Used on content inserted into child components to indicate which named slot the content belongs to.
-
-  For detailed usage, see the guide section linked below.
-
-- **See also:** [Named Slots](../guide/components.html#Named-Slots)
-
-### slot-scope
-
-> New in 2.5.0+
-
-- **Expects:** `function argument expression`
-
-- **Usage:**
-
-  Used to denote an element or component as a scoped slot. The attribute's value should be a valid JavaScript expression that can appear in the argument position of a function signature. This means in supported environments you can also use ES2015 destructuring in the expression. Serves as a replacement for [`scope`](#scope-replaced) in 2.5.0+.
-
-  This attribute does not support dynamic binding.
-
-- **See also:** [Scoped Slots](../guide/components.html#Scoped-Slots)
-
-### scope <sup>replaced</sup>
-
-Used to denote a `<template>` element as a scoped slot, which is replaced by [`slot-scope`](#slot-scope) in 2.5.0+.
-
-- **Usage:**
-
-  Same as [`slot-scope`](#slot-scope) except that `scope` can only be used on `<template>` elements.
-
 ### is
 
-- **Expects:** `string`
+- **Expects:** `string | Object (component’s options object)`
 
   Used for [dynamic components](../guide/components.html#Dynamic-Components) and to work around [limitations of in-DOM templates](../guide/components.html#DOM-Template-Parsing-Caveats).
 
@@ -2165,6 +2422,40 @@ Used to denote a `<template>` element as a scoped slot, which is replaced by [`s
 - **See also:**
   - [Dynamic Components](../guide/components.html#Dynamic-Components)
   - [DOM Template Parsing Caveats](../guide/components.html#DOM-Template-Parsing-Caveats)
+
+### slot <sup style="color:#c92222">deprecated</sup>
+
+**Prefer [v-slot](#v-slot) in 2.6.0+.**
+
+- **Expects:** `string`
+
+  Used on content inserted into child components to indicate which named slot the content belongs to.
+
+- **See also:** [Named Slots with `slot`](../guide/components.html#Named-Slots-with-slot)
+
+### slot-scope <sup style="color:#c92222">deprecated</sup>
+
+**Prefer [v-slot](#v-slot) in 2.6.0+.**
+
+- **Expects:** `function argument expression`
+
+- **Usage:**
+
+  Used to denote an element or component as a scoped slot. The attribute's value should be a valid JavaScript expression that can appear in the argument position of a function signature. This means in supported environments you can also use ES2015 destructuring in the expression. Serves as a replacement for [`scope`](#scope-replaced) in 2.5.0+.
+
+  This attribute does not support dynamic binding.
+
+- **See also:** [Scoped Slots with `slot-scope`](../guide/components.html#Scoped-Slots-with-slot-scope)
+
+### scope <sup style="color:#c92222">removed</sup>
+
+**Replaced by [slot-scope](#slot-scope) in 2.5.0+. Prefer [v-slot](#v-slot) in 2.6.0+.**
+
+Used to denote a `<template>` element as a scoped slot.
+
+- **Usage:**
+
+  Same as [`slot-scope`](#slot-scope) except that `scope` can only be used on `<template>` elements.
 
 ## Built-In Components
 
@@ -2195,8 +2486,9 @@ Used to denote a `<template>` element as a scoped slot, which is replaced by [`s
   - `name` - string, Used to automatically generate transition CSS class names. e.g. `name: 'fade'` will auto expand to `.fade-enter`, `.fade-enter-active`, etc. Defaults to `"v"`.
   - `appear` - boolean, Whether to apply transition on initial render. Defaults to `false`.
   - `css` - boolean, Whether to apply CSS transition classes. Defaults to `true`. If set to `false`, will only trigger JavaScript hooks registered via component events.
-  - `type` - string, Specify the type of transition events to wait for to determine transition end timing. Available values are `"transition"` and `"animation"`. By default, it will automatically detect the type that has a longer duration.
+  - `type` - string, Specifies the type of transition events to wait for to determine transition end timing. Available values are `"transition"` and `"animation"`. By default, it will automatically detect the type that has a longer duration.
   - `mode` - string, Controls the timing sequence of leaving/entering transitions. Available modes are `"out-in"` and `"in-out"`; defaults to simultaneous.
+  - `duration` - number | { `enter`: number, `leave`: number }, Specifies the duration of transition. By default, Vue waits for the first `transitionend` or `animationend` event on the root transition element.
   - `enter-class` - string
   - `leave-class` - string
   - `appear-class` - string
@@ -2270,11 +2562,11 @@ Used to denote a `<template>` element as a scoped slot, which is replaced by [`s
 
 - **Usage:**
 
-  `<transition-group>` serve as transition effects for **multiple** elements/components. The `<transition-group>` renders a real DOM element. By default it renders a `<span>`, and you can configure what element is should render via the `tag` attribute.
+  `<transition-group>` serve as transition effects for **multiple** elements/components. The `<transition-group>` renders a real DOM element. By default it renders a `<span>`, and you can configure what element it should render via the `tag` attribute.
 
   Note every child in a `<transition-group>` must be **uniquely keyed** for the animations to work properly.
 
-  `<transition-group>` supports moving transitions via CSS transform. When a child's position on screen has changed after an updated, it will get applied a moving CSS class (auto generated from the `name` attribute or configured with the `move-class` attribute). If the CSS `transform` property is "transition-able" when the moving class is applied, the element will be smoothly animated to its destination using the [FLIP technique](https://aerotwist.com/blog/flip-your-animations/).
+  `<transition-group>` supports moving transitions via CSS transform. When a child's position on screen has changed after an update, it will get applied a moving CSS class (auto generated from the `name` attribute or configured with the `move-class` attribute). If the CSS `transform` property is "transition-able" when the moving class is applied, the element will be smoothly animated to its destination using the [FLIP technique](https://aerotwist.com/blog/flip-your-animations/).
 
   ```html
   <transition-group tag="ul" name="slide">
@@ -2289,8 +2581,9 @@ Used to denote a `<template>` element as a scoped slot, which is replaced by [`s
 ### keep-alive
 
 - **Props:**
-  - `include` - string or RegExp or Array. Only components matched by this will be cached.
-  - `exclude` - string or RegExp or Array. Any component matched by this will not be cached.
+  - `include` - string or RegExp or Array. Only components with matching names will be cached.
+  - `exclude` - string or RegExp or Array. Any component with a matching name will not be cached.
+  - `max` - number. The maximum number of component instances to cache.
 
 - **Usage:**
 
@@ -2300,7 +2593,7 @@ Used to denote a `<template>` element as a scoped slot, which is replaced by [`s
 
   > In 2.2.0+ and above, `activated` and `deactivated` will fire for all nested components inside a `<keep-alive>` tree.
 
-  Primarily used with preserve component state or avoid re-rendering.
+  Primarily used to preserve component state or avoid re-rendering.
 
   ```html
   <!-- basic -->
@@ -2348,6 +2641,18 @@ Used to denote a `<template>` element as a scoped slot, which is replaced by [`s
   ```
 
   The match is first checked on the component's own `name` option, then its local registration name (the key in the parent's `components` option) if the `name` option is not available. Anonymous components cannot be matched against.
+
+- **`max`**
+
+  > New in 2.5.0+
+
+  The maximum number of component instances to cache. Once this number is reached, the cached component instance that was least recently accessed will be destroyed before creating a new instance.
+
+  ``` html
+  <keep-alive :max="10">
+    <component :is="view"></component>
+  </keep-alive>
+  ```
 
   <p class="tip">`<keep-alive>` does not work with functional components because they do not have instances to be cached.</p>
 

@@ -1,8 +1,7 @@
 ---
+title: Style Guide
 type: style-guide
 ---
-
-# Style Guide <sup class="beta">beta</sup>
 
 This is the official style guide for Vue-specific code. If you use Vue in a project, it's a great reference to avoid errors, bikeshedding, and anti-patterns. However, we don't believe that any style guide is ideal for all teams or projects, so mindful deviations are encouraged based on past experience, the surrounding tech stack, and personal values.
 
@@ -44,7 +43,7 @@ Some features of Vue exist to accommodate rare edge cases or smoother migrations
 
 ### Multi-word component names <sup data-p="a">essential</sup>
 
-**Component names should always be multi-word, except for root `App` components.**
+**Component names should always be multi-word, except for root `App` components, and built-in components provided by Vue, such as `<transition>` or `<component>`.**
 
 This [prevents conflicts](http://w3c.github.io/webcomponents/spec/custom/#valid-custom-element-name) with existing and future HTML elements, since all HTML elements are a single word.
 
@@ -305,6 +304,165 @@ In our experience, it's better to _always_ add a unique key, so that you and you
 
 
 
+### Avoid `v-if` with `v-for` <sup data-p="a">essential</sup>
+
+**Never use `v-if` on the same element as `v-for`.**
+
+There are two common cases where this can be tempting:
+
+- To filter items in a list (e.g. `v-for="user in users" v-if="user.isActive"`). In these cases, replace `users` with a new computed property that returns your filtered list (e.g. `activeUsers`).
+
+- To avoid rendering a list if it should be hidden (e.g. `v-for="user in users" v-if="shouldShowUsers"`). In these cases, move the `v-if` to a container element (e.g. `ul`, `ol`).
+
+{% raw %}
+<details>
+<summary>
+  <h4>Detailed Explanation</h4>
+</summary>
+{% endraw %}
+
+When Vue processes directives, `v-for` has a higher priority than `v-if`, so that this template:
+
+``` html
+<ul>
+  <li
+    v-for="user in users"
+    v-if="user.isActive"
+    :key="user.id"
+  >
+    {{ user.name }}
+  </li>
+</ul>
+```
+
+Will be evaluated similar to:
+
+``` js
+this.users.map(function (user) {
+  if (user.isActive) {
+    return user.name
+  }
+})
+```
+
+So even if we only render elements for a small fraction of users, we have to iterate over the entire list every time we re-render, whether or not the set of active users has changed.
+
+By iterating over a computed property instead, like this:
+
+``` js
+computed: {
+  activeUsers: function () {
+    return this.users.filter(function (user) {
+      return user.isActive
+    })
+  }
+}
+```
+
+``` html
+<ul>
+  <li
+    v-for="user in activeUsers"
+    :key="user.id"
+  >
+    {{ user.name }}
+  </li>
+</ul>
+```
+
+We get the following benefits:
+
+- The filtered list will _only_ be re-evaluated if there are relevant changes to the `users` array, making filtering much more efficient.
+- Using `v-for="user in activeUsers"`, we _only_ iterate over active users during render, making rendering much more efficient.
+- Logic is now decoupled from the presentation layer, making maintenance (change/extension of logic) much easier.
+
+We get similar benefits from updating:
+
+``` html
+<ul>
+  <li
+    v-for="user in users"
+    v-if="shouldShowUsers"
+    :key="user.id"
+  >
+    {{ user.name }}
+  </li>
+</ul>
+```
+
+to:
+
+``` html
+<ul v-if="shouldShowUsers">
+  <li
+    v-for="user in users"
+    :key="user.id"
+  >
+    {{ user.name }}
+  </li>
+</ul>
+```
+
+By moving the `v-if` to a container element, we're no longer checking `shouldShowUsers` for _every_ user in the list. Instead, we check it once and don't even evaluate the `v-for` if `shouldShowUsers` is false.
+
+{% raw %}</details>{% endraw %}
+
+{% raw %}<div class="style-example example-bad">{% endraw %}
+#### Bad
+
+``` html
+<ul>
+  <li
+    v-for="user in users"
+    v-if="user.isActive"
+    :key="user.id"
+  >
+    {{ user.name }}
+  </li>
+</ul>
+```
+
+``` html
+<ul>
+  <li
+    v-for="user in users"
+    v-if="shouldShowUsers"
+    :key="user.id"
+  >
+    {{ user.name }}
+  </li>
+</ul>
+```
+{% raw %}</div>{% endraw %}
+
+{% raw %}<div class="style-example example-good">{% endraw %}
+#### Good
+
+``` html
+<ul>
+  <li
+    v-for="user in activeUsers"
+    :key="user.id"
+  >
+    {{ user.name }}
+  </li>
+</ul>
+```
+
+``` html
+<ul v-if="shouldShowUsers">
+  <li
+    v-for="user in users"
+    :key="user.id"
+  >
+    {{ user.name }}
+  </li>
+</ul>
+```
+{% raw %}</div>{% endraw %}
+
+
+
 ### Component style scoping <sup data-p="a">essential</sup>
 
 **For applications, styles in a top-level `App` component and in layout components may be global, but all other components should always be scoped.**
@@ -406,7 +564,7 @@ Beyond the `scoped` attribute, using unique class names can help ensure that 3rd
 
 ### Private property names <sup data-p="a">essential</sup>
 
-**Always use the `$_` prefix for custom private properties in a plugin, mixin, etc. Then to avoid conflicts with code by other authors, also include a named scope (e.g. `$_yourPluginName_`).**
+**Use module scoping to keep private functions inaccessible from the outside. If that's not possible, always use the `$_` prefix for custom private properties in a plugin, mixin, etc that should not be considered public API. Then to avoid conflicts with code by other authors, also include a named scope (e.g. `$_yourPluginName_`).**
 
 {% raw %}
 <details>
@@ -417,7 +575,7 @@ Beyond the `scoped` attribute, using unique class names can help ensure that 3rd
 
 Vue uses the `_` prefix to define its own private properties, so using the same prefix (e.g. `_update`) risks overwriting an instance property. Even if you check and Vue is not currently using a particular property name, there is no guarantee a conflict won't arise in a later version.
 
-As for the `$` prefix, it's purpose within the Vue ecosystem is special instance properties that are exposed to the user, so using it for _private_ properties would not be appropriate.
+As for the `$` prefix, its purpose within the Vue ecosystem is special instance properties that are exposed to the user, so using it for _private_ properties would not be appropriate.
 
 Instead, we recommend combining the two prefixes into `$_`, as a convention for user-defined private properties that guarantee no conflicts with Vue.
 
@@ -485,6 +643,25 @@ var myGreatMixin = {
   }
 }
 ```
+
+``` js
+// Even better!
+var myGreatMixin = {
+  // ...
+  methods: {
+    publicMethod() {
+      // ...
+      myPrivateFunction()
+    }
+  }
+}
+
+function myPrivateFunction() {
+  // ...
+}
+
+export default myGreatMixin
+```
 {% raw %}</div>{% endraw %}
 
 
@@ -535,7 +712,7 @@ components/
 
 **Filenames of [single-file components](../guide/single-file-components.html) should either be always PascalCase or always kebab-case.**
 
-PascalCase works best with autocompletion in code editors, as it's consistent with how we reference components in JS(X) and templates, wherever possible. However, mixed case filenames can sometimes create issues on case-insensitive filesystems, which is why kebab-case is also perfectly acceptable.
+PascalCase works best with autocompletion in code editors, as it's consistent with how we reference components in JS(X) and templates, wherever possible. However, mixed case filenames can sometimes create issues on case-insensitive file systems, which is why kebab-case is also perfectly acceptable.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### Bad
@@ -581,7 +758,7 @@ components/
 These components lay the foundation for consistent styling and behavior in your application. They may **only** contain:
 
 - HTML elements,
-- other `Base`-prefixed components, and
+- other base components, and
 - 3rd-party UI components.
 
 But they'll **never** contain global state (e.g. from a Vuex store).
@@ -1057,9 +1234,9 @@ props: {
 }
 ```
 
-``` html
+{% codeblock lang:html %}
 <WelcomeMessage greetingText="hi"/>
-```
+{% endcodeblock %}
 {% raw %}</div>{% endraw %}
 
 {% raw %}<div class="style-example example-good">{% endraw %}
@@ -1071,9 +1248,9 @@ props: {
 }
 ```
 
-``` html
+{% codeblock lang:html %}
 <WelcomeMessage greeting-text="hi"/>
-```
+{% endcodeblock %}
 {% raw %}</div>{% endraw %}
 
 
@@ -1310,6 +1487,7 @@ While attribute values without any spaces are not required to have quotes in HTM
 
 
 
+
 ## Priority C Rules: Recommended (Minimizing Arbitrary Choices and Cognitive Overhead)
 
 
@@ -1355,6 +1533,16 @@ This is the default order we recommend for component options. They're split into
 9. **Events** (callbacks triggered by reactive events)
   - `watch`
   - Lifecycle Events (in the order they are called)
+    - `beforeCreate`
+    - `created`
+    - `beforeMount`
+    - `mounted`
+    - `beforeUpdate`
+    - `updated`
+    - `activated`
+    - `deactivated`
+    - `beforeDestroy`
+    - `destroyed`
 
 10. **Non-Reactive Properties** (instance properties independent of the reactivity system)
   - `methods`
@@ -1476,15 +1664,15 @@ computed: {
 
 ### Single-file component top-level element order <sup data-p="c">recommended</sup>
 
-**[Single-file components](../guide/single-file-components.html) should always order `<template>`, `<script>`, and `<style>` tags consistently, with `<style>` last, because at least one of the other two is always necessary.**
+**[Single-file components](../guide/single-file-components.html) should always order `<script>`, `<template>`, and `<style>` tags consistently, with `<style>` last, because at least one of the other two is always necessary.**
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### Bad
 
 ``` html
 <style>/* ... */</style>
-<template>...</template>
 <script>/* ... */</script>
+<template>...</template>
 ```
 
 ``` html
@@ -1505,25 +1693,25 @@ computed: {
 
 ``` html
 <!-- ComponentA.vue -->
-<template>...</template>
 <script>/* ... */</script>
+<template>...</template>
 <style>/* ... */</style>
 
 <!-- ComponentB.vue -->
-<template>...</template>
 <script>/* ... */</script>
+<template>...</template>
 <style>/* ... */</style>
 ```
 
 ``` html
 <!-- ComponentA.vue -->
-<script>/* ... */</script>
 <template>...</template>
+<script>/* ... */</script>
 <style>/* ... */</style>
 
 <!-- ComponentB.vue -->
-<script>/* ... */</script>
 <template>...</template>
+<script>/* ... */</script>
 <style>/* ... */</style>
 ```
 {% raw %}</div>{% endraw %}
@@ -1534,11 +1722,11 @@ computed: {
 
 
 
-### `v-if`/`v-if-else`/`v-else` without `key` <sup data-p="d">use with caution</sup>
+### `v-if`/`v-else-if`/`v-else` without `key` <sup data-p="d">use with caution</sup>
 
 **It's usually best to use `key` with `v-if` + `v-else`, if they are the same element type (e.g. both `<div>` elements).**
 
-By default, Vue updates the DOM as efficiently as possible. That means when switching between elements of the same type, it simply patches the existing element, rather than removing it and adding a new one in its place. This can have [unintended side effects](https://jsfiddle.net/chrisvfritz/bh8fLeds/) if these elements should not actually be considered the same.
+By default, Vue updates the DOM as efficiently as possible. That means when switching between elements of the same type, it simply patches the existing element, rather than removing it and adding a new one in its place. This can have [unintended consequences](https://jsfiddle.net/chrisvfritz/bh8fLeds/) if these elements should not actually be considered the same.
 
 {% raw %}<div class="style-example example-bad">{% endraw %}
 #### Bad
@@ -1557,19 +1745,16 @@ By default, Vue updates the DOM as efficiently as possible. That means when swit
 #### Good
 
 ``` html
-<div v-if="error" key="search-status">
+<div
+  v-if="error"
+  key="search-status"
+>
   Error: {{ error }}
 </div>
-<div v-else key="search-results">
-  {{ results }}
-</div>
-```
-
-``` html
-<p v-if="error">
-  Error: {{ error }}
-</p>
-<div v-else>
+<div
+  v-else
+  key="search-results"
+>
   {{ results }}
 </div>
 ```
@@ -1812,7 +1997,7 @@ export default {
   var enforcementTypes = {
     none: '<span title="There is unfortunately no way to automatically enforce this rule.">self-discipline</span>',
     runtime: 'runtime error',
-    linter: '<a href="https://github.com/vuejs/eslint-plugin-vue#eslint-plugin-vue" target="_blank">plugin:vue/recommended</a>'
+    linter: '<a href="https://github.com/vuejs/eslint-plugin-vue#eslint-plugin-vue" target="_blank" rel="noopener noreferrer">plugin:vue/recommended</a>'
   }
   Vue.component('sg-enforcement', {
     template: '\
