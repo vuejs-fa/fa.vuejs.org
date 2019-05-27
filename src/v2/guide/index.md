@@ -1,20 +1,21 @@
 ---
-title: Introduction
+title: مقدمه
 type: guide
 order: 2
 ---
 
-## What is Vue.js?
+## ویو.جی اس چیست؟
 
-Vue (pronounced /vjuː/, like **view**) is a **progressive framework** for building user interfaces. Unlike other monolithic frameworks, Vue is designed from the ground up to be incrementally adoptable. The core library is focused on the view layer only, and is easy to pick up and integrate with other libraries or existing projects. On the other hand, Vue is also perfectly capable of powering sophisticated Single-Page Applications when used in combination with [modern tooling](single-file-components.html) and [supporting libraries](https://github.com/vuejs/awesome-vue#components--libraries).
+ویو یک **فریم ورک تکاملی** برای تولید واسط کاربری تحت وب است. برخلاف فریم ورک‌های یکپارچه، ویو از پایه به گونه‌ای طراحی شده است که با توجه به نیاز برنامه، مرحله به مرحله قابل تطبیق باشد. هسته مرکزی لایبری فقط روی بخش نما (view) متمرکز است و می‌توان به راحتی از آن به همراه دیگر پکیج های جاوا اسکریپت و یا در پروژه های موجود استفاده کرد. از سوی دیگر، ویو با استفاده از [ابزار مدرن](single-file-components.html) و [لایبری های پشتیبان](https://github.com/vuejs/awesome-vue#components--libraries) کاملا ظرفیت پشتیبانی از اپلیکیشن های پیچیده تک صفحه را نیز دارد.
+  
+اگر مایلید قبل از هر چیز بیشتر با ویو آشنا شوید، ما <a id="modal-player"  href="#">یک ویدیو کوتاه ساخیتم</a> که با انجام چند پروژه نمونه به شما کمک می‌کند تا درک بهتری از مبانی هسته مرکزی این فریم ورک داشته باشید.
 
-If you’d like to learn more about Vue before diving in, we <a id="modal-player"  href="#">created a video</a> walking through the core principles and a sample project.
+اگر شما یک فرانت‌اند دولپر با تجربه هستید و می‌خواهید ویو را با سایر لایبری ها و فریم ورک های فرانت اند مقایسه کنید، به صفحه [مقایسه با سایر فریم ورک‌ها](comparison.html) مراجعه کنید.
 
-If you are an experienced frontend developer and want to know how Vue compares to other libraries/frameworks, check out the [Comparison with Other Frameworks](comparison.html).
 
-<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/intro-to-vue-js/vue-instance/" target="_blank" rel="noopener" title="Free Vue.js Course">Watch a free video course on Vue Mastery</a></div>
+<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/intro-to-vue-js/vue-instance/" target="_blank" rel="noopener" title="Free Vue.js Course">این دوره آموزشی رایگان در Vue Mastery به زبان انگلیسی به صورت مرحله به مرحله انجام یک پروژه با استفاده از ویو را آموزش می‌دهد.</a></div>
 
-## Getting Started
+## شروع کار 
 
 <a class="button" href="installation.html">Installation</a>
 
