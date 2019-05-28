@@ -38,13 +38,13 @@ order: 2
 
 می‌توانید در صفحه [نصب](installation.html) با گزینه‌های دیگر برای نصب ویو آشنا شوید. ما **توصیه نمی‌کنیم** که کاربران مبتدی برای نصب ویو با  `vue-cli` شروع کنند، مخصوصا اگر با تولید ابزار تحت Node.js آشنایی ندارید.
 
-اگر یک روش تعاملی را ترجیح می‌دهید, می‌توانید [این سری آموزشی به زبان انگلیسی را در Scrimba](https://scrimba.com/playlist/pXKqta) امتحان کنید که به صورت ویدوهای ضبط شده در محیطی تعاملی بوده که هر لحظه می‌توانید ویدیو را متوقف کنید، کدها را ویرایش کند و نتیجه تغییرات را در همان محیط ببینید.
+اگر یک روش تعاملی را ترجیح می‌دهید، می‌توانید [این سری آموزشی به زبان انگلیسی را در Scrimba](https://scrimba.com/playlist/pXKqta) امتحان کنید که به صورت ویدوهای ضبط شده در محیطی تعاملی بوده که هر لحظه می‌توانید ویدیو را متوقف کنید، کدها را ویرایش کند و نتیجه تغییرات را در همان محیط ببینید.
 
-## Declarative Rendering
+## نمایش اعلامی
 
-<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cQ3QVcr" target="_blank" rel="noopener noreferrer">Try this lesson on Scrimba</a></div>
+<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cQ3QVcr" target="_blank" rel="noopener noreferrer">این را در Scrimba به زبان انگلیسی ببینید.</a></div>
 
-At the core of Vue.js is a system that enables us to declaratively render data to the DOM using straightforward template syntax:
+سیستم هسته مرکزی Vue.js به ما این امکان را می‌دهد که با استفاده از سینتکس های قالب سر راست، داده را به صورت اعلامی در میان ‌تگ‌های نمای خروجی نمایش دهیم.
 
 ``` html
 <div id="app">
@@ -73,7 +73,7 @@ var app = new Vue({
 </script>
 {% endraw %}
 
-We have already created our very first Vue app! This looks pretty similar to rendering a string template, but Vue has done a lot of work under the hood. The data and the DOM are now linked, and everything is now **reactive**. How do we know? Open your browser's JavaScript console (right now, on this page) and set `app.message` to a different value. You should see the rendered example above update accordingly.
+به همین سادگی اولین اپلیکیشن ویوی خودمون را ساختیم! در ظاهر به نظر میاد که فقط یک قالب رشته‌ای را نمایش دادیم، اما ویو پشت پرده خیلی کارها انجام داده. اکنون یک پیوند میان داده و مدل سند خروجی ایجاد شده و حالا همگی **واکنش‌ دهنده** هستند. از کجا میدونیم؟ کنسول جاوا اسکریپت مرورگرتون را (همین الان، توی همین صفحه) باز کنید و متغییر `app.message` را تغییر بدهید. می‌بینید که خروجی نمایش داده شده در مثال بالا نیز هماهنگ با تغییرات شما تغییر خواهد کرد.
 
 In addition to text interpolation, we can also bind element attributes like this:
 
