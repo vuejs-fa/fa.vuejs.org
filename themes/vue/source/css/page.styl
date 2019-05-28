@@ -144,8 +144,8 @@
     &.tip, &.success
       padding: 12px 24px 12px 30px
       margin: 2em 0
-      border-left-width: 4px
-      border-left-style: solid
+      border-right-width: 4px
+      border-right-style: solid
       background-color: $codebg
       position: relative
       border-bottom-right-radius: $radius
@@ -153,7 +153,7 @@
       &:before
         position: absolute
         top: 14px
-        left: -12px
+        right: -12px
         color: #fff
         width: 20px
         height: 20px
@@ -168,12 +168,12 @@
       em
         color: $medium
     &.tip
-      border-left-color: $red
+      border-right-color: $red
       &:before
         content: "!"
         background-color: $red
     &.success
-      border-left-color: $green
+      border-right-color: $green
       &:before
         content: "\f00c"
         font-family: FontAwesome
