@@ -2,9 +2,11 @@
 
 .sidebar
   position: absolute
+  direction: ltr
+  border-left: solid 1px #eee
   z-index: 10
   top: $header-height
-  left: 0
+  right: 0
   bottom: 0
   overflow-x: hidden
   overflow-y: auto
@@ -20,13 +22,15 @@
   li
     margin-top: .5em
   .sidebar-inner
+    direction rtl
     width: 260px
-    padding: $content-padding-top + 40px 0px 60px 20px
+    padding: $content-padding-top + 40px 20px 60px 0px
   .version-select
     vertical-align: middle
     margin-left: 5px
   .menu-root
     padding-left: 0
+    padding-inline-start: 0
   .sidebar-link
     color: $light
     &.current
