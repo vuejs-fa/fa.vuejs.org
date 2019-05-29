@@ -151,7 +151,7 @@ var app3 = new Vue({
 
 این مثال نشان می‌دهد که علاوه بر متن داخلی و مشخه‌های عناصر سند،‌ ما همچنین می‌توانیم **ساختار** مدل سند خروجی DOM را به داده های اپلیکشن ویو متصل کنیم. علاوه بر این, ویو همچنین سیستم افکت قدرتمندی را نیز ارائه می‌دهد که می‌توانید از آن برای [افکت های انتقالی](transitions.html) در هنگام درج، به روز رسانی و یا حذف عناصر سند از طریق ویو استفاده کنید.
 
-There are quite a few other directives, each with its own special functionality. For example, the `v-for` directive can be used for displaying a list of items using the data from an Array:
+ویو چند عدد مشخصه دستوری دیگر نیز دارد که هر کدام از آنها کارایی منحصر به خود دارند. به عنوان مثال،‌ می‌توانیم از مشخصه دستوری `v-for` برای نمایش یک لیست با استفاده از داده‌های یک آرایه استفاده کنیم:
 
 ``` html
 <div id="app-4">
@@ -167,15 +167,15 @@ var app4 = new Vue({
   el: '#app-4',
   data: {
     todos: [
-      { text: 'Learn JavaScript' },
-      { text: 'Learn Vue' },
-      { text: 'Build something awesome' }
+      { text: 'یادگیری جاوا اسکریپت' },
+      { text: 'یادگیری Vue' },
+      { text: 'نوشتن یک کد باحال!' }
     ]
   }
 })
 ```
 {% raw %}
-<div id="app-4" class="demo">
+<div id="app-4" class="demo" style="direction: rtl; text-align: right">
   <ol>
     <li v-for="todo in todos">
       {{ todo.text }}
@@ -187,16 +187,16 @@ var app4 = new Vue({
   el: '#app-4',
   data: {
     todos: [
-      { text: 'Learn JavaScript' },
-      { text: 'Learn Vue' },
-      { text: 'Build something awesome' }
+      { text: 'یادگیری جاوا اسکریپت' },
+      { text: 'یادگیری Vue' },
+      { text: 'نوشتن یک کد باحال!' }
     ]
   }
 })
 </script>
 {% endraw %}
 
-In the console, enter `app4.todos.push({ text: 'New item' })`. You should see a new item appended to the list.
+دستور `app4.todos.push({ text: 'انتشار کد متن‌باز' })` را در کنسول مرورگر وارد کنید. متن جدید به لیست خروجی بالا اضافه خواهد شد.
 
 ## Handling User Input
 
