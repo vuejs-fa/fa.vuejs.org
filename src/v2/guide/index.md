@@ -198,23 +198,23 @@ var app4 = new Vue({
 
 دستور `app4.todos.push({ text: 'انتشار کد متن‌باز' })` را در کنسول مرورگر وارد کنید. متن جدید به لیست خروجی بالا اضافه خواهد شد.
 
-## Handling User Input
+## رسیدگی به ورودی‌های کاربران
 
-<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/czPNaUr" target="_blank" rel="noopener noreferrer">Try this lesson on Scrimba</a></div>
+<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/czPNaUr" target="_blank" rel="noopener noreferrer">این درس تعاملی به زبان انگلیسی را در Scrimba امتحان کنید</a></div>
 
-To let users interact with your app, we can use the `v-on` directive to attach event listeners that invoke methods on our Vue instances:
+برای اینکه به کاربران امکان برقراری تعامل با اپلیکیشنمان را بدهیم می‌توانیم از مشخصه دستوری `v-on` استفاده کینم تا رویداد خاصی را  تحت نظر گرفته و با وقوع آن یک تابع دستوری را در اپلیکیشن ویو اجرا کنیم:
 
 ``` html
 <div id="app-5">
   <p>{{ message }}</p>
-  <button v-on:click="reverseMessage">Reverse Message</button>
+  <button v-on:click="reverseMessage">متن را برعکس کن</button>
 </div>
 ```
 ``` js
 var app5 = new Vue({
   el: '#app-5',
   data: {
-    message: 'Hello Vue.js!'
+    message: 'سلام ویو.جی اس!'
   },
   methods: {
     reverseMessage: function () {
@@ -224,15 +224,15 @@ var app5 = new Vue({
 })
 ```
 {% raw %}
-<div id="app-5" class="demo">
+<div id="app-5" class="demo" style="text-align: right; direction: rtl">
   <p>{{ message }}</p>
-  <button v-on:click="reverseMessage">Reverse Message</button>
+  <button v-on:click="reverseMessage">متن را برعکس کن</button>
 </div>
 <script>
 var app5 = new Vue({
   el: '#app-5',
   data: {
-    message: 'Hello Vue.js!'
+    message: 'سلام ویو.جی اس!'
   },
   methods: {
     reverseMessage: function () {
