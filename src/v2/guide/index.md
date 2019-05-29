@@ -112,15 +112,15 @@ var app2 = new Vue({
 
 اگر مجددا کنسول جاوا اسکریپت مرورگر خود را باز کنید و دستور `app2.message = 'یک پیام جدید'` را وارد کنید, خواهید دید که مشخصه عنوان خروجی بالا نیز خواهد تغییر خواهد کرد.
 
-## Conditionals and Loops
+## دستورات شرطی و حلقه‌ها
 
-<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cEQe4SJ" target="_blank" rel="noopener noreferrer">Try this lesson on Scrimba</a></div>
+<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cEQe4SJ" target="_blank" rel="noopener noreferrer">این درس تعاملی به زبان انگلیسی را در Scrimba امتحان کنید</a></div>
 
-It's easy to toggle the presence of an element, too:
+همچنین به راحتی ‌میتوان وجود یا عدم وجود یک عنصر در مدل صفحه خروجی را کنترل کرد :
 
 ``` html
 <div id="app-3">
-  <span v-if="seen">Now you see me</span>
+  <span v-if="seen">تا شرط متغییر ‌‌seen برقرار باشد من دیده می‌شوم</span>
 </div>
 ```
 
@@ -134,8 +134,8 @@ var app3 = new Vue({
 ```
 
 {% raw %}
-<div id="app-3" class="demo">
-  <span v-if="seen">Now you see me</span>
+<div id="app-3" class="demo" style="direction: rtl; text-align: right">
+  <span v-if="seen">تا شرط متغییر ‌‌seen برقرار باشد من دیده می‌شوم</span>
 </div>
 <script>
 var app3 = new Vue({
@@ -147,9 +147,9 @@ var app3 = new Vue({
 </script>
 {% endraw %}
 
-Go ahead and enter `app3.seen = false` in the console. You should see the message disappear.
+اگر در کنسول مرورگر دستور `app3.seen = false` را وارد کنید، پیام نمایش داده شده در خروجی بالا از صفحه حذف خواهد شد.
 
-This example demonstrates that we can bind data to not only text and attributes, but also the **structure** of the DOM. Moreover, Vue also provides a powerful transition effect system that can automatically apply [transition effects](transitions.html) when elements are inserted/updated/removed by Vue.
+این مثال نشان می‌دهد که علاوه بر متن داخلی و مشخه‌های عناصر سند،‌ ما همچنین می‌توانیم **ساختار** مدل سند خروجی DOM را به داده های اپلیکشن ویو متصل کنیم. علاوه بر این, ویو همچنین سیستم افکت قدرتمندی را نیز ارائه می‌دهد که می‌توانید از آن برای [افکت های انتقالی](transitions.html) در هنگام درج، به روز رسانی و یا حذف عناصر سند از طریق ویو استفاده کنید.
 
 There are quite a few other directives, each with its own special functionality. For example, the `v-for` directive can be used for displaying a list of items using the data from an Array:
 
