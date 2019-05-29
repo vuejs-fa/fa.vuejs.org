@@ -7,7 +7,7 @@ order: 2
 ## ویو.جی اس چیست؟
 
 
-ویو یک **فریم ورک تکاملی** جاوا اسکریپت برای تولید واسط کاربری تحت وب است. برخلاف فریم ورک‌های یکپارچه، ویو از پایه به گونه‌ای طراحی شده است که با توجه به نیاز برنامه، مرحله به مرحله قابل تطبیق باشد. هسته مرکزی لایبری فقط روی بخش نما (view) متمرکز است و می‌توان به راحتی از آن به همراه سایر لایبری‌ها و یا در پروژه های موجود استفاده کرد. از سوی دیگر، ویو با استفاده از [ابزار مدرن](single-file-components.html) و [لایبری های پشتیبان](https://github.com/vuejs/awesome-vue#components--libraries) کاملا ظرفیت پیاده سازی اپلیکیشن‌های پیچیده‌ تک صفحه را نیز دارد.
+ ویو (Vue) یک **فریم ورک تکاملی** جاوا اسکریپت برای تولید واسط کاربری تحت وب است. برخلاف فریم ورک‌های یکپارچه، ویو از پایه به گونه‌ای طراحی شده است که با توجه به نیاز برنامه، مرحله به مرحله قابل تطبیق باشد. هسته مرکزی لایبری فقط روی بخش نما (view) متمرکز است و می‌توان به راحتی از آن به همراه سایر لایبری‌ها و یا در پروژه های موجود استفاده کرد. از سوی دیگر، ویو با استفاده از [ابزار مدرن](single-file-components.html) و [لایبری های پشتیبان](https://github.com/vuejs/awesome-vue#components--libraries) کاملا ظرفیت پیاده سازی اپلیکیشن‌های پیچیده‌ تک صفحه را نیز دارد.
 
 اگر مایلید قبل از هر چیز بیشتر با ویو آشنا شوید، ما <a id="modal-player"  href="#">یک ویدیو کوتاه ساخیتم</a> که با انجام چند پروژه نمونه به شما کمک می‌کند تا درک بهتری از مبانی هسته مرکزی این فریم ورک داشته باشید.
 
@@ -20,9 +20,9 @@ order: 2
 
 <a class="button" href="installation.html">نصب</a>
 
-<p class="tip">در این راهنما فرض شده که آشنایی شما با HTML، CSS و JavaScript بیشتر از حد مبتدی است. اگر در کدنویسی فرانت‌اند کاملا  مبتدی هستید، بهتر است قبل از اینکه کار با یک فریم‌‌ورک را شروع کنید ابتدا با مفاهیم اولیه فرانت‌اند آشنا شوید و سپس به این راهنما بازگردید! آشنایی قبلی با سایر فریم‌ورک های فرانت‌اند برای درک این راهنما ضروری نبوده اما به شما کمک می‌کند تا سریعتر با مفاهیم ویو آشنا شوید.</p>
+<p class="tip">در این راهنما فرض شده که شما بیشتر از حد مبتدی با HTML، CSS و JavaScript آشنایی دارید. اگر در کدنویسی فرانت‌اند کاملا  مبتدی هستید، بهتر است قبل از اینکه کار با یک فریم‌‌ورک را شروع کنید ابتدا با مفاهیم اولیه فرانت‌اند آشنا شوید و سپس به این راهنما بازگردید! آشنایی قبلی با سایر فریم‌ورک های فرانت‌اند برای درک این راهنما ضروری نبوده اما به شما کمک می‌کند تا سریعتر با مفاهیم ویو آشنا شوید.</p>
 
-ساده‌ترین راه برای امتحان کردن Vue.js، استفاده از [کد Hello World در JSFiddle](https://jsfiddle.net/chrisvfritz/50wL7mdz/) است. می‌توانید آن را در یک تب جدید باز کنید و همزمان که در این راهنما به چند مثال ساده می‌پردازیم از آن استفاده کنید. و یا اینکه <a href="https://gist.githubusercontent.com/chrisvfritz/7f8d7d63000b48493c336e48b3db3e52/raw/ed60c4e5d5c6fec48b0921edaed0cb60be30e87c/index.html" target="_blank" download="index.html" rel="noopener noreferrer">یک فایل <code>index.html</code> درست کنید</a> وکد ویو را به آن وارد کنید:
+ساده‌ترین راه برای امتحان کردن ویو، استفاده از [کد Hello World در JSFiddle](https://jsfiddle.net/chrisvfritz/50wL7mdz/) است. می‌توانید آن را در یک تب جدید باز کنید و همزمان که در این راهنما به چند مثال ساده می‌پردازیم از آن استفاده کنید. و یا اینکه <a href="https://gist.githubusercontent.com/chrisvfritz/7f8d7d63000b48493c336e48b3db3e52/raw/ed60c4e5d5c6fec48b0921edaed0cb60be30e87c/index.html" target="_blank" download="index.html" rel="noopener noreferrer">یک فایل <code>index.html</code> درست کنید</a> وکد ویو را به آن وارد کنید:
 
 ``` html
 <!-- برای برنامه در حال توسعه, شامل هشدارهای کمکی در کنسول -->
@@ -36,7 +36,7 @@ order: 2
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 ```
 
-می‌توانید در صفحه [نصب](installation.html) با گزینه‌های دیگر برای نصب ویو آشنا شوید. ما **توصیه نمی‌کنیم** که کاربران مبتدی برای نصب ویو با  `vue-cli` شروع کنند، مخصوصا اگر با تولید ابزار تحت Node.js آشنایی ندارید.
+می‌توانید در صفحه [نصب](installation.html) با گزینه‌های دیگر برای نصب ویو آشنا شوید. ما **توصیه نمی‌کنیم** که کاربران مبتدی برای نصب ویو با  `vue-cli` شروع کنند، مخصوصا اگر با تولید‌ابزار تحت Node.js آشنایی ندارید.
 
 اگر یک روش تعاملی را ترجیح می‌دهید، می‌توانید [این دوره آموزشی به زبان انگلیسی را در Scrimba](https://scrimba.com/playlist/pXKqta) امتحان کنید که به صورت ویدیوهای ضبط شده در محیطی تعاملی بوده که هر لحظه می‌توانید ویدیو را متوقف کنید، کدها را ویرایش کنید و نتیجه تغییرات را در همان محیط ببینید.
 
@@ -44,7 +44,7 @@ order: 2
 
 <div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cQ3QVcr" target="_blank" rel="noopener noreferrer">این درس تعاملی را در Scrimba به زبان انگلیسی ببینید.</a></div>
 
-سیستم هسته مرکزی Vue.js به ما این امکان را می‌دهد که با استفاده از سینتکس‌های قالب سر راست، داده را به صورت اعلامی در میان ‌تگ‌های مدل سند خروجی نمایش دهیم.
+سیستم هسته مرکزی Vue.js به ما این امکان را می‌دهد که با استفاده از سینتکس‌های قالب سر راست، داده را به صورت اعلامی در میان ‌تگ‌های مدل سند خروجی (DOM) نمایش دهیم.
 
 ``` html
 <div id="app">
@@ -73,15 +73,14 @@ var app = new Vue({
 </script>
 {% endraw %}
 
-به همین سادگی اولین اپلیکیشن ویوی خودمان را ساختیم! در ظاهر به نظر می‌اید که فقط یک قالب رشته‌ای را نمایش داده ایم، اما ویو در پشت پرده خیلی کارها انجام داده. اکنون یک پیوند میان داده و مدل سند خروجی ایجاد شده و حالا همگی **واکنش‌ دهنده** هستند. از کجا می‌دانیم؟ کنسول جاوا اسکریپت مرورگرتان را (همین الان، در همین صفحه) باز کنید و متغییر `app.message` را تغییر دهید. می‌بینید که خروجی نمایش داده شده در مثال بالا نیز هماهنگ با تغییرات شما تغییر خواهد کرد.
+به همین سادگی اولین اپلیکیشن ویوی خودمان را ساختیم! در ظاهر به نظر می‌آید که فقط یک قالب رشته‌ای را نمایش داده ایم، اما ویو در پشت پرده خیلی کارها انجام داده. اکنون یک پیوند میان داده و مدل سند خروجی ایجاد شده و حالا همگی **واکنش‌ دهنده** هستند. از کجا می‌دانیم؟ کنسول جاوا اسکریپت مرورگرتان را (همین الان، در همین صفحه) باز کنید و متغییر `app.message` را تغییر دهید. می‌بینید که خروجی نمایش داده شده در مثال بالا نیز هماهنگ با تغییرات شما تغییر خواهد کرد.
 
-In addition to text interpolation, we can also bind element attributes like this:
+به غیر از درج متن در محتوای درونی عناصر صفحه، همچنین می‌توانیم مشخصه‌ی تگ‌های صفحه را به متغییرهای اپلیکیشن ویو متصل کرد:
 
 ``` html
 <div id="app-2">
   <span v-bind:title="message">
-    Hover your mouse over me for a few seconds
-    to see my dynamically bound title!
+    نشانه‌گر موس را برای چند ثانیه روی این متن نگاه دارید تا عنوانی که بصورت پویا به آن وصل شده را ببینید!
   </span>
 </div>
 ```
@@ -89,29 +88,29 @@ In addition to text interpolation, we can also bind element attributes like this
 var app2 = new Vue({
   el: '#app-2',
   data: {
-    message: 'You loaded this page on ' + new Date().toLocaleString()
+    message: 'شما این صفحه را در ' + new Date().toLocaleString() + ' باز کردید.'
   }
 })
 ```
 {% raw %}
-<div id="app-2" class="demo">
+<div id="app-2" class="demo" style='text-align: right; direction: rtl;'>
   <span v-bind:title="message">
-    Hover your mouse over me for a few seconds to see my dynamically bound title!
+    نشانه‌گر موس را برای چند ثانیه روی این متن نگاه دارید تا عنوانی که بصورت پویا به آن وصل شده را ببینید!
   </span>
 </div>
 <script>
 var app2 = new Vue({
   el: '#app-2',
   data: {
-    message: 'You loaded this page on ' + new Date().toLocaleString()
+    message: 'شما این صفحه را در ' + new Date().toLocaleString() + ' باز کردید.'
   }
 })
 </script>
 {% endraw %}
 
-Here we are encountering something new. The `v-bind` attribute you are seeing is called a **directive**. Directives are prefixed with `v-` to indicate that they are special attributes provided by Vue, and as you may have guessed, they apply special reactive behavior to the rendered DOM. Here, it is basically saying "keep this element's `title` attribute up-to-date with the `message` property on the Vue instance."
+در اینجا با یک پدیده جدید مواجه هستیم. ‌مشخصه `v-bind` که می‌بینید، یک  **دستورالعمل (directive)** است. دستورالعمل‌ها با پیشوند  `v-` شروع می‌شوند که نشان می‌دهد آنها مشخصه‌هایی خاص و منحصر به ویو هستند و همانطور که ممکن است حدس زده باشید، آنها واکنش‌های خاصی را به سند خروجی اضافه ‌می‌کنند. در این مثال دستورالعمل می‌گوید مقدار مشخصه `title` این تگ را با متغییر `message` اپلیکیشن ویو بروز  نگه دار.
 
-If you open up your JavaScript console again and enter `app2.message = 'some new message'`, you'll once again see that the bound HTML - in this case the `title` attribute - has been updated.
+اگر مجددا کنسول جاوا اسکریپت مرورگر خود را باز کنید و دستور `app2.message = 'یک پیام جدید'` را وارد کنید, خواهید دید که مشخصه عنوان خروجی بالا نیز خواهد تغییر خواهد کرد.
 
 ## Conditionals and Loops
 
