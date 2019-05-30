@@ -276,54 +276,54 @@ var app6 = new Vue({
 </script>
 {% endraw %}
 
-## Composing with Components
+## ترکیب <span title='Components'>قطعه‌کد‌ها</span> 
 
-<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cEQVkA3" target="_blank" rel="noopener noreferrer">Try this lesson on Scrimba</a></div>
+<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cEQVkA3" target="_blank" rel="noopener noreferrer">این درس تعاملی به زبان انگلیسی را در Scrimba امتحان کنید</a></div>
 
-The component system is another important concept in Vue, because it's an abstraction that allows us to build large-scale applications composed of small, self-contained, and often reusable components. If we think about it, almost any type of application interface can be abstracted into a tree of components:
+سیستم قطعه‌کد (component system) یکی دیگر از مفاهیم با اهمیت در ویو است، چرا که به ما این امکان را می‌دهد که با ترکیب قطعه کدهایی کوچک و مستقل، اپلیکیشن‌هایی در مقیاس بزرگ درست کنیم. این قطعه کدها معمولا هدف و کارایی منحصر به خود داشته و امکان استفاده مجدد از آنها در بخش های مختلف یک اپلیکیشن و حتی پروژه های دیگر وجود دارد. اگر خوب در این مورد فکر کنیم، تقریبا واسط کاربری هر اپلیکیشن را می‌توان در یک گراف درختی از قطعه‌کدها تصور کرد:
 
 ![Component Tree](/images/components.png)
 
-In Vue, a component is essentially a Vue instance with pre-defined options. Registering a component in Vue is straightforward:
+در ویو، یک <span title='component'>قطعه کد</span> در واقع یک نمونه از شیء Vue با گزینه هایی از پیش تعریف شده می‌باشد.ثبت قطعه کدها در ویو خیلی ساده است:
 
 ``` js
-// Define a new component called todo-item
+// todo-item تعریف یک قطعه‌کد جدید به نام
 Vue.component('todo-item', {
-  template: '<li>This is a todo</li>'
+  template: '<li>این یک گزینه از چک لیست است</li>'
 })
 ```
 
-Now you can compose it in another component's template:
+حالا می‌توانید از آن در ساخت قالب یک قطعه کد دیگر استفاده کنید:
 
 ``` html
 <ol>
-  <!-- Create an instance of the todo-item component -->
+  <!-- todo-item ایجاد یک نمونه از قطعه کد -->
   <todo-item></todo-item>
 </ol>
 ```
 
-But this would render the same text for every todo, which is not super interesting. We should be able to pass data from the parent scope into child components. Let's modify the component definition to make it accept a [prop](components.html#Props):
+اما این قطعه کد برای همه چک لیست‌ها،‌متن یکسانی تولید می‌کند، که خیلی جالب نیست. باید از طریقی داده را از <span title='parent scope'>گستره قطعه کد والد</span> به <span title='child scope'>گستره قطعه کد فرزند</span> منتقل کنیم، برای این کار قطعه‌کد را ویرایش می‌کنیم تا یک [مشخصه (prop)](components.html#Props) بپذیرد:
 
 ``` js
 Vue.component('todo-item', {
-  // The todo-item component now accepts a
-  // "prop", which is like a custom attribute.
-  // This prop is called todo.
+  //  قطعه کد گزینه چک لیست حالا یک مشخصه 
+  // می‌پذیرد, که منحصر به این قطعه کد می‌باشد "prop".
+  // نام دارد todo این مشخصه.
   props: ['todo'],
   template: '<li>{{ todo.text }}</li>'
 })
 ```
 
-Now we can pass the todo into each repeated component using `v-bind`:
+حالا می‌توانیم با استفاده از مشخصه دستوری `v-bind` داده های چک لیست را در هنگام استفاده از قطعه‌کد به مشخصه `todo` آن منتقل کرد:
 
 ``` html
 <div id="app-7">
   <ol>
     <!--
-      Now we provide each todo-item with the todo object
-      it's representing, so that its content can be dynamic.
-      We also need to provide each component with a "key",
-      which will be explained later.
+      ایtodo حالا ما برای هریک از گزینه های چک‌ لیست، شیء
+      که نمایش می‌دهد را فراهم کرده ایم که محتوای آن می‌تواند پویا باشد
+      نیز مشخص کنیم "key" ما همچنین باید برای هر قطعه کد یک کلید
+      که بعدا بیشتر در این مورد توضیح خواهیم داد 
     -->
     <todo-item
       v-for="item in groceryList"
@@ -343,9 +343,9 @@ var app7 = new Vue({
   el: '#app-7',
   data: {
     groceryList: [
-      { id: 0, text: 'Vegetables' },
-      { id: 1, text: 'Cheese' },
-      { id: 2, text: 'Whatever else humans are supposed to eat' }
+      { id: 0, text: 'سبزیجات' },
+      { id: 1, text: 'پنیر' },
+      { id: 2, text: 'هر جیز دیگه‌ای که آدما می‌خورند!' }
     ]
   }
 })
@@ -365,9 +365,9 @@ var app7 = new Vue({
   el: '#app-7',
   data: {
     groceryList: [
-      { id: 0, text: 'Vegetables' },
-      { id: 1, text: 'Cheese' },
-      { id: 2, text: 'Whatever else humans are supposed to eat' }
+      { id: 0, text: 'سبزیجات' },
+      { id: 1, text: 'پنیر' },
+      { id: 2, text: 'هر جیز دیگه‌ای که آدما می‌خورند!' }
     ]
   }
 })
