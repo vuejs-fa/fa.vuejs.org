@@ -374,9 +374,9 @@ var app7 = new Vue({
 </script>
 {% endraw %}
 
-This is a contrived example, but we have managed to separate our app into two smaller units, and the child is reasonably well-decoupled from the parent via the props interface. We can now further improve our `<todo-item>` component with more complex template and logic without affecting the parent app.
+این یک مثال ساختگی بود، اما ما موفق شدیم که اپلیکیشنمان را به دو بخش کوچکتر تقسیم کنیم و قطعه کد فرزند به صورت قابل قبولی با استفاده از واسطه مشخصه‌ها (props) از قطعه‌کد والد جداسازی شده است. ما می‌توانیم فطعه کد `<todo-item>` را با منطق و قالبی پیچیده‌تر توسعه دهیم بدون اینکه کاری با اپلیکیشن والد داشته باشیم.
 
-In a large application, it is necessary to divide the whole app into components to make development manageable. We will talk a lot more about components [later in the guide](components.html), but here's an (imaginary) example of what an app's template might look like with components:
+در اپلیکیشن‌های بزرگ لازم است که حتما آن‌ها را به قطعه‌کد‌های کوچک‌‌تر تقسیم کنیم تا فرایند توسعه اپلیکیشن قابل مدیریت باشد. [بعدا در این راهنما](components.html) خیلی بیشتر در مورد ‌<span title='components'>قطعه‌کدها</span> توضیح خواهیم داد، اما در اینجایک مثال تخیلی را آورده‌ایم که ببینید قالب یک اپلیکیشن با قطعه کدهای مختلف به چه شکل خواهد بود:
 
 ``` html
 <div id="app">
@@ -388,18 +388,18 @@ In a large application, it is necessary to divide the whole app into components 
 </div>
 ```
 
-### Relation to Custom Elements
+### شباهت با <span title='Custom Elements'>تگ سفارشی</span>
 
-You may have noticed that Vue components are very similar to **Custom Elements**, which are part of the [Web Components Spec](https://www.w3.org/wiki/WebComponents/). That's because Vue's component syntax is loosely modeled after the spec. For example, Vue components implement the [Slot API](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md) and the `is` special attribute. However, there are a few key differences:
+ممکن است متوجه شده باشید که قطعه‌کدهای ویو خیلی شبیه به **تگ‌های سفارشی (Custom Elements)** تعریف شده در [Web Components Spec](https://www.w3.org/wiki/WebComponents/) هستند. این به این دلیل است که قطعه‌کدهای ویو تا حدودی با توجه به این تعاریف طراحی شده ‌اند. برای مثال در قطعه‌کدهای ویو [Slot API](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md) و مشخصه مخصوص `is` پیاده سازی شده است. اما چند تفاوت کلیدی نیز وجود دارد:
 
-1. The Web Components Spec has been finalized, but is not natively implemented in every browser. Safari 10.1+, Chrome 54+ and Firefox 63+ natively support web components. In comparison, Vue components don't require any polyfills and work consistently in all supported browsers (IE9 and above). When needed, Vue components can also be wrapped inside a native custom element.
+1. تعاریف Web Components Spec نهایی شده‌اند، اما هنوز در همه مرورگرها پشتیبانی نمی‌شوند. Safari 10.1+، Chrome 54+ و Firefox 63+ از از آنها پشیتبانی می‌کنند. در مقابل، قطعه‌کدهای ویو برای اجرا به هیچ‌گونه افزونه اضافی در مرورگر نیاز نداشته و به خوبی در همه مرورگر‌های پشتیبانی شده (IE9 و بالاتر)‌ کار می‌کنند. در صورت نیاز قطعه‌کدهای ویو را می‌توان همچنین درون تگ‌های سفارشی نیز قرار داد.
 
-2. Vue components provide important features that are not available in plain custom elements, most notably cross-component data flow, custom event communication and build tool integrations.
+2. قطعه‌کدهای ویو امکانات ویژه‌ای را فراهم ‌می‌کنند که در تگ‌های سفارشی وجود ندارند، به عنوان مثال جریان انتقال داده‌ها میان قطعه‌کدها، تعامل رویدادی و یکپارچگی تولیدابزار.
 
-Although Vue doesn't use custom elements internally, it has [great interoperability](https://custom-elements-everywhere.com/#vue) when it comes to consuming or distributing as custom elements. Vue CLI also supports building Vue components that register themselves as native custom elements.
+اگرچه ویو به صورتی داخلی از تگ‌های سفارشی استفاده نمی‌کند، وقتی که قرار باشدبه عنوان تگ سفارشی استفاده یا پخش شود از  [قابلیت هماهنگی بالایی](https://custom-elements-everywhere.com/#vue) برخوردار است. همچنین Vue CLI از ساخت قطعه‌کدهایی که خود را به عنوان تگ‌های سفارشی ثبت می‌کنند، پشتیبانی می‌کند.
 
-## Ready for More?
+## آماده‌اید که بیشتر بدانید؟
 
-We've briefly introduced the most basic features of Vue.js core - the rest of this guide will cover them and other advanced features with much finer details, so make sure to read through it all!
+ما بطور خلاصه ابتدایی‌ترین امکانات هسته مرکزی ویو را معرفی کردیم - ادامه این راهنما بصورت جامع‌تر به توضیح این امکانات و سایر امکانات پیشرفته‌تر با جزيیات دقیق‌تر می‌پردازد، پس ادامه مطالب را از دست ندهید!
 
 <div id="video-modal" class="modal"><div class="video-space" style="padding: 56.25% 0 0 0; position: relative;"><iframe src="https://player.vimeo.com/video/247494684" style="height: 100%; left: 0; position: absolute; top: 0; width: 100%; margin: 0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script><p class="modal-text">Video by <a href="https://www.vuemastery.com" target="_blank" rel="noopener" title="Vue.js Courses on Vue Mastery">Vue Mastery</a>. Watch Vue Mastery’s free <a href="https://www.vuemastery.com/courses/intro-to-vue-js/vue-instance/" target="_blank" rel="noopener" title="Vue.js Courses on Vue Mastery">Intro to Vue course</a>.</div>
