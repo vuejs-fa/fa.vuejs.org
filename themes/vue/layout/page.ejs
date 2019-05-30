@@ -32,11 +32,11 @@
     <div class="guide-links">
       <% const lastPage = site.pages.find({ type: page.type, order: { $lt: page.order }}).sort({ order: -1 }).first(); %>
       <% if (lastPage) { %>
-        <span>← <a href="<%- url_for(lastPage.path) %>"><%- lastPage.title %></a></span>
+        <span>→ <a href="<%- url_for(lastPage.path) %>"><%- lastPage.title %></a></span>
       <% } %>
       <% const nextPage = site.pages.find({ type: page.type, order: { $gt: page.order }}).sort({ order: 1 }).first(); %>
       <% if (nextPage) { %>
-        <span style="float: right;"><a href="<%- url_for(nextPage.path) %>"><%- nextPage.title %></a> →</span>
+        <span style="float: left;"><a href="<%- url_for(nextPage.path) %>"><%- nextPage.title %></a>← </span>
       <% } %>
     </div>
   <% } %>
@@ -44,9 +44,9 @@
     <%_ if (!page.sponsors) { _%>
       <%- partial('partials/ad-text') %>
     <%_ } _%>
-    Caught a mistake or want to contribute to the documentation?
-    <a href="https://github.com/vuejs/vuejs.org/blob/master/src/<%- page.path.replace(/\.html$/, '.md') %>" target="_blank">
-      Edit this page on GitHub!
+    اشتباهی پیدا کردید و یا می‌خواهید در تهیه مستندات راهنما مشارکت کنید؟
+    <a href="https://github.com/vuejs-fa/fa.vuejs.org/blob/fa/src/<%- page.path.replace(/\.html$/, '.md') %>" target="_blank">
+      این صفحه را در گیت‌هاب ویرایش کنید!
     </a>
   </div>
 </div>

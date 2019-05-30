@@ -1,48 +1,50 @@
 ---
-title: Introduction
+title: مقدمه
 type: guide
 order: 2
 ---
 
-## What is Vue.js?
+## ویو.جی اس چیست؟
 
-Vue (pronounced /vjuː/, like **view**) is a **progressive framework** for building user interfaces. Unlike other monolithic frameworks, Vue is designed from the ground up to be incrementally adoptable. The core library is focused on the view layer only, and is easy to pick up and integrate with other libraries or existing projects. On the other hand, Vue is also perfectly capable of powering sophisticated Single-Page Applications when used in combination with [modern tooling](single-file-components.html) and [supporting libraries](https://github.com/vuejs/awesome-vue#components--libraries).
 
-If you’d like to learn more about Vue before diving in, we <a id="modal-player"  href="#">created a video</a> walking through the core principles and a sample project.
+ ویو (Vue) یک **فریم ورک تکاملی** جاوا اسکریپت برای تولید واسط کاربری تحت وب است. برخلاف فریم ورک‌های یکپارچه، ویو از پایه به گونه‌ای طراحی شده است که با توجه به نیاز برنامه، مرحله به مرحله قابل تطبیق باشد. هسته مرکزی لایبری فقط روی لایه نمایش (view) متمرکز است و می‌توان به راحتی از آن به همراه سایر لایبری‌ها و یا در پروژه های موجود استفاده کرد. از سوی دیگر، ویو با استفاده از [ابزار مدرن](single-file-components.html) و [لایبری های پشتیبان](https://github.com/vuejs/awesome-vue#components--libraries) کاملا قابلیت پیاده سازی اپلیکیشن‌های پیچیده‌ تک صفحه را نیز دارد.
 
-If you are an experienced frontend developer and want to know how Vue compares to other libraries/frameworks, check out the [Comparison with Other Frameworks](comparison.html).
+اگر مایلید قبل از هر چیز بیشتر با ویو آشنا شوید، ما <a id="modal-player"  href="#">یک ویدیو کوتاه ساخیتم</a> که با انجام چند پروژه نمونه به شما کمک می‌کند تا درک بهتری از مبانی هسته مرکزی این فریم ورک داشته باشید.
 
-<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/intro-to-vue-js/vue-instance/" target="_blank" rel="noopener" title="Free Vue.js Course">Watch a free video course on Vue Mastery</a></div>
+اگر شما یک توسعه دهنده فرانت با تجربه هستید و می‌خواهید ویو را با سایر لایبری ها و فریم ورک های فرانت اند مقایسه کنید، به صفحه [مقایسه با سایر فریم ورک‌ها](comparison.html) مراجعه کنید.
 
-## Getting Started
 
-<a class="button" href="installation.html">Installation</a>
+<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/intro-to-vue-js/vue-instance/" target="_blank" rel="noopener" title="Free Vue.js Course">این دوره آموزشی رایگان در Vue Mastery به زبان انگلیسی به صورت مرحله به مرحله انجام یک پروژه با استفاده از ویو را آموزش می‌دهد.</a></div>
 
-<p class="tip">The official guide assumes intermediate level knowledge of HTML, CSS, and JavaScript. If you are totally new to frontend development, it might not be the best idea to jump right into a framework as your first step - grasp the basics then come back! Prior experience with other frameworks helps, but is not required.</p>
+## شروع کار 
 
-The easiest way to try out Vue.js is using the [JSFiddle Hello World example](https://jsfiddle.net/chrisvfritz/50wL7mdz/). Feel free to open it in another tab and follow along as we go through some basic examples. Or, you can <a href="https://gist.githubusercontent.com/chrisvfritz/7f8d7d63000b48493c336e48b3db3e52/raw/ed60c4e5d5c6fec48b0921edaed0cb60be30e87c/index.html" target="_blank" download="index.html" rel="noopener noreferrer">create an <code>index.html</code> file</a> and include Vue with:
+<a class="button" href="installation.html">نصب</a>
+
+<p class="tip">در این راهنما فرض شده که شما بیشتر از حد مبتدی با HTML، CSS و JavaScript آشنایی دارید. اگر در کدنویسی فرانت‌اند کاملا  مبتدی هستید، بهتر است قبل از اینکه کار با یک فریم‌‌ورک را شروع کنید ابتدا با مفاهیم اولیه فرانت‌اند آشنا شوید و سپس به این راهنما بازگردید! آشنایی قبلی با سایر فریم‌ورک های فرانت‌اند برای درک این راهنما ضروری نبوده اما به شما کمک می‌کند تا سریعتر با مفاهیم ویو آشنا شوید.</p>
+
+ساده‌ترین راه برای امتحان کردن ویو، استفاده از [کد Hello World در JSFiddle](https://jsfiddle.net/chrisvfritz/50wL7mdz/) است. می‌توانید آن را در یک تب جدید باز کنید و همزمان که در این راهنما به چند مثال ساده می‌پردازیم از آن استفاده کنید. و یا اینکه <a href="https://gist.githubusercontent.com/chrisvfritz/7f8d7d63000b48493c336e48b3db3e52/raw/ed60c4e5d5c6fec48b0921edaed0cb60be30e87c/index.html" target="_blank" download="index.html" rel="noopener noreferrer">یک فایل <code>index.html</code> درست کنید</a> وکد ویو را به آن وارد کنید:
 
 ``` html
-<!-- development version, includes helpful console warnings -->
+<!-- برای برنامه در حال توسعه, شامل هشدارهای کمکی در کنسول -->
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 ```
 
-or:
+یا:
 
 ``` html
-<!-- production version, optimized for size and speed -->
+<!-- برای محصول نهایی ,بهینه سازی شده برای حجم فایل و سرعت -->
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 ```
 
-The [Installation](installation.html) page provides more options of installing Vue. Note: We **do not** recommend that beginners start with `vue-cli`, especially if you are not yet familiar with Node.js-based build tools.
+می‌توانید در صفحه [نصب](installation.html) با گزینه‌های دیگر برای نصب ویو آشنا شوید. ما **توصیه نمی‌کنیم** که کاربران مبتدی برای نصب ویو با  `vue-cli` شروع کنند، مخصوصا اگر با <span title='Build tools'>تولید‌ابزار</span> تحت Node.js آشنایی ندارید.
 
-If you prefer something more interactive, you can also check out [this tutorial series on Scrimba](https://scrimba.com/playlist/pXKqta), which gives you a mix of screencast and code playground that you can pause and play around with anytime.
+اگر یک روش تعاملی را ترجیح می‌دهید، می‌توانید [این دوره آموزشی به زبان انگلیسی را در Scrimba](https://scrimba.com/playlist/pXKqta) امتحان کنید که به صورت ویدیوهای ضبط شده در محیطی تعاملی بوده که هر لحظه می‌توانید ویدیو را متوقف کنید، کدها را ویرایش کنید و نتیجه تغییرات را در همان محیط ببینید.
 
-## Declarative Rendering
+## <span title='Declarative Rendering'>نمایش اعلامی</span>
 
-<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cQ3QVcr" target="_blank" rel="noopener noreferrer">Try this lesson on Scrimba</a></div>
+<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cQ3QVcr" target="_blank" rel="noopener noreferrer">این درس تعاملی را در Scrimba به زبان انگلیسی ببینید.</a></div>
 
-At the core of Vue.js is a system that enables us to declaratively render data to the DOM using straightforward template syntax:
+سیستم هسته مرکزی Vue.js به ما این امکان را می‌دهد که با استفاده از سینتکس‌های قالب سر راست، داده را به صورت اعلامی در میان ‌تگ‌های مدل سند خروجی (DOM) نمایش دهیم.
 
 ``` html
 <div id="app">
@@ -53,7 +55,7 @@ At the core of Vue.js is a system that enables us to declaratively render data t
 var app = new Vue({
   el: '#app',
   data: {
-    message: 'Hello Vue!'
+    message: 'سلام ویو!'
   }
 })
 ```
@@ -65,21 +67,20 @@ var app = new Vue({
 var app = new Vue({
   el: '#app',
   data: {
-    message: 'Hello Vue!'
+    message: 'سلام ویو!'
   }
 })
 </script>
 {% endraw %}
 
-We have already created our very first Vue app! This looks pretty similar to rendering a string template, but Vue has done a lot of work under the hood. The data and the DOM are now linked, and everything is now **reactive**. How do we know? Open your browser's JavaScript console (right now, on this page) and set `app.message` to a different value. You should see the rendered example above update accordingly.
+به همین سادگی اولین اپلیکیشن ویوی خودمان را ساختیم! در ظاهر به نظر می‌آید که فقط یک <span title='string template'>قالب رشته‌ای</span> را نمایش داده ایم، اما ویو در پشت پرده خیلی کارها انجام داده. اکنون یک پیوند میان داده و <span title='DOM'>مدل سند خروجی</span> ایجاد شده و حالا همگی **<span title='reactive'>واکنش‌ دهنده</span>** هستند. از کجا می‌دانیم؟ کنسول جاوا اسکریپت مرورگرتان را (همین الان، در همین صفحه) باز کنید و متغییر `app.message` را تغییر دهید. می‌بینید که خروجی نمایش داده شده در مثال بالا نیز هماهنگ با تغییرات شما تغییر خواهد کرد.
 
-In addition to text interpolation, we can also bind element attributes like this:
+به غیر از درج متن در محتوای درونی عناصر صفحه، همچنین می‌توانیم <span title='element attributes'>مشخصه‌ی تگ‌های</span> صفحه را به متغییرهای اپلیکیشن ویو متصل کرد:
 
 ``` html
 <div id="app-2">
   <span v-bind:title="message">
-    Hover your mouse over me for a few seconds
-    to see my dynamically bound title!
+    نشانه‌گر موس را برای چند ثانیه روی این متن نگاه دارید تا عنوانی که بصورت پویا به آن وصل شده را ببینید!
   </span>
 </div>
 ```
@@ -87,39 +88,39 @@ In addition to text interpolation, we can also bind element attributes like this
 var app2 = new Vue({
   el: '#app-2',
   data: {
-    message: 'You loaded this page on ' + new Date().toLocaleString()
+    message: 'شما این صفحه را در ' + new Date().toLocaleString('fa') + ' باز کردید.'
   }
 })
 ```
 {% raw %}
 <div id="app-2" class="demo">
   <span v-bind:title="message">
-    Hover your mouse over me for a few seconds to see my dynamically bound title!
+    نشانه‌گر موس را برای چند ثانیه روی این متن نگاه دارید تا عنوانی که بصورت پویا به آن وصل شده را ببینید!
   </span>
 </div>
 <script>
 var app2 = new Vue({
   el: '#app-2',
   data: {
-    message: 'You loaded this page on ' + new Date().toLocaleString()
+    message: 'شما این صفحه را در ' + new Date().toLocaleString('fa') + ' باز کردید.'
   }
 })
 </script>
 {% endraw %}
 
-Here we are encountering something new. The `v-bind` attribute you are seeing is called a **directive**. Directives are prefixed with `v-` to indicate that they are special attributes provided by Vue, and as you may have guessed, they apply special reactive behavior to the rendered DOM. Here, it is basically saying "keep this element's `title` attribute up-to-date with the `message` property on the Vue instance."
+در اینجا با یک پدیده جدید مواجه هستیم. ‌مشخصه `v-bind` که می‌بینید، یک  **مشخصه دستوری (directive)** است. مشخصه‌های دستوری با پیشوند  `v-` شروع می‌شوند که نشان می‌دهد آنها مشخصه‌هایی خاص و منحصر به ویو هستند و همانطور که ممکن است حدس زده باشید، آنها واکنش‌های خاصی را به سند خروجی اضافه ‌می‌کنند. در این مثال دستورالعمل می‌گوید مقدار مشخصه `title` این تگ را با متغییر `message` اپلیکیشن ویو به‌روز  نگه دار.
 
-If you open up your JavaScript console again and enter `app2.message = 'some new message'`, you'll once again see that the bound HTML - in this case the `title` attribute - has been updated.
+اگر مجددا کنسول جاوا اسکریپت مرورگر خود را باز کنید و دستور `app2.message = 'یک پیام جدید'` را وارد کنید, خواهید دید که مشخصه عنوان خروجی بالا نیز خواهد تغییر خواهد کرد.
 
-## Conditionals and Loops
+## دستورات شرطی و حلقه‌ها
 
-<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cEQe4SJ" target="_blank" rel="noopener noreferrer">Try this lesson on Scrimba</a></div>
+<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cEQe4SJ" target="_blank" rel="noopener noreferrer">این درس تعاملی به زبان انگلیسی را در Scrimba امتحان کنید</a></div>
 
-It's easy to toggle the presence of an element, too:
+همچنین به راحتی ‌میتوان وجود یا عدم وجود یک عنصر در مدل صفحه خروجی را کنترل کرد :
 
 ``` html
 <div id="app-3">
-  <span v-if="seen">Now you see me</span>
+  <span v-if="seen">تا شرط متغییر ‌‌seen برقرار باشد من دیده می‌شوم</span>
 </div>
 ```
 
@@ -134,7 +135,7 @@ var app3 = new Vue({
 
 {% raw %}
 <div id="app-3" class="demo">
-  <span v-if="seen">Now you see me</span>
+  <span v-if="seen">تا شرط متغییر ‌‌seen برقرار باشد من دیده می‌شوم</span>
 </div>
 <script>
 var app3 = new Vue({
@@ -146,11 +147,11 @@ var app3 = new Vue({
 </script>
 {% endraw %}
 
-Go ahead and enter `app3.seen = false` in the console. You should see the message disappear.
+اگر در کنسول مرورگر دستور `app3.seen = false` را وارد کنید، پیام نمایش داده شده در خروجی بالا از صفحه حذف خواهد شد.
 
-This example demonstrates that we can bind data to not only text and attributes, but also the **structure** of the DOM. Moreover, Vue also provides a powerful transition effect system that can automatically apply [transition effects](transitions.html) when elements are inserted/updated/removed by Vue.
+این مثال نشان می‌دهد که علاوه بر متن داخلی و مشخه‌های عناصر سند،‌ ما همچنین می‌توانیم <span title='DOM Structure'>**ساختار** مدل سند خروجی</span> را به داده های اپلیکشن ویو متصل کنیم. علاوه بر این، ویو همچنین سیستم افکت قدرتمندی را نیز ارائه می‌دهد که می‌توانید از آن برای [افکت های انتقالی](transitions.html) در هنگام درج، به روز رسانی و یا حذف عناصر سند از طریق ویو استفاده کنید.
 
-There are quite a few other directives, each with its own special functionality. For example, the `v-for` directive can be used for displaying a list of items using the data from an Array:
+ویو چند عدد مشخصه دستوری دیگر نیز دارد که هر کدام از آنها کارایی منحصر به خود دارند. به عنوان مثال،‌ می‌توانیم از مشخصه دستوری `v-for` برای نمایش یک لیست با استفاده از داده‌های یک متغییر آرایه استفاده کنیم:
 
 ``` html
 <div id="app-4">
@@ -166,9 +167,9 @@ var app4 = new Vue({
   el: '#app-4',
   data: {
     todos: [
-      { text: 'Learn JavaScript' },
-      { text: 'Learn Vue' },
-      { text: 'Build something awesome' }
+      { text: 'یادگیری جاوا اسکریپت' },
+      { text: 'یادگیری ویو' },
+      { text: 'نوشتن یک کد باحال!' }
     ]
   }
 })
@@ -186,34 +187,34 @@ var app4 = new Vue({
   el: '#app-4',
   data: {
     todos: [
-      { text: 'Learn JavaScript' },
-      { text: 'Learn Vue' },
-      { text: 'Build something awesome' }
+      { text: 'یادگیری جاوا اسکریپت' },
+      { text: 'یادگیری Vue' },
+      { text: 'نوشتن یک کد باحال!' }
     ]
   }
 })
 </script>
 {% endraw %}
 
-In the console, enter `app4.todos.push({ text: 'New item' })`. You should see a new item appended to the list.
+دستور `app4.todos.push({ text: 'انتشار کد متن‌باز' })` را در کنسول مرورگر وارد کنید. متن جدید به لیست خروجی بالا اضافه خواهد شد.
 
-## Handling User Input
+## اداره ورودی‌ کاربر
 
-<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/czPNaUr" target="_blank" rel="noopener noreferrer">Try this lesson on Scrimba</a></div>
+<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/czPNaUr" target="_blank" rel="noopener noreferrer">این درس تعاملی به زبان انگلیسی را در Scrimba امتحان کنید</a></div>
 
-To let users interact with your app, we can use the `v-on` directive to attach event listeners that invoke methods on our Vue instances:
+برای اینکه به کاربران امکان برقراری تعامل با اپلیکیشنمان را بدهیم، می‌توانیم از مشخصه دستوری `v-on` استفاده کینم تا رویداد خاصی را  تحت نظر گرفته و با وقوع آن یک تابع (method) را در اپلیکیشن ویو فرا‌خوانی کنیم:
 
 ``` html
 <div id="app-5">
   <p>{{ message }}</p>
-  <button v-on:click="reverseMessage">Reverse Message</button>
+  <button v-on:click="reverseMessage">متن را برعکس کن</button>
 </div>
 ```
 ``` js
 var app5 = new Vue({
   el: '#app-5',
   data: {
-    message: 'Hello Vue.js!'
+    message: 'بابک'
   },
   methods: {
     reverseMessage: function () {
@@ -225,13 +226,13 @@ var app5 = new Vue({
 {% raw %}
 <div id="app-5" class="demo">
   <p>{{ message }}</p>
-  <button v-on:click="reverseMessage">Reverse Message</button>
+  <button v-on:click="reverseMessage">متن را برعکس کن</button>
 </div>
 <script>
 var app5 = new Vue({
   el: '#app-5',
   data: {
-    message: 'Hello Vue.js!'
+    message: 'بابک'
   },
   methods: {
     reverseMessage: function () {
@@ -242,9 +243,9 @@ var app5 = new Vue({
 </script>
 {% endraw %}
 
-Note that in this method we update the state of our app without touching the DOM - all DOM manipulations are handled by Vue, and the code you write is focused on the underlying logic.
+توجه کنید که در کد این تابع ما بدون اینکه به <span title='DOM'>مدل سند خروجی</span> هیچ دستی بزنیم، تنها موقعیت داده‌ها (state) اپلیکیشنمان را بروزرسانی می‌کنیم و تمامی تغییرات <span title='DOM'>در مدل سند خروجی</span> خود به خود توسط ویو انجام می‌شود و کد شما تنها روی استدلال پایه اپلیکیشن متمرکز است.
 
-Vue also provides the `v-model` directive that makes two-way binding between form input and app state a breeze:
+ویو همچنین مشخصه دستوری `v-model` را برای ما مهیا کرده است، که با استفاده از آن می‌توان به سادگی آب خوردن، پیوندی دو طرفه میان ورودی کاربر و <span title='state'>موقعیت داده‌های</span> اپلیکیشن برقرار کرد:
 
 ``` html
 <div id="app-6">
@@ -256,7 +257,7 @@ Vue also provides the `v-model` directive that makes two-way binding between for
 var app6 = new Vue({
   el: '#app-6',
   data: {
-    message: 'Hello Vue!'
+    message: 'سلام ویو!'
   }
 })
 ```
@@ -269,60 +270,60 @@ var app6 = new Vue({
 var app6 = new Vue({
   el: '#app-6',
   data: {
-    message: 'Hello Vue!'
+    message: 'سلام ویو!'
   }
 })
 </script>
 {% endraw %}
 
-## Composing with Components
+## ترکیب <span title='Components'>قطعه‌کد‌ها</span> 
 
-<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cEQVkA3" target="_blank" rel="noopener noreferrer">Try this lesson on Scrimba</a></div>
+<div class="scrimba"><a href="https://scrimba.com/p/pXKqta/cEQVkA3" target="_blank" rel="noopener noreferrer">این درس تعاملی به زبان انگلیسی را در Scrimba امتحان کنید</a></div>
 
-The component system is another important concept in Vue, because it's an abstraction that allows us to build large-scale applications composed of small, self-contained, and often reusable components. If we think about it, almost any type of application interface can be abstracted into a tree of components:
+سیستم قطعه‌کد (component system) یکی دیگر از مفاهیم با اهمیت در ویو است، چرا که به ما این امکان را می‌دهد که با ترکیب قطعه کدهایی کوچک و مستقل، اپلیکیشن‌هایی در مقیاس بزرگ درست کنیم. این قطعه کدها معمولا هدف و کارایی منحصر به خود داشته و امکان استفاده مجدد از آنها در بخش های مختلف یک اپلیکیشن و حتی پروژه های دیگر وجود دارد. اگر خوب در این مورد فکر کنیم، تقریبا واسط کاربری هر اپلیکیشن را می‌توان در یک گراف درختی از قطعه‌کدها تصور کرد:
 
 ![Component Tree](/images/components.png)
 
-In Vue, a component is essentially a Vue instance with pre-defined options. Registering a component in Vue is straightforward:
+در ویو، یک <span title='component'>قطعه کد</span> در واقع یک نمونه از شیء Vue با گزینه هایی از پیش تعریف شده می‌باشد.ثبت قطعه کدها در ویو خیلی ساده است:
 
 ``` js
-// Define a new component called todo-item
+// todo-item تعریف یک قطعه‌کد جدید به نام
 Vue.component('todo-item', {
-  template: '<li>This is a todo</li>'
+  template: '<li>این یک گزینه از چک لیست است</li>'
 })
 ```
 
-Now you can compose it in another component's template:
+حالا می‌توانید از آن در ساخت قالب یک قطعه کد دیگر استفاده کنید:
 
 ``` html
 <ol>
-  <!-- Create an instance of the todo-item component -->
+  <!-- todo-item ایجاد یک نمونه از قطعه کد -->
   <todo-item></todo-item>
 </ol>
 ```
 
-But this would render the same text for every todo, which is not super interesting. We should be able to pass data from the parent scope into child components. Let's modify the component definition to make it accept a [prop](components.html#Props):
+اما این قطعه کد برای همه چک لیست‌ها،‌متن یکسانی تولید می‌کند، که خیلی جالب نیست. باید از طریقی داده را از <span title='parent scope'>گستره قطعه کد والد</span> به <span title='child scope'>گستره قطعه کد فرزند</span> منتقل کنیم، برای این کار قطعه‌کد را ویرایش می‌کنیم تا یک [مشخصه (prop)](components.html#Props) بپذیرد:
 
 ``` js
 Vue.component('todo-item', {
-  // The todo-item component now accepts a
-  // "prop", which is like a custom attribute.
-  // This prop is called todo.
+  //  قطعه کد گزینه چک لیست حالا یک مشخصه 
+  // می‌پذیرد, که منحصر به این قطعه کد می‌باشد "prop".
+  // نام دارد todo این مشخصه.
   props: ['todo'],
   template: '<li>{{ todo.text }}</li>'
 })
 ```
 
-Now we can pass the todo into each repeated component using `v-bind`:
+حالا می‌توانیم با استفاده از مشخصه دستوری `v-bind` داده های چک لیست را در هنگام استفاده از قطعه‌کد به مشخصه `todo` آن منتقل کرد:
 
 ``` html
 <div id="app-7">
   <ol>
     <!--
-      Now we provide each todo-item with the todo object
-      it's representing, so that its content can be dynamic.
-      We also need to provide each component with a "key",
-      which will be explained later.
+      ایtodo حالا ما برای هریک از گزینه های چک‌ لیست، شیء
+      که نمایش می‌دهد را فراهم کرده ایم که محتوای آن می‌تواند پویا باشد
+      نیز مشخص کنیم "key" ما همچنین باید برای هر قطعه کد یک کلید
+      که بعدا بیشتر در این مورد توضیح خواهیم داد 
     -->
     <todo-item
       v-for="item in groceryList"
@@ -342,9 +343,9 @@ var app7 = new Vue({
   el: '#app-7',
   data: {
     groceryList: [
-      { id: 0, text: 'Vegetables' },
-      { id: 1, text: 'Cheese' },
-      { id: 2, text: 'Whatever else humans are supposed to eat' }
+      { id: 0, text: 'سبزیجات' },
+      { id: 1, text: 'پنیر' },
+      { id: 2, text: 'هر جیز دیگه‌ای که آدما می‌خورند!' }
     ]
   }
 })
@@ -364,18 +365,18 @@ var app7 = new Vue({
   el: '#app-7',
   data: {
     groceryList: [
-      { id: 0, text: 'Vegetables' },
-      { id: 1, text: 'Cheese' },
-      { id: 2, text: 'Whatever else humans are supposed to eat' }
+      { id: 0, text: 'سبزیجات' },
+      { id: 1, text: 'پنیر' },
+      { id: 2, text: 'هر جیز دیگه‌ای که آدما می‌خورند!' }
     ]
   }
 })
 </script>
 {% endraw %}
 
-This is a contrived example, but we have managed to separate our app into two smaller units, and the child is reasonably well-decoupled from the parent via the props interface. We can now further improve our `<todo-item>` component with more complex template and logic without affecting the parent app.
+این یک مثال ساختگی بود، اما ما موفق شدیم که اپلیکیشنمان را به دو بخش کوچکتر تقسیم کنیم و قطعه کد فرزند به صورت قابل قبولی با استفاده از واسطه مشخصه‌ها (props) از قطعه‌کد والد جداسازی شده است. ما می‌توانیم فطعه کد `<todo-item>` را با منطق و قالبی پیچیده‌تر توسعه دهیم بدون اینکه کاری با اپلیکیشن والد داشته باشیم.
 
-In a large application, it is necessary to divide the whole app into components to make development manageable. We will talk a lot more about components [later in the guide](components.html), but here's an (imaginary) example of what an app's template might look like with components:
+در اپلیکیشن‌های بزرگ لازم است که حتما آن‌ها را به قطعه‌کد‌های کوچک‌‌تر تقسیم کنیم تا فرایند توسعه اپلیکیشن قابل مدیریت باشد. [بعدا در این راهنما](components.html) خیلی بیشتر در مورد ‌<span title='components'>قطعه‌کدها</span> توضیح خواهیم داد، اما در اینجایک مثال تخیلی را آورده‌ایم که ببینید قالب یک اپلیکیشن با قطعه کدهای مختلف به چه شکل خواهد بود:
 
 ``` html
 <div id="app">
@@ -387,18 +388,18 @@ In a large application, it is necessary to divide the whole app into components 
 </div>
 ```
 
-### Relation to Custom Elements
+### شباهت با <span title='Custom Elements'>تگ سفارشی</span>
 
-You may have noticed that Vue components are very similar to **Custom Elements**, which are part of the [Web Components Spec](https://www.w3.org/wiki/WebComponents/). That's because Vue's component syntax is loosely modeled after the spec. For example, Vue components implement the [Slot API](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md) and the `is` special attribute. However, there are a few key differences:
+ممکن است متوجه شده باشید که قطعه‌کدهای ویو خیلی شبیه به **تگ‌های سفارشی (Custom Elements)** تعریف شده در [Web Components Spec](https://www.w3.org/wiki/WebComponents/) هستند. این به این دلیل است که قطعه‌کدهای ویو تا حدودی با توجه به این تعاریف طراحی شده ‌اند. برای مثال در قطعه‌کدهای ویو [Slot API](https://github.com/w3c/webcomponents/blob/gh-pages/proposals/Slots-Proposal.md) و مشخصه مخصوص `is` پیاده سازی شده است. اما چند تفاوت کلیدی نیز وجود دارد:
 
-1. The Web Components Spec has been finalized, but is not natively implemented in every browser. Safari 10.1+, Chrome 54+ and Firefox 63+ natively support web components. In comparison, Vue components don't require any polyfills and work consistently in all supported browsers (IE9 and above). When needed, Vue components can also be wrapped inside a native custom element.
+1. تعاریف Web Components Spec نهایی شده‌اند، اما هنوز در همه مرورگرها پشتیبانی نمی‌شوند. Safari 10.1+، Chrome 54+ و Firefox 63+ از از آنها پشیتبانی می‌کنند. در مقابل، قطعه‌کدهای ویو برای اجرا به هیچ‌گونه افزونه اضافی در مرورگر نیاز نداشته و به خوبی در همه مرورگر‌های پشتیبانی شده (IE9 و بالاتر)‌ کار می‌کنند. در صورت نیاز قطعه‌کدهای ویو را می‌توان همچنین درون تگ‌های سفارشی نیز قرار داد.
 
-2. Vue components provide important features that are not available in plain custom elements, most notably cross-component data flow, custom event communication and build tool integrations.
+2. قطعه‌کدهای ویو امکانات ویژه‌ای را فراهم ‌می‌کنند که در تگ‌های سفارشی وجود ندارند، به عنوان مثال جریان انتقال داده‌ها میان قطعه‌کدها، تعامل رویدادی و یکپارچگی تولیدابزار.
 
-Although Vue doesn't use custom elements internally, it has [great interoperability](https://custom-elements-everywhere.com/#vue) when it comes to consuming or distributing as custom elements. Vue CLI also supports building Vue components that register themselves as native custom elements.
+اگرچه ویو به صورتی داخلی از تگ‌های سفارشی استفاده نمی‌کند، وقتی که قرار باشدبه عنوان تگ سفارشی استفاده یا پخش شود از  [قابلیت هماهنگی بالایی](https://custom-elements-everywhere.com/#vue) برخوردار است. همچنین Vue CLI از ساخت قطعه‌کدهایی که خود را به عنوان تگ‌های سفارشی ثبت می‌کنند، پشتیبانی می‌کند.
 
-## Ready for More?
+## آماده‌اید که بیشتر بدانید؟
 
-We've briefly introduced the most basic features of Vue.js core - the rest of this guide will cover them and other advanced features with much finer details, so make sure to read through it all!
+ما بطور خلاصه ابتدایی‌ترین امکانات هسته مرکزی ویو را معرفی کردیم - ادامه این راهنما بصورت جامع‌تر به توضیح این امکانات و سایر امکانات پیشرفته‌تر با جزيیات دقیق‌تر می‌پردازد، پس ادامه مطالب را از دست ندهید!
 
 <div id="video-modal" class="modal"><div class="video-space" style="padding: 56.25% 0 0 0; position: relative;"><iframe src="https://player.vimeo.com/video/247494684" style="height: 100%; left: 0; position: absolute; top: 0; width: 100%; margin: 0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script><p class="modal-text">Video by <a href="https://www.vuemastery.com" target="_blank" rel="noopener" title="Vue.js Courses on Vue Mastery">Vue Mastery</a>. Watch Vue Mastery’s free <a href="https://www.vuemastery.com/courses/intro-to-vue-js/vue-instance/" target="_blank" rel="noopener" title="Vue.js Courses on Vue Mastery">Intro to Vue course</a>.</div>
