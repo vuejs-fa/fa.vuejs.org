@@ -67,19 +67,21 @@
       margin: 0
 
 @media screen and (max-width: 900px)
+  #ad
+    display: none
   .sidebar
     position: fixed
     z-index: 10
     background-color: #f9f9f9
     height: 100%
     top: 0
-    left: 0
+    right: 0
     box-shadow: 0 0 10px rgba(0,0,0,.2)
     transition: all .4s cubic-bezier(0.4, 0, 0, 1)
-    -webkit-transform: translate(-280px, 0)
-    transform: translate(-280px, 0)
+    -webkit-transform: translate(280px, 0)
+    transform: translate(280px, 0)
     .sidebar-inner
-      padding: 50px 10px 10px 20px
+      padding: 10px 10px 10px 20px
       box-sizing: border-box
     .sidebar-inner-index
       padding: 10px 10px 10px 20px
@@ -88,9 +90,14 @@
       margin-bottom: 10px
     .main-menu
       display: block
+      padding-inline-start: 10px
     &.open
       -webkit-transform: translate(0, 0)
       transform: translate(0, 0)
+    ul
+      padding-inline-start: 10px
+    div.list
+     display: none
 
 @media print
   .sidebar
