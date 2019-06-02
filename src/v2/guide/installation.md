@@ -1,24 +1,24 @@
 ---
-title: Installation
+title:  نصب
 type: guide
 order: 1
 vue_version: 2.5.16
 gz_size: "30.90"
 ---
 
-### Compatibility Note
+### سازگاری با مرورگر‌ها
 
-Vue does **not** support IE8 and below, because it uses ECMAScript 5 features that are un-shimmable in IE8. However it supports all [ECMAScript 5 compliant browsers](https://caniuse.com/#feat=es5).
+ویو از ‌<span title='IE8'>اینترنت اکسپلورر ۸</span> و نسخه های قدیمی‌تر از آن پشتیبانی **نمی‌کند**، چرا که ویو از امکاناتی در ECMAScript 5 استفاده می‌کند که در اینترنت اکسپلور ۸ قابل پیاده‌سازی نیستند. اما ویو از تمام [مروگرهای سازگار با ECMAScript 5](https://caniuse.com/#feat=es5) پشتیبانی می‌کند.
 
-### Release Notes
+### نسخه منتشر شده
 
-Latest stable version: {{vue_version}}
+آخرین نسخه پایدار: {{vue_version}}
 
-Detailed release notes for each version are available on [GitHub](https://github.com/vuejs/vue/releases).
+جزئیات انتشار و تغییرات هر یک از نسخه های ویو در [گیت‌هاب](https://github.com/vuejs/vue/releases) قابل دسترسی می‌باشد.
 
-## Vue Devtools
+## ابزار توسعه دهندگان (Vue Devtools)
 
-When using Vue, we recommend also installing the [Vue Devtools](https://github.com/vuejs/vue-devtools#vue-devtools) in your browser, allowing you to inspect and debug your Vue applications in a more user-friendly interface.
+  در هنگام توسعه اپلیکیشن ویو ما پیشنهاد می‌کنیم که [Vue Devtools](https://github.com/vuejs/vue-devtools#vue-devtools) را وری مرورگر خود نصب کنید که با محیط کاربری ساده‌اش به شما برای بررسی داده‌ها و خطایابی در اپلیکیشنتان کمک می‌کند.
 
 ## Direct `<script>` Include
 
