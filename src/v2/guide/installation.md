@@ -20,33 +20,31 @@ gz_size: "30.90"
 
   در هنگام توسعه اپلیکیشن ویو ما پیشنهاد می‌کنیم که [Vue Devtools](https://github.com/vuejs/vue-devtools#vue-devtools) را وری مرورگر خود نصب کنید که با محیط کاربری ساده‌اش به شما برای بررسی داده‌ها و خطایابی در اپلیکیشنتان کمک می‌کند.
 
-## Direct `<script>` Include
+## استفاده مستقیم از کد ویو با استفاده از تگ `<script>`
 
-Simply download and include with a script tag. `Vue` will be registered as a global variable.
+کافیست که کد ویو را دانلود کنید و آن را از طریق تگ script به صفحه خود وارد کنید. با این کار `Vue` به عنوان یک <span title='global variable'>متغییر سراسری</span> ثبت شده و در کد شما قابل استفاده خواهد بود. 
 
-<p class="tip">Don't use the minified version during development. You will miss out on all the nice warnings for common mistakes!</p>
+<p class="tip"> در هنگام توسعه از نسخه فشرده (minified) استفاده نکنید. چرا که خیلی از هشدارهای مفید در مورد خطاهای رایج را از دست خواهید داد!</p>
 
 <div id="downloads">
-  <a class="button" href="/js/vue.js" download>Development Version</a><span class="light info">With full warnings and debug mode</span>
+  <a class="button" href="/js/vue.js" download>Development Version</a><span class="light info">با تمام هشدارها و حالت خطایاب، مناسب در هنگام توسعه</span>
 
-  <a class="button" href="/js/vue.min.js" download>Production Version</a><span class="light info">Warnings stripped, {{gz_size}}KB min+gzip</span>
+  <a class="button" href="/js/vue.min.js" download>Production Version</a><span class="light info">هشدارهای کنسول خذف شذه، حجم فشرده {{gz_size}}KB min+gzip، مناسب برای محصول نهایی.</span>
 </div>
 
-### CDN
-
-For prototyping or learning purposes, you can use the latest version with:
+### استفاده از شبکه تحویل محتوا (CDN)
+برای نمونه اولیه و یا یادگیری ویو می توانید به جای دانلود کردن کد از لینک آخرین نسخه در شبکه تحویل محتوا استفاده کنید:
 
 ``` html
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 ```
 
-For production, we recommend linking to a specific version number and build to avoid unexpected breakage from newer versions:
+برای محصول نهایی،‌ برای اجتناب از خطاهای و ناسازگاری‌های پیش بینی نشده،‌ ما پیشنهاد می کنیم که همیشه از لینک یک نسخه مشخص استفاده کنید:
 
 ``` html
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0/dist/vue.js"></script>
 ```
-
-If you are using native ES Modules, there is also an ES Modules compatible build:
+اگر از ماژول‌های محلی ES استفاده می‌کنید، همچنین یک نسخه سازگار با ماژول‌های ES هم وجود دارد:
 
 ``` html
 <script type="module">
@@ -54,16 +52,14 @@ If you are using native ES Modules, there is also an ES Modules compatible build
 </script>
 ```
 
-You can browse the source of the NPM package at [cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue/).
+شما می‌توانید منبع کد بسته NPM موجود در شبکه تحولی محتوا را در [cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue/) بررسی کنید.
 
-Vue is also available on [unpkg](https://unpkg.com/vue@{{vue_version}}/dist/vue.js) and [cdnjs](https://cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js) (cdnjs takes some time to sync so the latest release may not be available yet).
+به غیر از  jsdeliver کد ویو همچنین در شبکه های تحویل محتوای [unpkg](https://unpkg.com/vue@{{vue_version}}/dist/vue.js) و [cdnjs](https://cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js) نیز در دسترس می‌باشد. (نسخه نهایی بعد از انتشار کمی با تاخیر در cdnjs قابل دسترسی خواهد بود).
 
-Make sure to read about [the different builds of Vue](#Explanation-of-Different-Builds) and use the **production
- version** in your published site, replacing `vue.js` with `vue.min.js`. This is a smaller build optimized for speed instead of development experience.
-
+حتما درباره [نسخه‌های ساخت متفاوت ویو](#Explanation-of-Different-Builds) بخوانید و با تغییر `vue.js` به `vue.min.js` از **نسخه محصول نهایی (production version)** در وبسایت نهایی‌تان استفاده کنید. این کد فشرده شده با حجمی کمتر به جای در نظر گرفتن تجربه توسعه دهنده‌گان، برای سرعت بالاتر بهینه سازی شده است.
 ## NPM
 
-NPM is the recommended installation method when building large scale applications with Vue. It pairs nicely with module bundlers such as [Webpack](https://webpack.js.org/) or [Browserify](http://browserify.org/). Vue also provides accompanying tools for authoring [Single File Components](single-file-components.html).
+برای ساخت اپلیکیشن‌هایی در مقیاس بزرگ به وسیله ویو، روش توصیه شده برای نصب ویو NPM است. این روش به خوبی با اپلیکیشن هایی که برای ترکیب و بسته بندی ماژول ها به کار می‌روند،‌ مانند [Webpack](https://webpack.js.org/) و یا [Browserify](http://browserify.org/) سازگار است. ویو همچنین ابزارهایی برای تولید [<span title='Single File Components'>قطعه کد‌های تک فایلی</span>](single-file-components.html) ارائه می‌کند.
 
 ``` bash
 # latest stable
