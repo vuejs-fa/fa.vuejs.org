@@ -66,9 +66,9 @@ gz_size: "30.90"
 $ npm install vue
 ```
 
-## CLI
+## واسط خط فرمان (CLI)
 
-Vue provides an [official CLI](https://github.com/vuejs/vue-cli) for quickly scaffolding ambitious Single Page Applications. It provides batteries-included build setups for a modern frontend workflow. It takes only a few minutes to get up and running with hot-reload, lint-on-save, and production-ready builds. See [the Vue CLI docs](https://cli.vuejs.org) for more details.
+ویو یک [CLI  رسمی](https://github.com/vuejs/vue-cli) ارائه می‌دهد که می‌توان از آن برای تولید سریع چهارچوب <span title='Single Page Applications'>اپلیکیشن‌های تک صفحه</span> قدرتمند استفاده کرد.این CLI همچنین ابزار مورد نیاز برای تمامی مراحل تولید در روند نوین توسعه اپلیکینش فرانت‌اند را فراهم می‌کند. با استفاده از واسط خط فرمان ویو فقط چند دقیقه زمان می‌برد تا محیط توسعه را با امکاناتی برای به روز رسانی اتوماتیک صفحه اپلیکیشن (hot-reload)، کنترل و تصحیح سینتکس ها در هنگام دخیره کردن فایل (lint-on-save) و تولید فایل کد آماده برای محصول نهایی بر پا کنید. برای جزئیات بیشتر [راهنمای CLI ویو](https://cli.vuejs.org) را مطالعه کنید.
 
 <p class="tip">The CLI assumes prior knowledge of Node.js and the associated build tools. If you are new to Vue or front-end build tools, we strongly suggest going through <a href="./">the guide</a> without any build tools before using the CLI.</p>
 
