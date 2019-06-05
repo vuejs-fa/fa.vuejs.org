@@ -70,13 +70,13 @@ $ npm install vue
 
 ویو یک [CLI  رسمی](https://github.com/vuejs/vue-cli) ارائه می‌دهد که می‌توان از آن برای تولید سریع چهارچوب <span title='Single Page Applications'>اپلیکیشن‌های تک صفحه</span> قدرتمند استفاده کرد.این CLI همچنین ابزار مورد نیاز برای تمامی مراحل تولید در روند نوین توسعه اپلیکینش فرانت‌اند را فراهم می‌کند. با استفاده از واسط خط فرمان ویو فقط چند دقیقه زمان می‌برد تا محیط توسعه را با امکاناتی برای به روز رسانی اتوماتیک صفحه اپلیکیشن (hot-reload)، کنترل و تصحیح سینتکس ها در هنگام دخیره کردن فایل (lint-on-save) و تولید فایل کد آماده برای محصول نهایی بر پا کنید. برای جزئیات بیشتر [راهنمای CLI ویو](https://cli.vuejs.org) را مطالعه کنید.
 
-<p class="tip">The CLI assumes prior knowledge of Node.js and the associated build tools. If you are new to Vue or front-end build tools, we strongly suggest going through <a href="./">the guide</a> without any build tools before using the CLI.</p>
+<p class="tip">واسط خط فرمان (CLI) مناسب کاربرانی است که با Node.js و <span title='Build tools'>تولیدابزار</span> مربوط به آن آشنایی قبلی دارند. اگر در ویو یا توسعه فرانت تازه‌کار هستید ما توصیه می‌کنیم که قبل از شروع کار با CLI بدون استفاده از هیچ تولیدابزاری این <a href="./">راهنما</a> را مطالعه کنید.</p>
 
-<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/real-world-vue-js/vue-cli" target="_blank" rel="noopener" title="Vue CLI">Watch a video explanation on Vue Mastery</a></div>
+<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/real-world-vue-js/vue-cli" target="_blank" rel="noopener" title="Vue CLI"> این ویدیو را به زبان انگلیسی در  Vue Mastery ببینید.</a></div>
 
-## Explanation of Different Builds
+## توضیح نسخه‌های ساخت متفاوت
 
-In the [`dist/` directory of the NPM package](https://cdn.jsdelivr.net/npm/vue/dist/) you will find many different builds of Vue.js. Here's an overview of the difference between them:
+در فولدر [`dist/` از بسته NPM ویو](https://cdn.jsdelivr.net/npm/vue/dist/) نسخه های مختلفی از اسکریپت ساخت Vue.js وجود دارد. در اینجا تفاوت‌های این نسخه ها را مرور می‌کنیم:
 
 | | UMD | CommonJS | ES Module (for bundlers) | ES Module (for browsers) |
 | --- | --- | --- | --- | --- |
@@ -85,17 +85,18 @@ In the [`dist/` directory of the NPM package](https://cdn.jsdelivr.net/npm/vue/d
 | **Full (production)** | vue.min.js | - | - | vue.esm.browser.min.js |
 | **Runtime-only (production)** | vue.runtime.min.js | - | - | - |
 
-### Terms
+### تعاریف
 
-- **Full**: builds that contain both the compiler and the runtime.
 
-- **Compiler**: code that is responsible for compiling template strings into JavaScript render functions.
+- **Full**: این اسکریپت شامل همه کدهای compiler و runtime است.
 
-- **Runtime**: code that is responsible for creating Vue instances, rendering and patching virtual DOM, etc. Basically everything minus the compiler.
+- **Compiler**: کدی که مسولیت تبدیل قالب‌های نمایش به تابع‌های جاوااسکریپت را دارد.
 
-- **[UMD](https://github.com/umdjs/umd)**: UMD builds can be used directly in the browser via a `<script>` tag. The default file from jsDelivr CDN at [https://cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue) is the Runtime + Compiler UMD build (`vue.js`).
+- **Runtime**:  کدی که مسولیت ایجاد نمونه شیء‌های Vue، نمایش و هماهنگی مدل نمای مجازی با داده ها و ... را دارد. می‌توان گفت همه چیز به غیر از compiler.
 
-- **[CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1)**: CommonJS builds are intended for use with older bundlers like [browserify](http://browserify.org/) or [webpack 1](https://webpack.github.io). The default file for these bundlers (`pkg.main`) is the Runtime only CommonJS build (`vue.runtime.common.js`).
+- **[UMD](https://github.com/umdjs/umd)**: اسکریپت‌های UMD را می‌توان مستقیما در مرورگر با استفاده از تگ `<script>` استفاده کرد. فایل پیش‌فرض شبکه تحویل محتوای  jsDelivr در [https://cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue) نسخه ساخت Runtime + Compiler UMD (`vue.js`) است.
+
+- **[CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1)**: نسخه‌های ساخت CommonJS برای ابزار‌های بسته‌بندی (bundlers) کد قدیمی مانند [browserify](http://browserify.org/) یا [webpack 1](https://webpack.github.io) هستند. فایل پیش‌فرض برای این بسته‌بندها (`pkg.main`)، نسخه ساخت  Runtime-Only CommonJS (`vue.runtime.common.js`) است.
 
 - **[ES Module](http://exploringjs.com/es6/ch_modules.html)**: starting in 2.6 Vue provides two ES Modules (ESM) builds:
 
