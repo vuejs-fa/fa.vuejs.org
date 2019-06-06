@@ -68,11 +68,12 @@ $ npm install vue
 
 ## واسط خط فرمان (CLI)
 
-ویو یک [CLI  رسمی](https://github.com/vuejs/vue-cli) ارائه می‌دهد که می‌توان از آن برای تولید سریع چهارچوب <span title='Single Page Applications'>اپلیکیشن‌های تک صفحه</span> قدرتمند استفاده کرد.این CLI همچنین ابزار مورد نیاز برای تمامی مراحل تولید در روند نوین توسعه اپلیکینش فرانت‌اند را فراهم می‌کند. با استفاده از واسط خط فرمان ویو فقط چند دقیقه زمان می‌برد تا محیط توسعه را با امکاناتی برای به روز رسانی اتوماتیک صفحه اپلیکیشن (hot-reload)، کنترل و تصحیح سینتکس ها در هنگام دخیره کردن فایل (lint-on-save) و تولید فایل کد آماده برای محصول نهایی بر پا کنید. برای جزئیات بیشتر [راهنمای CLI ویو](https://cli.vuejs.org) را مطالعه کنید.
+ویو یک [CLI  رسمی](https://github.com/vuejs/vue-cli) ارائه می‌دهد که می‌توان از آن برای تولید سریع چهارچوب <span title='Single Page Applications'>اپلیکیشن‌های تک صفحه</span> قدرتمند استفاده کرد.این CLI همچنین ابزار مورد نیاز برای تمامی مراحل تولید در روند نوین توسعه اپلیکینش فرانت‌اند را فراهم می‌کند. با استفاده از واسط خط فرمان ویو فقط چند دقیقه زمان می‌برد تا محیط توسعه را با امکاناتی برای به روز رسانی اتوماتیک صفحه اپلیکیشن (hot-reload)، کنترل و تصحیح سینتکس ها در هنگام دخیره کردن فایل (lint-on-save) و تولید فایل کد آماده برای محصول نهایی برپا کنید. برای جزئیات بیشتر [راهنمای CLI ویو](https://cli.vuejs.org) را مطالعه کنید.
 
 <p class="tip">واسط خط فرمان (CLI) مناسب کاربرانی است که با Node.js و <span title='Build tools'>تولیدابزار</span> مربوط به آن آشنایی قبلی دارند. اگر در ویو یا توسعه فرانت تازه‌کار هستید ما توصیه می‌کنیم که قبل از شروع کار با CLI بدون استفاده از هیچ تولیدابزاری این <a href="./">راهنما</a> را مطالعه کنید.</p>
 
 <div class="vue-mastery"><a href="https://www.vuemastery.com/courses/real-world-vue-js/vue-cli" target="_blank" rel="noopener" title="Vue CLI"> این ویدیو را به زبان انگلیسی در  Vue Mastery ببینید.</a></div>
+
 
 ## توضیح نسخه‌های ساخت متفاوت
 
@@ -98,11 +99,10 @@ $ npm install vue
 
 - **[CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1)**: نسخه‌های ساخت CommonJS برای ابزار‌های بسته‌بندی (bundlers) کد قدیمی مانند [browserify](http://browserify.org/) یا [webpack 1](https://webpack.github.io) هستند. فایل پیش‌فرض برای این بسته‌بندها (`pkg.main`)، نسخه ساخت  Runtime-Only CommonJS (`vue.runtime.common.js`) است.
 
-- **[ES Module](http://exploringjs.com/es6/ch_modules.html)**: starting in 2.6 Vue provides two ES Modules (ESM) builds:
+- **[ES Module](http://exploringjs.com/es6/ch_modules.html)**: از نسخه ۲.۶ ویو دو ماژول ساخت ES را نیز ارائه می‌دهد (ESM):
+  - **ESM برای ابزارهای بسته‌بندی کد (Bundlers)**:  این ماژول برای استفاده در ابزارهای مدرنی همچون [webpack 2](https://webpack.js.org) و یا [Rollup](https://rollupjs.org/) ارائه شده است. فرمت ESM طوری طراحی شده که قبل از اجرا قابل تحلیل باشد (Statically analyzable) که این امکان را برای ابزارهای بسته‌بندی فراهم می‌کند که کدهای استفاده نشده را از بسته نهایی ساخت حذف کنند. فایل پیش‌فرض برای این ابزارهای مدرن  (`pkg.module`) نسخه ساخت Runtime only ES Module  (`vue.runtime.esm.js`) است.
 
-  - ESM for bundlers: intended for use with modern bundlers like [webpack 2](https://webpack.js.org) or [Rollup](https://rollupjs.org/). ESM format is designed to be statically analyzable so the bundlers can take advantage of that to perform "tree-shaking" and eliminate unused code from your final bundle. The default file for these bundlers (`pkg.module`) is the Runtime only ES Module build (`vue.runtime.esm.js`).
-
-  - ESM for browsers (2.6+ only): intended for direct imports in modern browsers via `<script type="module">`.
+  - **ESM برای مرورگرها (از نسخه ۲.۶ به بعد)**: برای استفاده در مرورگرهای مدرن با استفاده از تگ `<script type="module">`.
 
 ### Runtime + Compiler vs. Runtime-only
 
