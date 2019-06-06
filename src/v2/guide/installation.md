@@ -104,17 +104,18 @@ $ npm install vue
 
   - **ESM برای مرورگرها (از نسخه ۲.۶ به بعد)**: برای استفاده در مرورگرهای مدرن با استفاده از تگ `<script type="module">`.
 
-### Runtime + Compiler vs. Runtime-only
+### مقایسه Runtime + Compiler با Runtime-only
 
-If you need to compile templates on the client (e.g. passing a string to the `template` option, or mounting to an element using its in-DOM HTML as the template), you will need the compiler and thus the full build:
+اگر لازم است که قالب را در سمت <span title='client'>سرویس گیرنده</span>  به کدهای نمایش جاوا اسکریپت تبدیل کنید (برای مثال ارسال یک رشته کاراکتر به عنوان بخشی از قالب و یا استفاده از کد HTML یکی از المان های موجود در صفحه به عنوان قالب)، شمابه compiler نیاز خواهید داشت پس لازم است که از نسخه ساخت کامل (full build) استفاده کنید:
+
 
 ``` js
-// this requires the compiler
+// نیاز دارد compiler این کد به
 new Vue({
   template: '<div>{{ hi }}</div>'
 })
 
-// this does not
+// ندارد compiler اما این کد نیازی به 
 new Vue({
   render (h) {
     return h('div', this.hi)
@@ -122,9 +123,9 @@ new Vue({
 })
 ```
 
-When using `vue-loader` or `vueify`, templates inside `*.vue` files are pre-compiled into JavaScript at build time. You don't really need the compiler in the final bundle, and can therefore use the runtime-only build.
+وقتی از `vue-loader` یا `vueify` استفاده می‌کنیم، کدهای قالب در فایل‌های `*.vue` در زمان ساخت به تابع‌های نمایش جاوااسکریپت تبدیل خواهند شد بنابراین شما در بسته نهایی ساخت نیازی به compiler نخواهید داشت و می‌توانید از نسخه ساخت runtime-only استفاده کنید.
 
-Since the runtime-only builds are roughly 30% lighter-weight than their full-build counterparts, you should use it whenever you can. If you still wish to use the full build instead, you need to configure an alias in your bundler:
+از آنجا که نسخه‌های ساخت runtime-only حدود ۳۰٪ ازنسخه کامل سبکتر هستند، بهتر است تا جای ممکن از آنها استفاده کنید. اما اگر همچنان می‌خواهید که از نسخه کامل استفاده کنید لازم است که یک alias در تنظیمات ابزار بسته بندی کدتان تعریف کنید:
 
 #### Webpack
 
@@ -137,6 +138,7 @@ module.exports = {
     }
   }
 }
+
 ```
 
 #### Rollup
@@ -156,7 +158,7 @@ rollup({
 
 #### Browserify
 
-Add to your project's `package.json`:
+این کد را به فایل `package.json` پروژه اضافه کنید:
 
 ``` js
 {
@@ -169,7 +171,7 @@ Add to your project's `package.json`:
 
 #### Parcel
 
-Add to your project's `package.json`:
+این کد را به فایل `package.json` پروژه اضافه کنید:
 
 ``` js
 {
@@ -180,7 +182,7 @@ Add to your project's `package.json`:
 }
 ```
 
-### Development vs. Production Mode
+### مقایسه حالت <span title='Development mode'>توسعه</span> با <span title='Production Mode'> محصول نهایی</span>
 
 Development/production modes are hard-coded for the UMD builds: the un-minified files are for development, and the minified files are for production.
 
