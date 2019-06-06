@@ -182,17 +182,16 @@ rollup({
 }
 ```
 
-### مقایسه حالت <span title='Development mode'>توسعه</span> با <span title='Production Mode'> محصول نهایی</span>
+### حالت <span title='Development mode'>توسعه</span> و <span title='Production Mode'> محصول نهایی</span>
 
-Development/production modes are hard-coded for the UMD builds: the un-minified files are for development, and the minified files are for production.
+نسخه‌های ساخت UMD برای هر دو حالت اپلیکیشن در حال توسعه (Development mode) و همچنین محصول نهایی (Production) موجود است. فایل فشرده با پسوند `*.min.js` برای محصول نهایی و فایل با فرمت `*.js` که فشرده نشده برای حالت توسعه که همچنین شامل هشدارهای کمکی برای توسعه دهندگان است.
+نسخه های ساخت CommonJS و ES Module به منظور استفاده در ابزارهای بسته‌بندی کد ارائه شده‌اند بنابراین ما نسخه فشرده آن را ارائه نمی‌دهیم و مسولیت فشرده سازی فایل نهایی بر عهده شما است.
 
-CommonJS and ES Module builds are intended for bundlers, therefore we don't provide minified versions for them. You will be responsible for minifying the final bundle yourself.
-
-CommonJS and ES Module builds also preserve raw checks for `process.env.NODE_ENV` to determine the mode they should run in. You should use appropriate bundler configurations to replace these environment variables in order to control which mode Vue will run in. Replacing `process.env.NODE_ENV` with string literals also allows minifiers like UglifyJS to completely drop the development-only code blocks, reducing final file size.
+فایل‌های ساخت CommonJS و ES Module متغییر محیطی `process.env.NODE_ENV` را برای حالتی که باید اجرا شوند را چک می‌کنند.برای تغییر حالتی که می‌خواهید اپلیکیشنتان را اجرا کنید، شما باید تنظیم مربوط به این متغییر محیطی را در ابزاربسته‌بندی کدتان تغییر دهید. تغییر `process.env.NODE_ENV` همچنین به ابزارهای فشرده‌سازی همچون  UglifyJS این امکان را می‌دهد که بلاک های کدی که فقط برای حالت توسعه هستند را به کلی حذف کرده که باعث سبک‌تر شدن حجم فایل نهایی می‌گردد.
 
 #### Webpack
 
-In Webpack 4+, you can use the `mode` option:
+در Webpack از نسخه ۴ به بعد، شما می‌توانید از گزینه `mode` در تنظیمات استفاده کنید:
 
 ``` js
 module.exports = {
@@ -200,7 +199,7 @@ module.exports = {
 }
 ```
 
-But in Webpack 3 and earlier, you'll need to use [DefinePlugin](https://webpack.js.org/plugins/define-plugin/):
+اما در Webpack نسخه ۳ و قدیمی‌تر، لازم است که از [DefinePlugin](https://webpack.js.org/plugins/define-plugin/) استفاده کنید:
 
 ``` js
 var webpack = require('webpack')
@@ -220,7 +219,7 @@ module.exports = {
 
 #### Rollup
 
-Use [rollup-plugin-replace](https://github.com/rollup/rollup-plugin-replace):
+از [rollup-plugin-replace](https://github.com/rollup/rollup-plugin-replace) استفاده کنید:
 
 ``` js
 const replace = require('rollup-plugin-replace')
@@ -237,23 +236,23 @@ rollup({
 
 #### Browserify
 
-Apply a global [envify](https://github.com/hughsk/envify) transform to your bundle.
+از انتقال سراسری [envify](https://github.com/hughsk/envify) روی بسته کدتان استفاده کنید.
 
 ``` bash
 NODE_ENV=production browserify -g envify -e main.js | uglifyjs -c -m > build.js
 ```
 
-Also see [Production Deployment Tips](deployment.html).
+همچنین [نکات دیپلوی محصول نهایی](deployment.html) را ببینید.
 
-### CSP environments
+### محیط‌های CSP
 
-Some environments, such as Google Chrome Apps, enforce Content Security Policy (CSP), which prohibits the use of `new Function()` for evaluating expressions. The full build depends on this feature to compile templates, so is unusable in these environments.
+برخی محیط‌ها همچون Google Chrome Apps، سیاست امنیت محتوا (CSP) را روی کدها اعمال می‌کنند که استفاده از `new Function()` را برای ارزیابی عبارات منع می‌کند. نسخه کامل ساخت (full build) برای تولید قالب به این امکان نیازمند بوده و در نتیجه در این نوع محیط‌ها قابل استفاده نمی‌باشد.
 
-On the other hand, the runtime-only build is fully CSP-compliant. When using the runtime-only build with [Webpack + vue-loader](https://github.com/vuejs-templates/webpack-simple) or [Browserify + vueify](https://github.com/vuejs-templates/browserify-simple), your templates will be precompiled into `render` functions which work perfectly in CSP environments.
+اما از سوی دیگر، در نسخه ساخت runtime-only تمام سیاست‌های CSP رعایت شده است. وقتی که از نسخه ساخت runtime-only با [Webpack + vue-loader](https://github.com/vuejs-templates/webpack-simple) یا [Browserify + vueify](https://github.com/vuejs-templates/browserify-simple) استفاده می‌کنید، کدهای قالب شما در هنگام ساخت به توابع نمایش `render` جاوا اسکریپت تبدیل شده که به خوبی در محیط‌های CSP کار می‌کند.
 
 ## Dev Build
 
-**Important**: the built files in GitHub's `/dist` folder are only checked-in during releases. To use Vue from the latest source code on GitHub, you will have to build it yourself!
+**توجه**: فایل های ساخت در فولدرt `/dist` گیت‌هاب، تنها در هنگام انتشار نسخه جدید به‌روزرسانی می‌شوند. برای استفاده از ویو بوسیله کدهای موجود در گیت‌هاب لازم است که خودتان فایل‌های ساخت را ایجاد کنید!
 
 ``` bash
 git clone https://github.com/vuejs/vue.git node_modules/vue
@@ -264,7 +263,7 @@ npm run build
 
 ## Bower
 
-Only UMD builds are available from Bower.
+فقظ نسخه های UMD از طریق Bower فابل نصب هستند.
 
 ``` bash
 # latest stable
@@ -273,4 +272,5 @@ $ bower install vue
 
 ## AMD Module Loaders
 
-All UMD builds can be used directly as an AMD module.
+تمامی نسخه های ساخت UMD را می‌توان مستقیما به عنوان ماژول AMD استفاده کرد.
+
