@@ -1,52 +1,50 @@
 ---
-title: Installation
+title:  نصب
 type: guide
 order: 1
 vue_version: 2.5.16
 gz_size: "30.90"
 ---
 
-### Compatibility Note
+### سازگاری با مرورگر‌ها
 
-Vue does **not** support IE8 and below, because it uses ECMAScript 5 features that are un-shimmable in IE8. However it supports all [ECMAScript 5 compliant browsers](https://caniuse.com/#feat=es5).
+ویو از ‌<span title='IE8'>اینترنت اکسپلورر ۸</span> و نسخه‌های قدیمی‌تر از آن پشتیبانی **نمی‌کند**، چرا که ویو از امکاناتی در ECMAScript 5 استفاده می‌کند که در اینترنت اکسپلور ۸ قابل پیاده‌سازی نیستند. اما ویو از تمام [مروگرهای سازگار با ECMAScript 5](https://caniuse.com/#feat=es5) پشتیبانی می‌کند.
 
-### Release Notes
+### نسخه منتشر شده
 
-Latest stable version: {{vue_version}}
+آخرین نسخه پایدار: {{vue_version}}
 
-Detailed release notes for each version are available on [GitHub](https://github.com/vuejs/vue/releases).
+جزئیات انتشار و تغییرات هر یک از نسخه‌های ویو در [گیت‌هاب](https://github.com/vuejs/vue/releases) قابل دسترسی می‌باشد.
 
-## Vue Devtools
+## ابزار توسعه دهندگان (Vue Devtools)
 
-When using Vue, we recommend also installing the [Vue Devtools](https://github.com/vuejs/vue-devtools#vue-devtools) in your browser, allowing you to inspect and debug your Vue applications in a more user-friendly interface.
+  در هنگام توسعه اپلیکیشن ویو ما پیشنهاد می‌کنیم که [Vue Devtools](https://github.com/vuejs/vue-devtools#vue-devtools) را وری مرورگر خود نصب کنید که با محیط کاربری ساده‌اش به شما برای بررسی داده‌ها و خطایابی در اپلیکیشنتان کمک می‌کند.
 
-## Direct `<script>` Include
+## استفاده مستقیم از کد ویو با استفاده از تگ `<script>`
 
-Simply download and include with a script tag. `Vue` will be registered as a global variable.
+کافیست که کد ویو را دانلود کنید و آن را از طریق تگ script به صفحه اضافه کنید. با این کار `Vue` به عنوان یک <span title='global variable'>متغییر سراسری</span> ثبت شده و در کد شما قابل استفاده خواهد بود. 
 
-<p class="tip">Don't use the minified version during development. You will miss out on all the nice warnings for common mistakes!</p>
+<p class="tip"> در هنگام توسعه از نسخه فشرده (minified) استفاده نکنید. چرا که خیلی از هشدارهای مفید در مورد خطاهای رایج را از دست خواهید داد!</p>
 
 <div id="downloads">
-  <a class="button" href="/js/vue.js" download>Development Version</a><span class="light info">With full warnings and debug mode</span>
+  <a class="button" href="/js/vue.js" download>Development Version</a><span class="light info">با تمام هشدارها و حالت خطایاب، مناسب در هنگام توسعه</span>
 
-  <a class="button" href="/js/vue.min.js" download>Production Version</a><span class="light info">Warnings stripped, {{gz_size}}KB min+gzip</span>
+  <a class="button" href="/js/vue.min.js" download>Production Version</a><span class="light info">هشدارهای کنسول خذف شذه، حجم فشرده {{gz_size}}KB min+gzip، مناسب برای محصول نهایی.</span>
 </div>
 
-### CDN
-
-For prototyping or learning purposes, you can use the latest version with:
+### استفاده از شبکه تحویل محتوا (CDN)
+برای نمونه اولیه و یا یادگیری ویو می‌توانید به جای دانلود کردن کد از لینک آخرین نسخه در شبکه تحویل محتوا استفاده کنید:
 
 ``` html
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 ```
 
-For production, we recommend linking to a specific version number and build to avoid unexpected breakage from newer versions:
+در محصول نهایی،‌ برای اجتناب از خطاها و ناسازگاری‌های پیش بینی نشده،‌ ما پیشنهاد می کنیم که همیشه از لینک یک نسخه مشخص استفاده کنید:
 
 ``` html
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0/dist/vue.js"></script>
 ```
-
-If you are using native ES Modules, there is also an ES Modules compatible build:
+اگر از ماژول‌های محلی ES استفاده می‌کنید، همچنین یک نسخه سازگار با ماژول‌های ES هم وجود دارد:
 
 ``` html
 <script type="module">
@@ -54,33 +52,32 @@ If you are using native ES Modules, there is also an ES Modules compatible build
 </script>
 ```
 
-You can browse the source of the NPM package at [cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue/).
+شما می‌توانید منبع کد بسته npm موجود در شبکه تحولی محتوا را در [cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue/) بررسی کنید.
 
-Vue is also available on [unpkg](https://unpkg.com/vue@{{vue_version}}/dist/vue.js) and [cdnjs](https://cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js) (cdnjs takes some time to sync so the latest release may not be available yet).
+به غیر از  jsdeliver کد ویو همچنین در شبکه های تحویل محتوای [unpkg](https://unpkg.com/vue@{{vue_version}}/dist/vue.js) و [cdnjs](https://cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js) نیز در دسترس می‌باشند. (نسخه‌های جدید بعد از انتشار کمی با تاخیر در cdnjs قابل دسترسی خواهد بود).
 
-Make sure to read about [the different builds of Vue](#Explanation-of-Different-Builds) and use the **production
- version** in your published site, replacing `vue.js` with `vue.min.js`. This is a smaller build optimized for speed instead of development experience.
+حتما درباره [نسخه‌های متفاوت ویو](#Explanation-of-Different-Builds) بخوانید و با تغییر `vue.js` به `vue.min.js` از **نسخه محصول نهایی (production version)** در وبسایت نهایی‌تان استفاده کنید. این کد فشرده شده با حجمی کمتر به جای در نظر گرفتن تجربه توسعه دهنده‌گان، برای سرعت بالاتر بهینه سازی شده است.
+## npm
 
-## NPM
-
-NPM is the recommended installation method when building large scale applications with Vue. It pairs nicely with module bundlers such as [Webpack](https://webpack.js.org/) or [Browserify](http://browserify.org/). Vue also provides accompanying tools for authoring [Single File Components](single-file-components.html).
+برای ساخت اپلیکیشن‌هایی در مقیاس بزرگ به وسیله ویو، روش توصیه شده برای نصب ویو npm است. این روش به خوبی با اپلیکیشن هایی که برای ترکیب و بسته بندی ماژول ها به کار می‌روند،‌ مانند [Webpack](https://webpack.js.org/) و یا [Browserify](http://browserify.org/) سازگار است. ویو همچنین ابزارهایی برای تولید [<span title='Single File Components'>قطعه کد‌های تک فایلی</span>](single-file-components.html) ارائه می‌کند.
 
 ``` bash
 # latest stable
 $ npm install vue
 ```
 
-## CLI
+## واسط خط فرمان (CLI)
 
-Vue provides an [official CLI](https://github.com/vuejs/vue-cli) for quickly scaffolding ambitious Single Page Applications. It provides batteries-included build setups for a modern frontend workflow. It takes only a few minutes to get up and running with hot-reload, lint-on-save, and production-ready builds. See [the Vue CLI docs](https://cli.vuejs.org) for more details.
+ویو یک [CLI  رسمی](https://github.com/vuejs/vue-cli) ارائه می‌دهد که می‌توان از آن برای تولید سریع چهارچوب <span title='Single Page Applications'>اپلیکیشن‌های تک صفحه</span> قدرتمند استفاده کرد.این CLI همچنین ابزار مورد نیاز برای تمامی مراحل تولید در روند نوین توسعه اپلیکینش فرانت‌اند را فراهم می‌کند. با استفاده از واسط خط فرمان ویو فقط چند دقیقه زمان می‌برد تا محیط توسعه را با امکاناتی برای به روز رسانی اتوماتیک صفحه اپلیکیشن (hot-reload)، کنترل و تصحیح سینتکس ها در هنگام دخیره کردن فایل (lint-on-save) و تولید فایل کد آماده برای محصول نهایی برپا کنید. برای جزئیات بیشتر [راهنمای CLI ویو](https://cli.vuejs.org) را مطالعه کنید.
 
-<p class="tip">The CLI assumes prior knowledge of Node.js and the associated build tools. If you are new to Vue or front-end build tools, we strongly suggest going through <a href="./">the guide</a> without any build tools before using the CLI.</p>
+<p class="tip">واسط خط فرمان (CLI) مناسب کاربرانی است که با Node.js و <span title='Build tools'>تولیدابزار</span> مربوط به آن آشنایی قبلی دارند. اگر در ویو یا توسعه فرانت تازه‌کار هستید ما توصیه می‌کنیم که قبل از شروع کار با CLI بدون استفاده از هیچ تولیدابزاری این <a href="./">راهنما</a> را مطالعه کنید.</p>
 
-<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/real-world-vue-js/vue-cli" target="_blank" rel="noopener" title="Vue CLI">Watch a video explanation on Vue Mastery</a></div>
+<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/real-world-vue-js/vue-cli" target="_blank" rel="noopener" title="Vue CLI"> این ویدیو را به زبان انگلیسی در  Vue Mastery ببینید.</a></div>
 
-## Explanation of Different Builds
 
-In the [`dist/` directory of the NPM package](https://cdn.jsdelivr.net/npm/vue/dist/) you will find many different builds of Vue.js. Here's an overview of the difference between them:
+## توضیح نسخه‌های ساخت متفاوت
+
+در فولدر [`dist/` از بسته npm ویو](https://cdn.jsdelivr.net/npm/vue/dist/) نسخه‌های مختلفی از اسکریپت Vue.js وجود دارد. در اینجا تفاوت‌های این نسخه‌ها را مرور می‌کنیم:
 
 | | UMD | CommonJS | ES Module (for bundlers) | ES Module (for browsers) |
 | --- | --- | --- | --- | --- |
@@ -89,35 +86,36 @@ In the [`dist/` directory of the NPM package](https://cdn.jsdelivr.net/npm/vue/d
 | **Full (production)** | vue.min.js | - | - | vue.esm.browser.min.js |
 | **Runtime-only (production)** | vue.runtime.min.js | - | - | - |
 
-### Terms
+### تعاریف
 
-- **Full**: builds that contain both the compiler and the runtime.
 
-- **Compiler**: code that is responsible for compiling template strings into JavaScript render functions.
+- **Full**: این اسکریپت شامل همه کدهای compiler و runtime است.
 
-- **Runtime**: code that is responsible for creating Vue instances, rendering and patching virtual DOM, etc. Basically everything minus the compiler.
+- **Compiler**: کدی که مسولیت تبدیل قالب‌های نمایش به تابع‌های جاوااسکریپت را دارد.
 
-- **[UMD](https://github.com/umdjs/umd)**: UMD builds can be used directly in the browser via a `<script>` tag. The default file from jsDelivr CDN at [https://cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue) is the Runtime + Compiler UMD build (`vue.js`).
+- **Runtime**:  کدی که مسولیت ایجاد نمونه شیء‌های Vue، نمایش و هماهنگی مدل نمای مجازی با داده ها و ... را دارد. می‌توان گفت همه چیز به غیر از compiler.
 
-- **[CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1)**: CommonJS builds are intended for use with older bundlers like [browserify](http://browserify.org/) or [webpack 1](https://webpack.github.io). The default file for these bundlers (`pkg.main`) is the Runtime only CommonJS build (`vue.runtime.common.js`).
+- **[UMD](https://github.com/umdjs/umd)**: اسکریپت‌های UMD را می‌توان مستقیما در مرورگر با استفاده از تگ `<script>` استفاده کرد. فایل پیش‌فرض شبکه تحویل محتوای  jsDelivr در [https://cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue) نسخه Runtime + Compiler UMD (`vue.js`) است.
 
-- **[ES Module](http://exploringjs.com/es6/ch_modules.html)**: starting in 2.6 Vue provides two ES Modules (ESM) builds:
+- **[CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1)**: نسخه‌های CommonJS برای ابزار‌های بسته‌بندی (bundlers) کد قدیمی مانند [browserify](http://browserify.org/) یا [webpack 1](https://webpack.github.io) هستند. فایل پیش‌فرض برای این بسته‌بندها (`pkg.main`)، نسخه Runtime-Only CommonJS (`vue.runtime.common.js`) است.
 
-  - ESM for bundlers: intended for use with modern bundlers like [webpack 2](https://webpack.js.org) or [Rollup](https://rollupjs.org/). ESM format is designed to be statically analyzable so the bundlers can take advantage of that to perform "tree-shaking" and eliminate unused code from your final bundle. The default file for these bundlers (`pkg.module`) is the Runtime only ES Module build (`vue.runtime.esm.js`).
+- **[ES Module](http://exploringjs.com/es6/ch_modules.html)**: از نسخه ۲.۶ ویو دو ماژول ES را نیز ارائه می‌دهد (ESM):
+  - **ESM برای ابزارهای بسته‌بندی کد (Bundlers)**:  این ماژول برای استفاده در ابزارهای مدرنی همچون [webpack 2](https://webpack.js.org) و یا [Rollup](https://rollupjs.org/) ارائه شده است. فرمت ESM طوری طراحی شده که قبل از اجرا قابل تحلیل باشد (Statically analyzable) که این امکان را برای ابزارهای بسته‌بندی فراهم می‌کند که کدهای استفاده نشده را از بسته نهایی حذف کنند. فایل پیش‌فرض برای این ابزارهای مدرن  (`pkg.module`) نسخه Runtime only ES Module  (`vue.runtime.esm.js`) است.
 
-  - ESM for browsers (2.6+ only): intended for direct imports in modern browsers via `<script type="module">`.
+  - **ESM برای مرورگرها (از نسخه ۲.۶ به بعد)**: برای استفاده در مرورگرهای مدرن با استفاده از تگ `<script type="module">`.
 
-### Runtime + Compiler vs. Runtime-only
+### مقایسه Runtime + Compiler با Runtime-only
 
-If you need to compile templates on the client (e.g. passing a string to the `template` option, or mounting to an element using its in-DOM HTML as the template), you will need the compiler and thus the full build:
+اگر لازم است که قالب را در سمت <span title='client'>سرویس گیرنده</span>  به کدهای نمایش جاوا اسکریپت تبدیل کنید (برای مثال ارسال یک رشته کاراکتر به عنوان بخشی از قالب و یا استفاده از کد HTML یکی از المان های موجود در صفحه به عنوان قالب)، شمابه compiler نیاز خواهید داشت پس لازم است که از نسخه کامل (full build) استفاده کنید:
+
 
 ``` js
-// this requires the compiler
+// نیاز دارد compiler این کد به
 new Vue({
   template: '<div>{{ hi }}</div>'
 })
 
-// this does not
+// ندارد compiler اما این کد نیازی به 
 new Vue({
   render (h) {
     return h('div', this.hi)
@@ -125,9 +123,9 @@ new Vue({
 })
 ```
 
-When using `vue-loader` or `vueify`, templates inside `*.vue` files are pre-compiled into JavaScript at build time. You don't really need the compiler in the final bundle, and can therefore use the runtime-only build.
+وقتی از `vue-loader` یا `vueify` استفاده می‌کنیم، کدهای قالب در فایل‌های `*.vue` در زمان ساخت به تابع‌های نمایش جاوااسکریپت تبدیل خواهند شد بنابراین شما در بسته نهایی نیازی به compiler نخواهید داشت و می‌توانید از نسخه runtime-only استفاده کنید.
 
-Since the runtime-only builds are roughly 30% lighter-weight than their full-build counterparts, you should use it whenever you can. If you still wish to use the full build instead, you need to configure an alias in your bundler:
+از آنجا که نسخه‌های runtime-only حدود ۳۰٪ ازنسخه کامل سبکتر هستند، بهتر است تا جای ممکن از آنها استفاده کنید. اما اگر همچنان می‌خواهید که از نسخه کامل استفاده کنید لازم است که یک alias در تنظیمات ابزار بسته بندی کدتان تعریف کنید:
 
 #### Webpack
 
@@ -140,6 +138,7 @@ module.exports = {
     }
   }
 }
+
 ```
 
 #### Rollup
@@ -159,7 +158,7 @@ rollup({
 
 #### Browserify
 
-Add to your project's `package.json`:
+این کد را به فایل `package.json` پروژه اضافه کنید:
 
 ``` js
 {
@@ -172,7 +171,7 @@ Add to your project's `package.json`:
 
 #### Parcel
 
-Add to your project's `package.json`:
+این کد را به فایل `package.json` پروژه اضافه کنید:
 
 ``` js
 {
@@ -183,17 +182,16 @@ Add to your project's `package.json`:
 }
 ```
 
-### Development vs. Production Mode
+### حالت <span title='Development mode'>توسعه</span> و <span title='Production Mode'> محصول نهایی</span>
 
-Development/production modes are hard-coded for the UMD builds: the un-minified files are for development, and the minified files are for production.
+نسخه‌های UMD برای هر دو حالت اپلیکیشن در حال توسعه (Development mode) و همچنین محصول نهایی (Production) موجود است. فایل فشرده با پسوند `*.min.js` برای محصول نهایی و فایل با فرمت `*.js` که فشرده نشده برای حالت توسعه که همچنین شامل هشدارهای کمکی برای توسعه دهندگان است.
+نسخه‌های CommonJS و ES Module به منظور استفاده در ابزارهای بسته‌بندی کد ارائه شده‌اند بنابراین ما نسخه فشرده آن را ارائه نمی‌دهیم و مسولیت فشرده سازی فایل نهایی بر عهده شما است.
 
-CommonJS and ES Module builds are intended for bundlers, therefore we don't provide minified versions for them. You will be responsible for minifying the final bundle yourself.
-
-CommonJS and ES Module builds also preserve raw checks for `process.env.NODE_ENV` to determine the mode they should run in. You should use appropriate bundler configurations to replace these environment variables in order to control which mode Vue will run in. Replacing `process.env.NODE_ENV` with string literals also allows minifiers like UglifyJS to completely drop the development-only code blocks, reducing final file size.
+فایل‌های CommonJS و ES Module متغییر محیطی `process.env.NODE_ENV` را برای حالتی که باید اجرا شوند را چک می‌کنند.برای تغییر حالتی که می‌خواهید اپلیکیشنتان را اجرا کنید، شما باید تنظیم مربوط به این متغییر محیطی را در ابزاربسته‌بندی کدتان تغییر دهید. تغییر `process.env.NODE_ENV` همچنین به ابزارهای فشرده‌سازی همچون  UglifyJS این امکان را می‌دهد که بلاک های کدی که فقط برای حالت توسعه هستند را به کلی حذف کرده که باعث سبک‌تر شدن حجم فایل نهایی می‌گردد.
 
 #### Webpack
 
-In Webpack 4+, you can use the `mode` option:
+در Webpack از نسخه ۴ به بعد، شما می‌توانید از گزینه `mode` در تنظیمات استفاده کنید:
 
 ``` js
 module.exports = {
@@ -201,7 +199,7 @@ module.exports = {
 }
 ```
 
-But in Webpack 3 and earlier, you'll need to use [DefinePlugin](https://webpack.js.org/plugins/define-plugin/):
+اما در Webpack نسخه ۳ و قدیمی‌تر، لازم است که از [DefinePlugin](https://webpack.js.org/plugins/define-plugin/) استفاده کنید:
 
 ``` js
 var webpack = require('webpack')
@@ -221,7 +219,7 @@ module.exports = {
 
 #### Rollup
 
-Use [rollup-plugin-replace](https://github.com/rollup/rollup-plugin-replace):
+از [rollup-plugin-replace](https://github.com/rollup/rollup-plugin-replace) استفاده کنید:
 
 ``` js
 const replace = require('rollup-plugin-replace')
@@ -238,23 +236,23 @@ rollup({
 
 #### Browserify
 
-Apply a global [envify](https://github.com/hughsk/envify) transform to your bundle.
+از انتقال سراسری [envify](https://github.com/hughsk/envify) روی بسته کدتان استفاده کنید.
 
 ``` bash
 NODE_ENV=production browserify -g envify -e main.js | uglifyjs -c -m > build.js
 ```
 
-Also see [Production Deployment Tips](deployment.html).
+همچنین [نکات دیپلوی محصول نهایی](deployment.html) را ببینید.
 
-### CSP environments
+### محیط‌های CSP
 
-Some environments, such as Google Chrome Apps, enforce Content Security Policy (CSP), which prohibits the use of `new Function()` for evaluating expressions. The full build depends on this feature to compile templates, so is unusable in these environments.
+برخی محیط‌ها همچون Google Chrome Apps، سیاست امنیت محتوا (CSP) را روی کدها اعمال می‌کنند که استفاده از `new Function()` را برای ارزیابی عبارات منع می‌کند. نسخه کامل (full build) برای تولید قالب به این امکان نیازمند بوده و در نتیجه در این نوع محیط‌ها قابل استفاده نمی‌باشد.
 
-On the other hand, the runtime-only build is fully CSP-compliant. When using the runtime-only build with [Webpack + vue-loader](https://github.com/vuejs-templates/webpack-simple) or [Browserify + vueify](https://github.com/vuejs-templates/browserify-simple), your templates will be precompiled into `render` functions which work perfectly in CSP environments.
+اما از سوی دیگر، در نسخه runtime-only تمام سیاست‌های CSP رعایت شده است. وقتی که از نسخه runtime-only با [Webpack + vue-loader](https://github.com/vuejs-templates/webpack-simple) یا [Browserify + vueify](https://github.com/vuejs-templates/browserify-simple) استفاده می‌کنید، کدهای قالب شما در هنگام ساخت به توابع نمایش `render` جاوا اسکریپت تبدیل شده که به خوبی در محیط‌های CSP کار می‌کند.
 
 ## Dev Build
 
-**Important**: the built files in GitHub's `/dist` folder are only checked-in during releases. To use Vue from the latest source code on GitHub, you will have to build it yourself!
+**توجه**: فایل های موجود در فولدر `/dist` گیت‌هاب، تنها در هنگام انتشار نسخه جدید به‌روزرسانی می‌شوند. برای استفاده از ویو بوسیله کدهای موجود در گیت‌هاب لازم است که خودتان فایل‌های اسکریپت را ایجاد کنید!
 
 ``` bash
 git clone https://github.com/vuejs/vue.git node_modules/vue
@@ -265,7 +263,7 @@ npm run build
 
 ## Bower
 
-Only UMD builds are available from Bower.
+فقظ نسخه‌های UMD از طریق Bower فابل نصب هستند.
 
 ``` bash
 # latest stable
@@ -274,4 +272,5 @@ $ bower install vue
 
 ## AMD Module Loaders
 
-All UMD builds can be used directly as an AMD module.
+تمامی نسخه‌های ساخت UMD را می‌توان مستقیما به عنوان ماژول AMD استفاده کرد.
+
