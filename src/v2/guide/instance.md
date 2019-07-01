@@ -1,24 +1,24 @@
 ---
-title: The Vue Instance
+title: Vue Instance
 type: guide
 order: 3
 ---
 
-## Creating a Vue Instance
+## ساختن یک Vue Instance 
 
-Every Vue application starts by creating a new **Vue instance** with the `Vue` function:
+هر اپلیکیشن ویو با ساختن یک Instance جدید از شئ ویو با استفاده از تابع `Vue` آغاز می‌شود:
 
 ```js
 var vm = new Vue({
-  // options
+  // Options
 })
 ```
 
-Although not strictly associated with the [MVVM pattern](https://en.wikipedia.org/wiki/Model_View_ViewModel), Vue's design was partly inspired by it. As a convention, we often use the variable `vm` (short for ViewModel) to refer to our Vue instance.
+در طراحی ویو تا حدودی از [الگوی MVVM](https://en.wikipedia.org/wiki/Model_View_ViewModel) الهام گرفته شده‌است؛ اگرچه ارتباط چندان نزدیکی ندارند. به عنوان یک قرارداد ما معمولا از متغییری به نام `vm` (خلاصه شده ViewModel) برای اشاره به Vue Instance استفاده می‌کنیم. 
 
-When you create a Vue instance, you pass in an **options object**. The majority of this guide describes how you can use these options to create your desired behavior. For reference, you can also browse the full list of options in the [API reference](../api/#Options-Data).
+زمانی که یک instance از شئ ویو می‌سازید، **یک شئ (Object) از آپشن‌ها** را به آن می‌دهید. بیشتر این راهنما به شما توضیح می‌دهند که چطور با استفاده از این آپشن‌ها رفتار مورد نظرتان را بوجود بیاورید. به عنوان مرجع می‌توانید لیست کامل این آپشن‌ها را در [مرجع API](../api/#Options-Data) مرور کنید.
 
-A Vue application consists of a **root Vue instance** created with `new Vue`, optionally organized into a tree of nested, reusable components. For example, a todo app's component tree might look like this:
+یک اپلیکیشن ویو شامل یک **root Vue instance** است که با استفاده از `new Vue` ساخته شده است، می‌تواند یک ساختار تو در تو درختی از component‌های قابل استفاده مجدد، داشته باشد. به عنوان مثال ساختار درختی component‌های یک اپ todo می‌تواند به این شکل باشد:
 
 ```
 Root Instance
@@ -31,42 +31,44 @@ Root Instance
       └─ TodoListStatistics
 ```
 
-We'll talk about [the component system](components.html) in detail later. For now, just know that all Vue components are also Vue instances, and so accept the same options object (except for a few root-specific options).
+ما در مورد [سیستم componentها](components.html) بعدا با جزئیات صحبت می‌کنیم. اما در حال حاضر فقط بدانید که هر component ویو در واقع یک vue instance هم هستند و بنابراین آپشن‌های مشابهی قبول می‌کنند. (به جز تعداد کمی از آپشن‌های مخصوص root.)
 
-## Data and Methods
+## Data و Methodها
 
-When a Vue instance is created, it adds all the properties found in its `data` object to Vue's **reactivity system**. When the values of those properties change, the view will "react", updating to match the new values.
+وقتی یک instance ویو ساخته می‌شود، ویو تمام propertyهای شئ `data` را به **سیستم واکنشگرایی (reactivity)** خود اضافه می‌کند. وقتی مقدار این propertyها تغییر می‌کند، صفحه «واکنش» نشان داده و متناسب با مقدار جدید بروز می‌شود.
 
 ```js
-// Our data object
+// شئ data ما
 var data = { a: 1 }
 
-// The object is added to a Vue instance
+// شئ به یک instance از ویو اضافه شده‌است.
 var vm = new Vue({
   data: data
 })
 
-// Getting the property on the instance
-// returns the one from the original data
+
+// با گرفتن یک property از instance
+// همان مقدار داده اصلی را به دست می‌آوریم.
 vm.a == data.a // => true
 
-// Setting the property on the instance
-// also affects the original data
+
+// همچنین افزودن یک property جدید به instance
+// مقدار داده اصلی را تحت تاثیر قرار می‌دهد.
 vm.a = 2
 data.a // => 2
 
-// ... and vice-versa
+// ... و برعکس
 data.a = 3
 vm.a // => 3
 ```
 
-When this data changes, the view will re-render. It should be noted that properties in `data` are only **reactive** if they existed when the instance was created. That means if you add a new property, like:
+وقتی این data تغییر می‌کند، صفحه مجددا رندر می‌شود. باید توجه داشت که propertyهای درون `data` تنها زمانی **reactive** هستند که در زمان ساخته شدن instance وجود داشته باشند. به این معنا که اگر یک property جدید اضافه کنید، مثل
 
 ```js
 vm.b = 'hi'
 ```
 
-Then changes to `b` will not trigger any view updates. If you know you'll need a property later, but it starts out empty or non-existent, you'll need to set some initial value. For example:
+تغییرات `b` منجر به بروزرسانی در صفحه نمی‌شود. اگر شما می‌دانید که یک property را در آینده نیاز خواهید داشت، اما در ابتدا مقدار آن خالیست یا وجود ندارد، شما می‌توانید برای آن یک مقدار اولیه تعیین کنید. برای مثال:
 
 ```js
 data: {
@@ -78,7 +80,7 @@ data: {
 }
 ```
 
-The only exception to this being the use of `Object.freeze()`, which prevents existing properties from being changed, which also means the reactivity system can't _track_ changes.
+تنها استثنا استفاده از `Object.freeze()` است، که جلوی هر گونه تغییری در proprertyها را می‌گیرد؛ به این معنی که سیستم واکنش‌گرایی (reactivity) نمی‌توند تغییرات را _دنبال_ کند.
 
 ```js
 var obj = {
@@ -96,13 +98,12 @@ new Vue({
 ```html
 <div id="app">
   <p>{{ foo }}</p>
-  <!-- this will no longer update `foo`! -->
+  <!-- این دیگر نمی‌تواند `foo` را بروزرسانی کند! -->
   <button v-on:click="foo = 'baz'">Change it</button>
 </div>
 ```
 
-In addition to data properties, Vue instances expose a number of useful instance properties and methods. These are prefixed with `$` to differentiate them from user-defined properties. For example:
-
+m 
 ```js
 var data = { a: 1 }
 var vm = new Vue({
@@ -119,13 +120,13 @@ vm.$watch('a', function (newValue, oldValue) {
 })
 ```
 
-In the future, you can consult the [API reference](../api/#Instance-Properties) for a full list of instance properties and methods.
+در آینده برای دیدن لیست کاملی از propertyهای instance ویو و متودها، می‌توانید به [مرجع API](../api/#Instance-Properties) مراجعه کنید.
 
-## Instance Lifecycle Hooks
+## Hookهای چرخه حیات Instance ویو
 
-Each Vue instance goes through a series of initialization steps when it's created - for example, it needs to set up data observation, compile the template, mount the instance to the DOM, and update the DOM when data changes. Along the way, it also runs functions called **lifecycle hooks**, giving users the opportunity to add their own code at specific stages.
+هر instance ویو پس از ساخته شدن، یک سری مراحل مقداردهی را  پشت سر می‌گذارد؛ برای مثال در ابتدا باید مقدار داده‌ها را بخواند، template را کامپایل کند، instance را در ‌DOM قرار دهد و هر زمان که داده‌ها تغییر کردند، DOM را بروزرسانی کند. در طول مسیر ویو تعدادی فانکشن به اسم **lifecycle hooks** را اجرا می‌کند و به کاربران اجازه می‌دهد تا کدهای خود را به هر کدام از این مراحل اضافه کنند.
 
-For example, the [`created`](../api/#created) hook can be used to run code after an instance is created:
+به عنوان مثال هوک [`created`](../api/#created) می‌تواند برای اجرا کردن کد، بعد از ساخته شدن یک instance استفاده شود.
 
 ```js
 new Vue({
@@ -133,19 +134,19 @@ new Vue({
     a: 1
   },
   created: function () {
-    // `this` points to the vm instance
+    // `this` به vm instance اشاره دارد.
     console.log('a is: ' + this.a)
   }
 })
 // => "a is: 1"
 ```
 
-There are also other hooks which will be called at different stages of the instance's lifecycle, such as [`mounted`](../api/#mounted), [`updated`](../api/#updated), and [`destroyed`](../api/#destroyed). All lifecycle hooks are called with their `this` context pointing to the Vue instance invoking it.
+هوک‌های دیگری هم وجود دارند که در مراحل دیگر چرخه حیات instance اجرا می‌شوند؛ مانند [`mounted`](../api/#mounted), [`updated`](../api/#updated) و [`destroyed`](../api/#destroyed). همه هوک‌های چرخه حیات با `this` که به instance ویو خودشان اشاره دارد، صدا زده می‌شوند.
 
-<p class="tip">Don't use [arrow functions](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions) on an options property or callback, such as `created: () => console.log(this.a)` or `vm.$watch('a', newValue => this.myMethod())`. Since an arrow function doesn't have a `this`, `this` will be treated as any other variable and lexically looked up through parent scopes until found, often resulting in errors such as `Uncaught TypeError: Cannot read property of undefined` or `Uncaught TypeError: this.myMethod is not a function`.</p>
+<p class="tip">هرگز از [arrow function‌ها](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions) در گزینه‌ها یا کال‌بک‌هایی مثل `created: () => console.log(this.a)` یا `vm.$watch('a', newValue => this.myMethod())` استفاده نکنید. از آنجایی که arrow function‌ها `this` ندارند، `this` مانند هر متغییر دیگری در لایه‌های بالاتر اسکوپ جستجو می‌شود؛ تا زمانی که مقداری برایش پیدا شود. البته اغلب به خطاهای `Uncaught TypeError: Cannot read property of undefined` یا `Uncaught TypeError: this.myMethod is not a function` می‌انجامد.</p>
 
-## Lifecycle Diagram
+## نمودار چرخه عمر
 
-Below is a diagram for the instance lifecycle. You don't need to fully understand everything going on right now, but as you learn and build more, it will be a useful reference.
+در پایین یک نمودار از چرخه حیات instance را می‌بینید. در حال حاضر نیازی نیست به طور کامل این نمودار را درک کنید، اما به مرور با یادگیری و تمرین بیشتر این تصویر می‌تواند یک مرجع کار‌آمد باشد.
 
-![The Vue Instance Lifecycle](/images/lifecycle.png)
+![چرخه حیات instance ویو](/images/lifecycle.png)
